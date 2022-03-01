@@ -1,24 +1,54 @@
 vim.g.mapleader = ','
 
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {
+local map = vim.api.nvim_set_keymap
+
+map('i', 'jj', '<ESC>', {
     noremap = true,
     silent = true
 })
 
 -- save
-vim.api.nvim_set_keymap('n', '<leader>w', ':w<cr>', {
+map('n', '<leader>w', ':w<cr>', {
     noremap = true,
     silent = true
 })
 
 -- quit
-vim.api.nvim_set_keymap('n', '<leader>q', ':q<cr>', {
+map('n', '<leader>q', ':q<cr>', {
     noremap = true,
     silent = true
 })
 
 -- force quit
-vim.api.nvim_set_keymap('n', '<leader>fq', ':q!<cr>', {
+map('n', '<leader>fq', ':q!<cr>', {
     noremap = true,
     silent = true
+})
+
+-- easy movement between panes
+map('n', '<c-h>', '<c-w>h', {
+    noremap = true,
+    silent = false
+})
+map('n', '<c-l>', '<c-w>l', {
+    noremap = true,
+    silent = false
+})
+map('n', '<c-j>', '<c-w>j', {
+    noremap = true,
+    silent = false
+})
+map('n', '<c-k>', '<c-w>k', {
+    noremap = true,
+    silent = false
+})
+
+-- easy indenting code
+map('v', '<', '<gv', {
+    noremap = true,
+    silent = false
+})
+map('v', '>', '>gv', {
+    noremap = true,
+    silent = false
 })
