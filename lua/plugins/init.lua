@@ -24,7 +24,8 @@ return require('packer').startup(function()
     -- file explorer, might be useful sometimes
     use {
         'kyazdani42/nvim-tree.lua',
-        requires = {'kyazdani42/nvim-web-devicons' -- optional, for file icon
+        requires = {
+          'kyazdani42/nvim-web-devicons' -- optional, for file icon
         },
         config = function()
             require'nvim-tree'.setup {}
@@ -33,4 +34,18 @@ return require('packer').startup(function()
 
     -- file formatter same as prettier but with extra file types
     use 'sbdchd/neoformat'
+
+    -- easily fuzzy file search
+    use {
+      'nvim-telescope/telescope.nvim',
+      requires = {
+        {
+          'nvim-lua/plenary.nvim',
+        },
+        {
+          'nvim-telescope/telescope-fzf-native.nvim',
+          run = 'make'
+        }
+      }
+    }
 end)

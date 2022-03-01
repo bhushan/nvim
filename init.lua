@@ -10,5 +10,6 @@ require('treesitter-config')
 require('lualine-config')
 require('nvim-tree-config')
 require('neoformat-config')
+require('telescope-config')
 
 vim.cmd('colorscheme carbon')
