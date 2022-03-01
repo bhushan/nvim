@@ -1,33 +1,37 @@
 vim.cmd('filetype plugin indent on')
 vim.o.shortmess = vim.o.shortmess .. 'c'
 vim.o.hidden = true
+
+vim.o.fileencoding = "utf-8" -- file encoding
+
 vim.o.whichwrap = 'b,s,<,>,[,],h,l'
-vim.o.pumheight = 10
-vim.o.fileencoding = "utf-8"
-vim.o.cmdheight = 1
+
+-- split management
 vim.o.splitbelow = true
 vim.o.splitright = true
-vim.opt.termguicolors = true
-vim.o.conceallevel = 0
 
--- disable tabs at the top
-vim.o.showtabline = 1
+vim.opt.termguicolors = true -- use 256 colors when possible
+
+
+vim.o.showtabline = 1 -- disable tabs at the top
 vim.o.showmode = false
 
 vim.o.backup = false
 vim.o.writebackup = false
 
-vim.o.updatetime = 300
-vim.o.timeoutlen = 100
+vim.o.updatetime = 300 -- vim updatetime for UI
 
-vim.o.clipboard = "unnamedplus"
+vim.o.clipboard = "unnamedplus" -- universal clipboard
 
-vim.o.hlsearch = false
-vim.o.ignorecase = true
+vim.o.hlsearch = true -- highlight search
+vim.o.ignorecase = true -- always do a case-insensitive search
+vim.o.smartcase = true -- override ignorecase if uppercase chars present
+vim.o.incsearch = true -- highlight matches while searching
 
 vim.o.scrolloff = 3
 vim.o.sidescrolloff = 5
-vim.o.mouse = "a"
+
+vim.o.mouse = "a" -- enable mouse
 
 vim.wo.wrap = false
 vim.wo.number = true
@@ -42,6 +46,8 @@ vim.o.shiftwidth = 2
 vim.bo.shiftwidth = 2
 vim.o.autoindent = true
 vim.bo.autoindent = true
+
+-- convert tabs to spaces
 vim.o.expandtab = true
 vim.bo.expandtab = true
 
