@@ -7,6 +7,12 @@ map('i', 'jj', '<ESC>', {
     silent = true
 })
 
+-- remove highlighted search 
+map('n', '<leader><space>', ':nohlsearch<cr>', {
+    noremap = true,
+    silent = false
+})
+
 -- save
 map('n', '<leader>w', ':w<cr>', {
     noremap = true,
