@@ -12,7 +12,6 @@ vim.o.splitright = true
 
 vim.opt.termguicolors = true -- use 256 colors when possible
 
-
 vim.o.showtabline = 1 -- disable tabs at the top
 vim.o.showmode = false
 
