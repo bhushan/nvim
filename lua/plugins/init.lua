@@ -30,4 +30,7 @@ return require('packer').startup(function()
             require'nvim-tree'.setup {}
         end
     }
+
+    -- file formatter same as prettier but with extra file types
+    use 'sbdchd/neoformat'
 end)

@@ -9,5 +9,6 @@ require('keybindings')
 require('treesitter-config')
 require('lualine-config')
 require('nvim-tree-config')
+require('neoformat-config')
 
 vim.cmd('colorscheme carbon')
