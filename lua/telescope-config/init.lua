@@ -7,6 +7,8 @@ telescope.setup({
 	defaults = {
 		prompt_prefix = "  ",
 
+		preview = false,
+
 		layout_config = {
 			prompt_position = "top",
 		},
