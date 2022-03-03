@@ -51,6 +51,9 @@ return require("packer").startup(function()
 	-- Collection of configurations for the built-in LSP client
 	use("neovim/nvim-lspconfig")
 
+	-- git gutter
+	use("mhinz/vim-signify")
+
 	-- theme
 	use("projekt0n/github-nvim-theme")
 end)
