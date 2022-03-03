@@ -1,10 +1,10 @@
-vim.cmd('filetype plugin indent on')
-vim.o.shortmess = vim.o.shortmess .. 'c'
+vim.cmd("filetype plugin indent on")
+vim.o.shortmess = vim.o.shortmess .. "c"
 vim.o.hidden = true
 
 vim.o.fileencoding = "utf-8" -- file encoding
 
-vim.o.whichwrap = 'b,s,<,>,[,],h,l'
+vim.o.whichwrap = "b,s,<,>,[,],h,l"
 
 -- split management
 vim.o.splitbelow = true
