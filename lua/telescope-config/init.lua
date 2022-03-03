@@ -5,21 +5,28 @@ local builtin = require("telescope.builtin")
 
 telescope.setup({
 	defaults = {
+		prompt_prefix = "  ",
+
+		layout_config = {
+			prompt_position = "top",
+		},
+
+		sorting_strategy = "ascending",
+
 		mappings = {
 			i = {
 				["<esc>"] = actions.close,
 			},
 		},
 
-		preview = false,
-
-		file_ignore_patterns = { ".git", ".idea", ".vscode", "node_modules", "vendor", ".DS_Store" },
-
-		winblend = 10,
-
-		layout_config = {
-			prompt_position = "top",
-			width = 0.75,
+		file_ignore_patterns = {
+			"^.git/",
+			"^git/submodules/",
+			"vendor",
+			"node_modules",
+			"^.idea",
+			"^.vscode",
+			"^.DStore",
 		},
 	},
 
@@ -27,18 +34,15 @@ telescope.setup({
 		find_files = {
 			prompt_title = "All Files",
 			find_command = { "rg", "--files", "--no-ignore", "--hidden" },
-			theme = "dropdown",
 		},
 
 		git_files = {
 			prompt_title = "Project Files",
 			find_command = { "rg", "--files" },
-			theme = "dropdown",
 		},
 
 		buffers = {
 			sort_lastused = true,
-			theme = "dropdown",
 			mappings = {
 				i = {
 					["<c-d>"] = "delete_buffer",
@@ -61,7 +65,7 @@ telescope.setup({
 builtin.open_nvim_files = function()
 	builtin.find_files(require("telescope.themes").get_dropdown({
 		cwd = "$HOME/.config/nvim",
-		prompt_title = "nvim config",
+		prompt_title = "Nvim Config",
 		previewer = false,
 	}))
 end
