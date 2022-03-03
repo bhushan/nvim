@@ -13,13 +13,37 @@ telescope.setup({
 
 		preview = false,
 
-		file_ignore_patterns = { ".idea", ".vscode", "node_modules", "vendor", ".DS_Store" },
+		file_ignore_patterns = { ".git", ".idea", ".vscode", "node_modules", "vendor", ".DS_Store" },
 
 		winblend = 10,
 
 		layout_config = {
 			prompt_position = "top",
 			width = 0.75,
+		},
+	},
+
+	pickers = {
+		find_files = {
+			prompt_title = "All Files",
+			find_command = { "rg", "--files", "--no-ignore", "--hidden" },
+			theme = "dropdown",
+		},
+
+		git_files = {
+			prompt_title = "Project Files",
+			find_command = { "rg", "--files" },
+			theme = "dropdown",
+		},
+
+		buffers = {
+			sort_lastused = true,
+			theme = "dropdown",
+			mappings = {
+				i = {
+					["<c-d>"] = "delete_buffer",
+				},
+			},
 		},
 	},
 
