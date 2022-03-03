@@ -48,6 +48,9 @@ return require("packer").startup(function()
 	-- better navigation to and from nvim to tmux
 	use("christoomey/vim-tmux-navigator")
 
+	-- Collection of configurations for the built-in LSP client
+	use("neovim/nvim-lspconfig")
+
 	-- theme
 	use("projekt0n/github-nvim-theme")
 end)
