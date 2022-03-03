@@ -1,9 +1,15 @@
 vim.cmd("filetype plugin indent on")
-vim.o.shortmess = vim.o.shortmess .. "c"
-vim.o.hidden = true
+-- vim.o.shortmess = vim.o.shortmess .. "c"
+-- vim.o.hidden = true
 
 vim.o.fileencoding = "utf-8" -- file encoding
 
+-- show whitespaces correctly
+vim.o.list = true
+-- eol:$,tab:>-,trail:~,extends:>,precedes:<
+vim.o.listchars = "tab:->,trail:~"
+
+-- move cursor to next line when line ends
 vim.o.whichwrap = "b,s,<,>,[,],h,l"
 
 -- split management
@@ -27,15 +33,15 @@ vim.o.ignorecase = true -- always do a case-insensitive search
 vim.o.smartcase = true -- override ignorecase if uppercase chars present
 vim.o.incsearch = true -- highlight matches while searching
 
-vim.o.scrolloff = 3
+vim.o.scrolloff = 3 -- start scrolling window before 3 lines left
 vim.o.sidescrolloff = 5
 
 vim.o.mouse = "a" -- enable mouse
 
-vim.wo.wrap = false
-vim.wo.relativenumber = true
-vim.wo.number = true
-vim.wo.cursorline = true
+vim.wo.wrap = false -- dont wrap lines
+vim.wo.number = true -- show line numbers on gutter line
+vim.wo.relativenumber = true -- relative line numbers on gutter line
+vim.wo.cursorline = false -- highlight currently selected line
 vim.wo.signcolumn = "yes"
 
 vim.o.tabstop = 2
