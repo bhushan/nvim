@@ -2,10 +2,6 @@ return require("packer").startup(function()
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- theme
-	use("shaunsingh/nord.nvim")
-	use("michaeldyrynda/carbon.vim")
-
 	-- better syntax highlighting and parsing
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -51,4 +47,7 @@ return require("packer").startup(function()
 
 	-- better navigation to and from nvim to tmux
 	use("christoomey/vim-tmux-navigator")
+
+	-- theme
+	use("projekt0n/github-nvim-theme")
 end)

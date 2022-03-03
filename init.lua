@@ -12,4 +12,4 @@ require("nvim-tree-config")
 require("neoformat-config")
 require("telescope-config")
 
-vim.cmd("colorscheme carbon")
+vim.cmd("colorscheme github_dark_default")

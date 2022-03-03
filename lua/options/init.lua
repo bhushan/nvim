@@ -33,6 +33,7 @@ vim.o.sidescrolloff = 5
 vim.o.mouse = "a" -- enable mouse
 
 vim.wo.wrap = false
+vim.wo.relativenumber = true
 vim.wo.number = true
 vim.wo.cursorline = true
 vim.wo.signcolumn = "yes"
