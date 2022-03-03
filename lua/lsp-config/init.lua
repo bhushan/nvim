@@ -25,3 +25,11 @@ lspconfig.html.setup({
 
 -- Tailwind
 lspconfig.tailwindcss.setup({})
+
+-- Keymaps
+local map = vim.api.nvim_set_keymap
+
+local opt = { noremap = true, silent = true }
+
+map("n", "K", ":lua vim.lsp.buf.hover()<cr>", opt)
+map("n", "<leader>sr", ":lua vim.lsp.buf.rename()<cr>", opt)
