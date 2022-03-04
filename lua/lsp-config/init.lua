@@ -20,7 +20,7 @@ lspconfig.jsonls.setup({})
 
 -- Html
 lspconfig.html.setup({
-	filetypes = { "html", "blade" },
+    filetypes = { "html", "blade" },
 })
 
 -- Tailwind
@@ -39,7 +39,12 @@ map("n", "<leader>iv", ":vsplit<cr>:lua vim.lsp.buf.definition()<cr>", opt)
 map("n", "<leader>id", ":lua vim.lsp.buf.declaration()<cr>", opt)
 map("n", "<leader>ir", ":lua vim.lsp.buf.references()<cr>", opt)
 map("n", "<leader>ii", ":lua vim.lsp.buf.implementation()<cr>", opt)
-map("n", "<leader>ie", ":lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", opt)
+map(
+    "n",
+    "<leader>ie",
+    ":lua vim.lsp.diagnostic.show_line_diagnostics()<cr>",
+    opt
+)
 
 map("n", "<C-k>", ":lua vim.lsp.buf.signature_help()<cr>", opt)
 map("n", "<C-n>", ":lua vim.lsp.diagnostic.goto_prev()<cr>", opt)
