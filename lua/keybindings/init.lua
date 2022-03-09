@@ -2,59 +2,28 @@ vim.g.mapleader = ","
 
 local map = vim.api.nvim_set_keymap
 
-map("i", "jj", "<ESC>", {
-    noremap = true,
-    silent = true,
-})
+local opts = { noremap = true, silent = true }
+
+map("i", "jj", "<ESC>", opts)
 
 -- remove highlighted search
-map("n", "<leader><space>", ":nohlsearch<cr>", {
-    noremap = true,
-    silent = false,
-})
+map("n", "<leader><space>", ":nohlsearch<cr>", opts)
 
 -- save
-map("n", "<leader>w", ":w<cr>", {
-    noremap = true,
-    silent = true,
-})
+map("n", "<leader>w", ":w<cr>", opts)
 
 -- quit
-map("n", "<leader>q", ":q<cr>", {
-    noremap = true,
-    silent = true,
-})
+map("n", "<leader>q", ":q<cr>", opts)
 
 -- force quit
-map("n", "<leader>fq", ":q!<cr>", {
-    noremap = true,
-    silent = true,
-})
+map("n", "<leader>fq", ":q!<cr>", opts)
 
 -- easy movement between panes
-map("n", "<c-h>", "<c-w>h", {
-    noremap = true,
-    silent = false,
-})
-map("n", "<c-l>", "<c-w>l", {
-    noremap = true,
-    silent = false,
-})
-map("n", "<c-j>", "<c-w>j", {
-    noremap = true,
-    silent = false,
-})
-map("n", "<c-k>", "<c-w>k", {
-    noremap = true,
-    silent = false,
-})
+map("n", "<c-h>", "<c-w>h", opts)
+map("n", "<c-l>", "<c-w>l", opts)
+map("n", "<c-j>", "<c-w>j", opts)
+map("n", "<c-k>", "<c-w>k", opts)
 
 -- easy indenting code
-map("v", "<", "<gv", {
-    noremap = true,
-    silent = false,
-})
-map("v", ">", ">gv", {
-    noremap = true,
-    silent = false,
-})
+map("v", "<", "<gv", opts)
+map("v", ">", ">gv", opts)
