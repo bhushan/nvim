@@ -9,7 +9,7 @@ require("lualine").setup({
             right = "",
         },
         disabled_filetypes = {},
-        theme = "github",
+        theme = "auto",
     },
     sections = {
         lualine_a = { "mode" },

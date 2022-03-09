@@ -12,6 +12,3 @@ require("nvim-tree-config")
 require("neoformat-config")
 require("telescope-config")
 require("lsp-config")
-
--- theme
-require("github-theme-config")

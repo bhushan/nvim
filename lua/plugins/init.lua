@@ -53,7 +53,4 @@ return require("packer").startup(function()
 
     -- git gutter
     use("mhinz/vim-signify")
-
-    -- theme
-    use("projekt0n/github-nvim-theme")
 end)
