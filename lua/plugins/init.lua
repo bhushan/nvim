@@ -64,6 +64,9 @@ return require("packer").startup(function()
     -- vim surround
     use("tpope/vim-surround")
 
+    -- Vim Commentary
+    use("tpope/vim-commentary")
+
     -- theme
     use("morhetz/gruvbox")
     use("projekt0n/github-nvim-theme")
