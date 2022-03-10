@@ -7,8 +7,11 @@ require("keybindings")
 
 -- configurations
 require("treesitter-config")
-require("lualine-config")
+require("default-lualine-config")
 require("nvim-tree-config")
 require("neoformat-config")
 require("telescope-config")
 require("lsp-config")
+
+-- theme
+require("inspired-github-config")
