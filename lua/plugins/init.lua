@@ -61,6 +61,9 @@ return require("packer").startup(function()
     -- git gutter
     use("mhinz/vim-signify")
 
+    -- vim surround
+    use("tpope/vim-surround")
+
     -- theme
     use("morhetz/gruvbox")
     use("projekt0n/github-nvim-theme")
