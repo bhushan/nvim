@@ -7,7 +7,7 @@ vim.o.fileencoding = "utf-8" -- file encoding
 -- show whitespaces correctly
 vim.o.list = true
 -- eol:$,tab:>-,trail:~,extends:>,precedes:<
--- vim.o.listchars = "tab:->,trail:~"
+vim.o.listchars = "trail:•"
 
 -- move cursor to next line when line ends
 vim.o.whichwrap = "b,s,<,>,[,],h,l"
