@@ -8,9 +8,9 @@ local normalModeMappings = {
         q = { "<cmd>q<cr>", "Quit" },
         Q = { "<cmd>q!<cr>", "Force Quit" },
         w = { "<cmd>w<cr>", "Write" },
-        f = { "<cmd>:Neoformat<cr>", "Apply formatting on current buffer" },
-        ["<space>"] = { ":nohlsearch<cr>", "Remove highlighting" },
-        ["1"] = { ":NvimTreeToggle<cr>", "Toggle Project Explorer" },
+        f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
+        ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
+        ["1"] = { "<cmd>NvimTreeToggle<cr>", "Toggle Project Explorer" },
         t = {
             name = "Telescope",
             f = { "<cmd>Telescope find_files<cr>", "Find Files" },
@@ -22,9 +22,19 @@ local normalModeMappings = {
             },
             d = { "<cmd>Telescope open_dotfiles<cr>", "Open Dotfiles" },
         },
+        p = {
+            name = "Packer",
+            r = { "<cmd>PackerClean<cr>", "Remove Unused Plugins" },
+            c = { "<cmd>PackerCompile profile=true<cr>", "Recompile Plugins" },
+            i = { "<cmd>PackerInstall<cr>", "Install Plugins" },
+            p = { "<cmd>PackerProfile<cr>", "Packer Profile" },
+            s = { "<cmd>PackerSync<cr>", "Sync Plugins" },
+            S = { "<cmd>PackerStatus<cr>", "Packer Status" },
+            u = { "<cmd>PackerUpdate<cr>", "Update Plugins" },
+        },
         l = {
             name = "Language server protocol",
-            i = { ":LspInfo<cr>", "Connected Language Servers" },
+            i = { "<cmd>LspInfo<cr>", "Connected Language Servers" },
             k = {
                 "<cmd>lua vim.lsp.buf.signature_help()<CR>",
                 "Signature help",

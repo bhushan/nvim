@@ -50,7 +50,7 @@ return require("packer").startup(function()
         "neovim/nvim-lspconfig",
         "williamboman/nvim-lsp-installer",
 
-        { "tami5/lspsaga.nvim", branch = "nvim6.0" },
+        -- { "tami5/lspsaga.nvim", branch = "nvim6.0" }, -- for now not using to see if it's worth it
 
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",

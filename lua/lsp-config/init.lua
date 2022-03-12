@@ -1,19 +1,16 @@
 require("lsp-config.cmp-config")
-require("lsp-config.lspsaga-config")
+-- require("lsp-config.lspsaga-config")
 
 local lspconfig = require("lspconfig")
 
--- HTML
+-- HTML LSP
 lspconfig.html.setup({})
 
 -- CSS LSP
 lspconfig.cssls.setup({})
 
--- Javascript/Typescript
+-- Javascript/Typescript LSP
 lspconfig.tsserver.setup({})
 
--- PHP
+-- PHP LSP
 lspconfig.intelephense.setup({})
-
--- Vimscript / VimL
-lspconfig.vimls.setup({})
