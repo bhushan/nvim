@@ -5,9 +5,9 @@ vim.cmd("filetype plugin indent on")
 vim.o.fileencoding = "utf-8" -- file encoding
 
 -- show whitespaces correctly
-vim.o.list = true
+vim.o.list = false
 -- eol:$,tab:>-,trail:~,extends:>,precedes:<
-vim.o.listchars = "trail:•"
+-- vim.o.listchars = "trail:•"
 
 -- move cursor to next line when line ends
 vim.o.whichwrap = "b,s,<,>,[,],h,l"
