@@ -43,11 +43,3 @@ lspsaga.setup({
     server_filetype_map = {},
     diagnostic_prefix_format = "%d. ",
 })
-
--- lspsaga commands
-local map = vim.api.nvim_set_keymap
-local opts = { noremap = true, silent = true }
-
-map("n", "K", "<cmd>Lspsaga hover_doc<cr>", opts)
-map("n", "gr", "<cmd>Lspsaga rename<cr>", opts)
-map("n", "gx", "<cmd>Lspsaga code_action<cr>", opts)

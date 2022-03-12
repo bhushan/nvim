@@ -82,36 +82,3 @@ builtin.open_dotfiles = function()
 end
 
 telescope.load_extension("fzf")
-
--- Keymaps
-local map = vim.api.nvim_set_keymap
-
-map("n", "<leader>tf", ":Telescope find_files<cr>", {
-    noremap = true,
-    silent = true,
-})
-
-map("n", "<leader>tg", ":Telescope live_grep<cr>", {
-    noremap = true,
-    silent = true,
-})
-
-map("n", "<leader>tb", ":Telescope buffers<cr>", {
-    noremap = true,
-    silent = true,
-})
-
-map("n", "<leader>th", ":Telescope help_tags<cr>", {
-    noremap = true,
-    silent = true,
-})
-
-map("n", "<leader>tn", ":Telescope open_nvim_files<cr>", {
-    noremap = true,
-    silent = true,
-})
-
-map("n", "<leader>td", ":Telescope open_dotfiles<cr>", {
-    noremap = true,
-    silent = true,
-})

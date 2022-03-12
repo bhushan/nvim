@@ -74,4 +74,7 @@ return require("packer").startup(function()
 
     -- GitHub Copilot Requires GitHub copilot access
     use("github/copilot.vim")
+
+    -- Better keybindings management and shows hints
+    use("folke/which-key.nvim")
 end)
