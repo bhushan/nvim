@@ -1,39 +1,49 @@
+require("lsp-config.cmp-config")
+require("lsp-config.lspsaga-config")
+
 local lspconfig = require("lspconfig")
 
--- Vimscript / VimL
-lspconfig.vimls.setup({})
+-- PHP
+-- local lsp_symbols =
+--     {
+--         Text = "   (Text) ",
+--         Method = "   (Method)",
+--         Function = "   (Function)",
+--         Constructor = "   (Constructor)",
+--         Field = " ﴲ  (Field)",
+--         Variable = "[] (Variable)",
+--         Class = "   (Class)",
+--         Interface = " ﰮ  (Interface)",
+--         Module = "   (Module)",
+--         Property = " 襁 (Property)",
+--         Unit = "   (Unit)",
+--         Value = "   (Value)",
+--         Enum = " 練 (Enum)",
+--         Keyword = "   (Keyword)",
+--         Snippet = "   (Snippet)",
+--         Color = "   (Color)",
+--         File = "   (File)",
+--         Reference = "   (Reference)",
+--         Folder = "   (Folder)",
+--         EnumMember = "   (EnumMember)",
+--         Constant = " ﲀ  (Constant)",
+--         Struct = " ﳤ  (Struct)",
+--         Event = "   (Event)",
+--         Operator = "   (Operator)",
+--         TypeParameter = "   (TypeParameter)",
+--     }, require("lspconfig").intelephense.setup({})
+
+-- HTML
+lspconfig.html.setup({})
+
+-- CSS LSP
+lspconfig.cssls.setup({})
 
 -- Javascript/Typescript
-require("lspconfig").tsserver.setup({})
+lspconfig.tsserver.setup({})
 
 -- PHP
 lspconfig.intelephense.setup({})
 
--- Vue
-lspconfig.vuels.setup({})
-
--- Yaml
-lspconfig.yamlls.setup({})
-
--- Json
-lspconfig.jsonls.setup({})
-
--- Html
-lspconfig.html.setup({
-    filetypes = { "html", "blade" },
-})
-
--- Tailwind
-lspconfig.tailwindcss.setup({})
-
--- Keymaps
-local map = vim.api.nvim_set_keymap
-
-local opt = { noremap = true, silent = true }
-
-map("n", "K", ":lua vim.lsp.buf.hover()<cr>", opt)
-map("n", "<C-k>", ":lua vim.lsp.buf.signature_help()<cr>", opt)
-
-map("n", "grr", ":lua vim.lsp.buf.rename()<cr>", opt)
-map("n", "gd", ":vsplit<cr>:lua vim.lsp.buf.definition()<cr>", opt)
-map("n", "gr", ":lua vim.lsp.buf.references()<cr>", opt)
+-- Vimscript / VimL
+lspconfig.vimls.setup({})

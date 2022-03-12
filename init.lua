@@ -7,7 +7,7 @@ require("keybindings")
 
 -- configurations
 require("treesitter-config")
-require("default-lualine-config")
+-- require("default-lualine-config") -- fallbacks when inspired-github-config is not used
 require("nvim-tree-config")
 require("neoformat-config")
 require("telescope-config")

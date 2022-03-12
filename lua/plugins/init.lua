@@ -23,9 +23,6 @@ return require("packer").startup(function()
         requires = {
             "kyazdani42/nvim-web-devicons", -- optional, for file icon
         },
-        config = function()
-            require("nvim-tree").setup({})
-        end,
     })
 
     -- file formatter same as prettier but with extra file types
@@ -50,12 +47,16 @@ return require("packer").startup(function()
 
     -- LSP plugins
     use({
-        "glepnir/lspsaga.nvim",
-        requires = {
-            {
-                "neovim/nvim-lspconfig",
-            },
-        },
+        "neovim/nvim-lspconfig",
+        "williamboman/nvim-lsp-installer",
+
+        { "tami5/lspsaga.nvim", branch = "nvim6.0" },
+
+        "hrsh7th/nvim-cmp",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
     })
 
     -- git gutter
@@ -68,7 +69,9 @@ return require("packer").startup(function()
     use("tpope/vim-commentary")
 
     -- theme
-    use("morhetz/gruvbox")
     use("projekt0n/github-nvim-theme")
     use("michaeldyrynda/carbon")
+
+    -- GitHub Copilot Requires GitHub copilot access
+    use("github/copilot.vim")
 end)
