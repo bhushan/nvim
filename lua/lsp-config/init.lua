@@ -3,14 +3,14 @@ require("lsp-config.cmp-config")
 
 local lspconfig = require("lspconfig")
 
--- HTML LSP
-lspconfig.html.setup({})
+-- -- HTML LSP
+-- lspconfig.html.setup({})
 
--- CSS LSP
-lspconfig.cssls.setup({})
+-- -- CSS LSP
+-- lspconfig.cssls.setup({})
 
 -- Javascript/Typescript LSP
--- lspconfig.tsserver.setup({})
+lspconfig.tsserver.setup({})
 
 -- PHP LSP
 -- lspconfig.intelephense.setup({})

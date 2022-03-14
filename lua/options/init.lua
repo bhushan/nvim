@@ -76,7 +76,7 @@ vim.g.loaded_remote_plugins = 1
 vim.opt.dictionary:append("/usr/share/dict/words")
 
 -- update diagnostics icons
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
 
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
