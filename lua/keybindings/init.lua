@@ -82,10 +82,10 @@ local normalModeMappings = {
             I = { "<cmd>LspInstallInfo<cr>", "Install language server" },
         },
     },
-    ["<c-h>"] = { "<c-w>h", "Focus Left Pane" },
-    ["<c-l>"] = { "<c-w>l", "Focus Right Pane" },
-    ["<c-j>"] = { "<c-w>j", "Focus Down Pane" },
-    ["<c-k>"] = { "<c-w>k", "Focus Up Pane" },
+    ["<c-h>"] = { "<cmd>TmuxNavigateLeft<cr>", "Focus Left Pane" },
+    ["<c-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Focus Right Pane" },
+    ["<c-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Focus Down Pane" },
+    ["<c-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Focus Up Pane" },
 }
 
 wk.register(normalModeMappings, { mode = "n" })
