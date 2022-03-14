@@ -73,7 +73,7 @@ return require("packer").startup(function()
     use("michaeldyrynda/carbon")
 
     -- GitHub Copilot Requires GitHub copilot access
-    use("github/copilot.vim")
+    -- use("github/copilot.vim")
 
     -- Better keybindings management and shows hints
     use("folke/which-key.nvim")
