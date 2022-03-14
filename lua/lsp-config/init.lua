@@ -10,7 +10,7 @@ lspconfig.html.setup({})
 lspconfig.cssls.setup({})
 
 -- Javascript/Typescript LSP
-lspconfig.tsserver.setup({})
+-- lspconfig.tsserver.setup({})
 
 -- PHP LSP
-lspconfig.intelephense.setup({})
+-- lspconfig.intelephense.setup({})
