@@ -14,4 +14,4 @@ require("lsp-config")
 
 -- theme
 require("lualine-config")
-vim.cmd [[ colorscheme carbon ]]
+vim.cmd [[ colorscheme github_dark ]]

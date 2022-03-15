@@ -13,4 +13,4 @@ local lspconfig = require("lspconfig")
 lspconfig.tsserver.setup({})
 
 -- PHP LSP
--- lspconfig.intelephense.setup({})
+lspconfig.intelephense.setup({})
