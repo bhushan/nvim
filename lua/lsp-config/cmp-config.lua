@@ -29,12 +29,25 @@ local lsp_symbols = {
 }
 
 cmp.setup({
+    mapping = {
+        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
+        ["<C-e>"] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    },
+
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
             require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
+
     formatting = {
         format = function(entry, item)
             item.kind = lsp_symbols[item.kind]
@@ -42,10 +55,13 @@ cmp.setup({
             return item
         end,
     },
+
     sources = cmp.config.sources({
-        { name = "nvim_lsp", priority = 1000 },
-        { name = "path", priority = 750 },
-        { name = "buffer", priority = 500 },
+        { name = "nvim_lsp" },
+        { name = "nvim_lua" },
+        { name = "luasnip" },
+        { name = "path" },
+        { name = "buffer" },
     }),
 })
 

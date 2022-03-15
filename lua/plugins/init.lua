@@ -54,10 +54,16 @@ return require("packer").startup(function()
 
         "hrsh7th/nvim-cmp",
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+
+        "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
     })
+
+    -- create cool new snippets
+    use("L3MON4D3/LuaSnip")
 
     -- git gutter
     use("mhinz/vim-signify")
