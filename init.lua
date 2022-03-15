@@ -14,5 +14,4 @@ require("lsp-config")
 
 -- theme
 require("lualine-config")
--- require("inspired-github-config")
-vim.cmd [[ colorscheme github_light ]]
+vim.cmd [[ colorscheme github_dimmed ]]
