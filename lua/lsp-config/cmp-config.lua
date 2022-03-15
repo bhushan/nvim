@@ -61,8 +61,13 @@ cmp.setup({
         { name = "nvim_lua" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "buffer", keyword_length = 4 },
+        { name = "look", keyword_length = 3 },
+        { name = "buffer", keyword_length = 3 },
     }),
+
+    experimental = {
+        ghost_text = true,
+    },
 })
 
 -- Use buffer source while searching anything

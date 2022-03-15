@@ -58,6 +58,7 @@ return require("packer").startup(function()
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
+        "octaltree/cmp-look", -- dictionary lookup
 
         "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
     })
