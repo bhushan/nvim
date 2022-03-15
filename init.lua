@@ -14,4 +14,10 @@ require("lsp-config")
 
 -- theme
 require("lualine-config")
-vim.cmd [[ colorscheme github_dark ]]
+
+-- dynamically set theme based on zshell env variable
+if os.getenv("LIGHT_MODE") then
+    vim.cmd([[ colorscheme github_light ]])
+else
+    vim.cmd([[ colorscheme github_dark ]])
+end
