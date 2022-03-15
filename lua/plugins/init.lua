@@ -71,8 +71,13 @@ return require("packer").startup(function()
     -- vim surround
     use("tpope/vim-surround")
 
-    -- Vim Commentary
-    use("tpope/vim-commentary")
+    -- better way to comment things
+    use({
+        "numToStr/Comment.nvim",
+        config = function()
+            require("Comment").setup()
+        end,
+    })
 
     -- theme
     use("projekt0n/github-nvim-theme")
