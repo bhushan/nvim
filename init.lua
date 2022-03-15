@@ -14,4 +14,4 @@ require("lsp-config")
 
 -- theme
 require("lualine-config")
-vim.cmd [[ colorscheme github_dimmed ]]
+vim.cmd [[ colorscheme carbon ]]
