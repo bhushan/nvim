@@ -4,7 +4,7 @@ local leftSeparator = ""
 local rightSeparator = ""
 
 if vim.o.background == "dark" then
-    transparent = { bg = "#1f2428" }
+    transparent = { bg = "#24292e" }
 else
     -- inverting colors for light colorschemes
     transparent = { bg = "#ffffff" }
