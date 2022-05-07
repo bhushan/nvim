@@ -24,8 +24,8 @@ telescope.setup({
         file_ignore_patterns = {
             "^.git/",
             "^git/submodules/",
-            "vendor",
-            "node_modules",
+            "^vendor",
+            "^node_modules",
             "^.idea",
             "^.vscode",
             "^.DStore",
@@ -33,23 +33,8 @@ telescope.setup({
     },
 
     pickers = {
-        find_files = {
-            prompt_title = "All Files",
-            find_command = { "rg", "--files", "--no-ignore", "--hidden" },
-        },
-
-        git_files = {
-            prompt_title = "Project Files",
-            find_command = { "rg", "--files" },
-        },
-
         buffers = {
             sort_lastused = true,
-            mappings = {
-                i = {
-                    ["<c-d>"] = "delete_buffer",
-                },
-            },
         },
     },
 
