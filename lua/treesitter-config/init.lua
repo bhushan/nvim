@@ -3,10 +3,16 @@ require("nvim-treesitter.configs").setup({
     ensure_installed = {
         "html",
         "css",
+        "scss",
         "javascript",
         "typescript",
-        "php",
+        "json",
+        "yaml",
+        "markdown",
+        "comment",
         "lua",
+        "regex",
+        "vim",
     },
 
     highlight = {
