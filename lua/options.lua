@@ -16,6 +16,8 @@ vim.o.whichwrap = "b,s,<,>,[,],h,l"
 vim.o.splitbelow = true
 vim.o.splitright = true
 
+vim.o.laststatus = 3 -- 3: always and ONLY the last window
+
 vim.opt.termguicolors = true -- use 256 colors when possible
 
 vim.o.showtabline = 1 -- disable tabs at the top
