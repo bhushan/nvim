@@ -18,12 +18,12 @@ return require("packer").startup(function()
     })
 
     -- file explorer, might be useful sometimes
-    -- use({
-    --     "kyazdani42/nvim-tree.lua",
-    --     requires = {
-    --         "kyazdani42/nvim-web-devicons", -- optional, for file icon
-    --     },
-    -- })
+    use({
+        "kyazdani42/nvim-tree.lua",
+        requires = {
+            "kyazdani42/nvim-web-devicons", -- optional, for file icon
+        },
+    })
 
     -- file formatter same as prettier but with extra file types
     use("sbdchd/neoformat")
@@ -69,9 +69,6 @@ return require("packer").startup(function()
     -- git gutter
     use("mhinz/vim-signify")
 
-    -- vim surround
-    -- use("tpope/vim-surround")
-
     -- better way to comment things
     use({
         "numToStr/Comment.nvim",
@@ -82,10 +79,6 @@ return require("packer").startup(function()
 
     -- theme
     use("projekt0n/github-nvim-theme")
-    -- use("michaeldyrynda/carbon")
-
-    -- GitHub Copilot Requires GitHub copilot access
-    -- use("github/copilot.vim")
 
     -- Better keybindings management and shows hints
     use("folke/which-key.nvim")
