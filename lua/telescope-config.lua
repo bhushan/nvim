@@ -5,7 +5,7 @@ local builtin = require("telescope.builtin")
 
 telescope.setup({
     defaults = {
-        prompt_prefix = "  ",
+        prompt_prefix = " 🔍 ",
 
         preview = false,
 
