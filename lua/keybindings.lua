@@ -11,7 +11,6 @@ local normalModeMappings = {
         f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
         t = {
             name = "Telescope",
-            f = { "<cmd>Telescope find_files<cr>", "Find Files" },
             g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
             b = { "<cmd>Telescope buffers<cr>", "Buffers" },
             n = {
@@ -89,6 +88,7 @@ local normalModeMappings = {
         "Toggle Project Explorer and open currently opened file",
     },
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
+    ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
 }
 
 wk.register(normalModeMappings, { mode = "n" })
