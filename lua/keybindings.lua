@@ -9,8 +9,6 @@ local normalModeMappings = {
         Q = { "<cmd>q!<cr>", "Force Quit" },
         w = { "<cmd>w<cr>", "Write" },
         f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
-        ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
-        ["1"] = { "<cmd>NvimTreeFindFileToggle<cr>", "Toggle Project Explorer and open currently opened file" },
         t = {
             name = "Telescope",
             f = { "<cmd>Telescope find_files<cr>", "Find Files" },
@@ -86,6 +84,11 @@ local normalModeMappings = {
     ["<c-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Focus Right Pane" },
     ["<c-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Focus Down Pane" },
     ["<c-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Focus Up Pane" },
+    ["1"] = {
+        "<cmd>NvimTreeFindFileToggle<cr>",
+        "Toggle Project Explorer and open currently opened file",
+    },
+    ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
 }
 
 wk.register(normalModeMappings, { mode = "n" })
