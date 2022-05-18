@@ -1,9 +1,12 @@
 local o = vim.o
 local g = vim.g
+local opt = vim.opt
 
 vim.cmd("filetype plugin indent on")
 
 o.fileencoding = "utf-8" -- file encoding
+
+opt.completeopt = { "menu", "menuone", "noselect" } -- How should auto completes be presented
 
 -- show whitespaces correctly
 o.list = false
