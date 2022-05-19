@@ -12,6 +12,7 @@ local servers = {
     "jsonls",
     "zk",
     "bashls",
+    "jdtls",
 }
 
 -- Ensure installed
