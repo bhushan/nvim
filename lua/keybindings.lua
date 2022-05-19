@@ -89,6 +89,10 @@ local normalModeMappings = {
     },
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
     ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+    ["<c-r>"] = {
+        "<cmd>Telescope lsp_document_symbols<cr>",
+        "File Structure",
+    },
 }
 
 wk.register(normalModeMappings, { mode = "n" })
