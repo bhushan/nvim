@@ -29,6 +29,10 @@ local normalModeMappings = {
             S = { "<cmd>PackerStatus<cr>", "Packer Status" },
             u = { "<cmd>PackerUpdate<cr>", "Update Plugins" },
         },
+        g = {
+            name = "Git",
+            h = { "<cmd>SignifyHunkDiff<cr>", "Show git hunk diff" },
+        },
         l = {
             name = "Language server protocol",
             i = { "<cmd>LspInfo<cr>", "Connected Language Servers" },
