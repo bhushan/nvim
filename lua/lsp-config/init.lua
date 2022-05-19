@@ -49,6 +49,18 @@ lsp_installer.on_server_ready(function(server)
         }
     end
 
+    if server.name == "emmet_ls" then
+        config.filetypes = {
+            "html",
+            "typescriptreact",
+            "javascriptreact",
+            "css",
+            "sass",
+            "scss",
+            "less",
+        }
+    end
+
     if server.name == "sumneko_lua" then
         config.settings = {
             Lua = {
