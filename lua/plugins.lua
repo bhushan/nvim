@@ -12,7 +12,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
         install_path,
     })
 
- vim.api.nvim_command("packadd packer.nvim")
+    vim.api.nvim_command("packadd packer.nvim")
 end
 
 return require("packer").startup({
@@ -24,6 +24,13 @@ return require("packer").startup({
         use({
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
+        })
+
+        use({
+            "terrortylor/nvim-comment",
+            config = function()
+                require("nvim_comment").setup()
+            end,
         })
 
         -- awesome status line
