@@ -8,6 +8,7 @@ require("nvim-tree-config")
 require("neoformat-config")
 require("telescope-config")
 require("lsp-config")
+require("runner")
 
 -- dynamically set theme based on zshell env variable
 if os.getenv("LIGHT_MODE") then

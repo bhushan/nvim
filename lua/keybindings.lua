@@ -79,6 +79,7 @@ local normalModeMappings = {
             },
             I = { "<cmd>LspInstallInfo<cr>", "Install language server" },
         },
+        x = { "<cmd>Run<cr>", "Run current file" },
     },
     ["<c-h>"] = { "<cmd>TmuxNavigateLeft<cr>", "Focus Left Pane" },
     ["<c-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Focus Right Pane" },
@@ -94,6 +95,7 @@ local normalModeMappings = {
         "<cmd>Telescope lsp_document_symbols<cr>",
         "File Structure",
     },
+    ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
 }
 
 wk.register(normalModeMappings, { mode = "n" })
