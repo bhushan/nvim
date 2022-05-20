@@ -90,12 +90,14 @@ return require("packer").startup({
 
             "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
         })
-
         -- create cool new snippets
         use("L3MON4D3/LuaSnip")
 
         -- git gutter
         use("mhinz/vim-signify")
+
+        -- integrate lazygit
+        use("kdheepak/lazygit.nvim")
 
         -- theme
         use("projekt0n/github-nvim-theme")

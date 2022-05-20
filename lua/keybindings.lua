@@ -28,6 +28,7 @@ local normalModeMappings = {
         },
         g = {
             name = "Git",
+            l = { "<cmd>LazyGit<cr>", "Open Lazygit" },
             h = { "<cmd>SignifyHunkDiff<cr>", "Show git hunk diff" },
         },
         l = {
