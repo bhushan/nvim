@@ -17,7 +17,8 @@ local run_command_table = {
 
 function Run_code()
     if run_command_table[vim.bo.filetype] then
-        vim.cmd("!" .. run_command_table[vim.bo.filetype])
+        vim.cmd("w") -- save file
+        vim.cmd("!" .. run_command_table[vim.bo.filetype]) -- execute file
     else
         print("\nFileType not supported\n")
     end
