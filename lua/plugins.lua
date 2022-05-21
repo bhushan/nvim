@@ -107,6 +107,14 @@ return require("packer").startup({
         -- theme
         use("projekt0n/github-nvim-theme")
 
+        -- competitive program helper, fetches questions from codeforces, hackerrank, leetcode etc
+        use({
+            "p00f/cphelper.nvim",
+            requires = {
+                "nvim-lua/plenary.nvim",
+            },
+        })
+
         -- Better keybindings management and shows hints
         use("folke/which-key.nvim")
 

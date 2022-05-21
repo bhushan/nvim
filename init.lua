@@ -19,3 +19,6 @@ end
 
 -- should be after setting theme
 require("lualine-config")
+
+-- CpHelper config
+vim.g.cphdir = os.getenv("HOME") .. "/code/solutions"
