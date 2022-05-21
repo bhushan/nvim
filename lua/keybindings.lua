@@ -29,7 +29,9 @@ local normalModeMappings = {
         g = {
             name = "Git",
             l = { "<cmd>LazyGit<cr>", "Open Lazygit" },
-            h = { "<cmd>SignifyHunkDiff<cr>", "Show git hunk diff" },
+            p = { "<cmd>Gitsigns preview_hunk<cr>", "Show git hunk diff" },
+            f = { "<cmd>Gitsigns next_hunk<cr>", "Goto next hunk" },
+            b = { "<cmd>Gitsigns prev_hunk<cr>", "Goto previous hunk" },
         },
         l = {
             name = "Language server protocol",

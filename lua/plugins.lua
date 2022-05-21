@@ -94,7 +94,12 @@ return require("packer").startup({
         use("L3MON4D3/LuaSnip")
 
         -- git gutter
-        use("mhinz/vim-signify")
+        use({
+            "lewis6991/gitsigns.nvim",
+            config = function()
+                require("gitsigns").setup()
+            end,
+        })
 
         -- integrate lazygit
         use("kdheepak/lazygit.nvim")
