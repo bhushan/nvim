@@ -118,6 +118,9 @@ return require("packer").startup({
         -- Better keybindings management and shows hints
         use("folke/which-key.nvim")
 
+        -- Zend mode hightlighting block of code using treesitter
+        use("folke/twilight.nvim")
+
         if bootstraped then
             require("packer").sync()
         end

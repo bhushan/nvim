@@ -5,6 +5,7 @@ vim.g.mapleader = ","
 local normalModeMappings = {
     ["<leader>"] = {
         name = "Leader",
+        i = { "<cmd>Twilight<cr>", "Toggle focus mode" },
         f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
         t = {
             name = "Telescope",
