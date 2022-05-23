@@ -102,17 +102,23 @@ local normalModeMappings = {
     ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
 }
 
-wk.register(normalModeMappings, { mode = "n" })
+wk.register(normalModeMappings, {
+    mode = "n",
+})
 
 local insertModeMappings = {
     ["jj"] = { "<ESC>", "Escape" },
 }
 
-wk.register(insertModeMappings, { mode = "i" })
+wk.register(insertModeMappings, {
+    mode = "i",
+})
 
 local visualModeMappings = {
     ["<"] = { "<gv", "Left Indent Code" },
     [">"] = { ">gv", "Right Indent Code" },
 }
 
-wk.register(visualModeMappings, { mode = "v" })
+wk.register(visualModeMappings, {
+    mode = "v",
+})

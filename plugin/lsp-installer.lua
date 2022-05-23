@@ -1,6 +1,3 @@
-require("lsp-config.cmp-config")
--- require("lsp-config.lspsaga-config")
-
 local lsp_installer = require("nvim-lsp-installer")
 
 local servers = {

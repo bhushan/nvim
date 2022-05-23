@@ -87,12 +87,24 @@ g.loaded_remote_plugins = 1
 vim.opt.dictionary:append("/usr/share/dict/words")
 
 -- update diagnostics icons
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+local signs = {
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
+}
 
 for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+    vim.fn.sign_define(hl, {
+        text = icon,
+        texthl = hl,
+        numhl = "",
+    })
 end
 
 -- set project directory to currently opened files directory
-vim.cmd('command CDD cd %:p:h')
+vim.cmd("command CDD cd %:p:h")
+
+-- CpHelper config
+vim.g.cphdir = os.getenv("HOME") .. "/code/solutions"
