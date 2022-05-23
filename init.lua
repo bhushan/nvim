@@ -27,7 +27,7 @@ require("packer").startup({
         })
 
         -- better commenting using treesitter
-        use("terrortylor/nvim-comment")
+        use("numToStr/Comment.nvim")
 
         -- awesome status line
         use({
