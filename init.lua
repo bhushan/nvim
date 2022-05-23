@@ -142,5 +142,3 @@ if os.getenv("LIGHT_MODE") then
 else
     vim.cmd([[ colorscheme github_dark ]])
 end
-
-require("luasnip").filetype_extend("javascript", { "javascript" })
