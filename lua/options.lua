@@ -8,6 +8,14 @@ o.fileencoding = "utf-8" -- file encoding
 
 opt.completeopt = { "menu", "menuone", "noselect" } -- How should auto completes be presented
 
+g.markdown_fenced_languages = {
+    "bash",
+    "php",
+    "javascript",
+    "js=javascript",
+    "json=javascript",
+} -- markdown file syntax highlight support
+
 -- show whitespaces correctly
 o.list = false
 
