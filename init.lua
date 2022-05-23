@@ -86,7 +86,17 @@ require("packer").startup({
         use("L3MON4D3/LuaSnip")
 
         -- extra snippets
-        use("rafamadriz/friendly-snippets")
+        use({
+            "rafamadriz/friendly-snippets",
+            requires = { "L3MON4D3/LuaSnip" },
+            config = function()
+                require("luasnip/loaders/from_vscode").load({
+                    paths = {
+                        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+                    },
+                })
+            end,
+        })
 
         -- git gutter
         use({
@@ -132,3 +142,5 @@ if os.getenv("LIGHT_MODE") then
 else
     vim.cmd([[ colorscheme github_dark ]])
 end
+
+require("luasnip").filetype_extend("javascript", { "javascript" })
