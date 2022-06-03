@@ -39,13 +39,11 @@ local function process_sections(sections)
                 comp = { comp }
                 section[id] = comp
             end
-            comp.separator = left
-                    and {
-                        right = rightSeparator,
-                    }
-                or {
-                    left = leftSeparator,
-                }
+            comp.separator = left and {
+                right = rightSeparator,
+            } or {
+                left = leftSeparator,
+            }
         end
     end
     return sections
