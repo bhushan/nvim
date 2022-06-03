@@ -6,7 +6,6 @@ vim.cmd("filetype plugin indent on")
 
 o.fileencoding = "utf-8" -- file encoding
 
-opt.completeopt = { "menu", "menuone", "noselect" } -- How should auto completes be presented
 
 g.markdown_fenced_languages = {
     "bash",
@@ -15,6 +14,7 @@ g.markdown_fenced_languages = {
     "js=javascript",
     "json=javascript",
 } -- markdown file syntax highlight support
+opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
 
 -- show whitespaces correctly
 o.list = false
@@ -45,8 +45,8 @@ o.ignorecase = true -- always do a case-insensitive search
 o.smartcase = true -- override ignorecase if uppercase chars present
 o.incsearch = true -- highlight matches while searching
 
-o.scrolloff = 3 -- start scrolling window before 3 lines left
-o.sidescrolloff = 5
+o.scrolloff = 8 -- start scrolling window before 8 lines left
+o.sidescrolloff = 8
 
 o.mouse = "a" -- enable mouse
 
