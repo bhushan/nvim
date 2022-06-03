@@ -1,9 +1,8 @@
 local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-local bootstraped = false
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    bootstraped = fn.system({
+    PACKER_BOOTSTRAP = fn.system({
         "git",
         "clone",
         "--depth",
@@ -12,133 +11,151 @@ if fn.empty(fn.glob(install_path)) > 0 then
         install_path,
     })
 
+    print("Installing packer close and reopen Neovim...")
+
     vim.api.nvim_command("packadd packer.nvim")
 end
 
-require("packer").startup({
-    function(use)
-        -- packer can manage itself
-        use("wbthomason/packer.nvim")
+-- Autocommand that reloads neovim whenever you save the init.lua file
+vim.cmd([[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost init.lua source <afile> | PackerSync
+  augroup end
+]])
 
-        -- better syntax highlighting and parsing
-        use({
-            "nvim-treesitter/nvim-treesitter",
-            run = ":TSUpdate",
-        })
+-- Use a protected require call (pcall) so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+    return
+end
 
-        -- better commenting using treesitter
-        use("numToStr/Comment.nvim")
+-- Show packer messages in a popup. Looks cooler
+packer.init({
+    display = {
+        open_fn = function()
+            return require("packer.util").float({
+                border = "rounded",
+            })
+        end,
+    },
+})
 
-        -- awesome status line
-        use({
-            "nvim-lualine/lualine.nvim",
-            requires = {
-                "kyazdani42/nvim-web-devicons",
-                opt = true,
-            },
-        })
+-- Alt installation of packer without a function
+packer.reset()
 
-        -- file explorer, might be useful sometimes
-        use({
-            "kyazdani42/nvim-tree.lua",
-            requires = {
-                "kyazdani42/nvim-web-devicons", -- optional, for file icon
-            },
-        })
+local use = packer.use
 
-        -- file formatter same as prettier but with extra file types
-        use("sbdchd/neoformat")
+-- packer can manage itself
+use("wbthomason/packer.nvim")
 
-        -- easily fuzzy file search
-        use({
-            "nvim-telescope/telescope.nvim",
-            requires = {
-                { "nvim-lua/plenary.nvim" },
-                {
-                    "nvim-telescope/telescope-fzf-native.nvim",
-                    run = "make",
-                },
-            },
-        })
+-- better syntax highlighting and parsing
+use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+})
 
-        -- use telescope for code action
-        use({ "nvim-telescope/telescope-ui-select.nvim" })
+-- better commenting using treesitter
+use("numToStr/Comment.nvim")
 
-        -- better navigation to and from nvim to tmux
-        use("christoomey/vim-tmux-navigator")
+-- awesome status line
+use({
+    "nvim-lualine/lualine.nvim",
+    requires = {
+        "kyazdani42/nvim-web-devicons",
+        opt = true,
+    },
+})
 
-        -- LSP plugins
-        use({
-            "neovim/nvim-lspconfig",
-            "williamboman/nvim-lsp-installer",
+-- file explorer, might be useful sometimes
+use({
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+        "kyazdani42/nvim-web-devicons", -- optional, for file icon
+    },
+})
 
-            "hrsh7th/nvim-cmp",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-nvim-lua",
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "octaltree/cmp-look", -- dictionary lookup
-            "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
-        })
+-- file formatter same as prettier but with extra file types
+use("sbdchd/neoformat")
 
-        -- create cool new snippets
-        use("L3MON4D3/LuaSnip")
-
-        -- extra snippets
-        use({
-            "rafamadriz/friendly-snippets",
-            requires = { "L3MON4D3/LuaSnip" },
-            config = function()
-                require("luasnip/loaders/from_vscode").load({
-                    paths = {
-                        "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-                    },
-                })
-            end,
-        })
-
-        -- git gutter
-        use({
-            "lewis6991/gitsigns.nvim",
-        })
-
-        -- integrate lazygit
-        use("kdheepak/lazygit.nvim")
-
-        -- theme
-        use("projekt0n/github-nvim-theme")
-
-        -- competitive program helper, fetches questions from codeforces, hackerrank, leetcode etc
-        use({
-            "p00f/cphelper.nvim",
-            requires = { "nvim-lua/plenary.nvim" },
-        })
-
-        -- Better keybindings management and shows hints
-        use("folke/which-key.nvim")
-
-        -- Zend mode hightlighting block of code using treesitter
-        use("folke/twilight.nvim")
-
-        if bootstraped then
-            require("packer").sync()
-        end
-    end,
-    config = {
-        display = {
-            open_fn = function()
-                return require("packer.util").float({
-                    border = "single",
-                })
-            end,
+-- easily fuzzy file search
+use({
+    "nvim-telescope/telescope.nvim",
+    requires = {
+        { "nvim-lua/plenary.nvim" },
+        {
+            "nvim-telescope/telescope-fzf-native.nvim",
+            run = "make",
         },
     },
 })
 
+-- use telescope for code action
+use({ "nvim-telescope/telescope-ui-select.nvim" })
+
+-- better navigation to and from nvim to tmux
+use("christoomey/vim-tmux-navigator")
+
+-- LSP plugins
+use({
+    "neovim/nvim-lspconfig",
+    "williamboman/nvim-lsp-installer",
+    "hrsh7th/nvim-cmp",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lua",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    "octaltree/cmp-look", -- dictionary lookup
+    "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
+})
+
+-- create cool new snippets
+use("L3MON4D3/LuaSnip")
+
+-- extra snippets
+use({
+    "rafamadriz/friendly-snippets",
+    requires = { "L3MON4D3/LuaSnip" },
+    config = function()
+        require("luasnip/loaders/from_vscode").load({
+            paths = {
+                "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+            },
+        })
+    end,
+})
+
+-- git gutter
+use({ "lewis6991/gitsigns.nvim" })
+
+-- integrate lazygit
+use("kdheepak/lazygit.nvim")
+
+-- theme
+use("projekt0n/github-nvim-theme")
+
+-- competitive program helper, fetches questions from codeforces, hackerrank, leetcode etc
+use({
+    "p00f/cphelper.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+})
+
+-- Better keybindings management and shows hints
+use("folke/which-key.nvim")
+
+-- Zend mode hightlighting block of code using treesitter
+use("folke/twilight.nvim")
+
+-- Automatically set up your configuration after cloning packer.nvim
+-- Put this at the end after all plugins
+if PACKER_BOOTSTRAP then
+    require("packer").sync()
+end
+
 -- dynamically set theme based on zshell env variable
 if os.getenv("LIGHT_MODE") then
-    vim.cmd([[ colorscheme github_light ]])
+    vim.cmd([[silent! colorscheme github_light ]])
 else
-    vim.cmd([[ colorscheme github_dark ]])
+    vim.cmd([[silent! colorscheme github_dark ]])
 end

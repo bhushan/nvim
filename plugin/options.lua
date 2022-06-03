@@ -6,14 +6,15 @@ vim.cmd("filetype plugin indent on")
 
 o.fileencoding = "utf-8" -- file encoding
 
-
+-- markdown file syntax highlight support
 g.markdown_fenced_languages = {
     "bash",
     "php",
     "javascript",
     "js=javascript",
     "json=javascript",
-} -- markdown file syntax highlight support
+}
+
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
 
 -- show whitespaces correctly
@@ -104,7 +105,7 @@ for type, icon in pairs(signs) do
 end
 
 -- set project directory to currently opened files directory
-vim.cmd("command CDD cd %:p:h")
+vim.cmd("command! CDD cd %:p:h")
 
 -- CpHelper config
 vim.g.cphdir = os.getenv("HOME") .. "/code/solutions"
