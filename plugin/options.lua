@@ -17,6 +17,9 @@ g.markdown_fenced_languages = {
 
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
 
+-- Don't show the dumb matching stuff.
+vim.opt.shortmess:append("c")
+
 -- show whitespaces correctly
 o.list = false
 
