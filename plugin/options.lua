@@ -7,7 +7,13 @@ vim.cmd("filetype plugin indent on")
 o.fileencoding = "utf-8" -- file encoding
 
 -- markdown file syntax highlight support
-g.markdown_fenced_languages = { "bash", "php", "javascript", "js=javascript", "json=javascript" }
+g.markdown_fenced_languages = {
+    "bash",
+    "php",
+    "javascript",
+    "js=javascript",
+    "json=javascript",
+}
 
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
 
@@ -67,19 +73,19 @@ vim.opt.dictionary:append("/usr/share/dict/words")
 
 -- update diagnostics icons
 local signs = {
-	Error = "",
-	Warn = "",
-	Hint = "",
-	Info = "",
+    Error = "",
+    Warn = "",
+    Hint = "",
+    Info = "",
 }
 
 for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, {
-		text = icon,
-		texthl = hl,
-		numhl = "",
-	})
+    local hl = "DiagnosticSign" .. type
+    vim.fn.sign_define(hl, {
+        text = icon,
+        texthl = hl,
+        numhl = "",
+    })
 end
 
 -- set project directory to currently opened files directory
