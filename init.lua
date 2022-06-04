@@ -147,6 +147,38 @@ use("folke/which-key.nvim")
 -- Zend mode hightlighting block of code using treesitter
 use("folke/twilight.nvim")
 
+-- DAP
+use({
+    "mfussenegger/nvim-dap",
+    run = function()
+        local installation_dir = vim.fn.stdpath("data") .. "/dap"
+
+        fn.system({
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            "https://github.com/microsoft/vscode-node-debug2",
+            installation_dir .. "/vscode-node-debug2/",
+        })
+
+        print(
+            "Visit: "
+                .. installation_dir
+                .. "/vscode-node-debug2 and do npm install && npm run build"
+        )
+    end,
+})
+
+use({
+    "theHamsta/nvim-dap-virtual-text",
+    config = function()
+        require("nvim-dap-virtual-text").setup()
+    end,
+})
+
+use("rcarriga/nvim-dap-ui")
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if PACKER_BOOTSTRAP then
