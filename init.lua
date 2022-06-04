@@ -181,6 +181,14 @@ use({
 
 use("rcarriga/nvim-dap-ui")
 
+-- auto complete brackets
+use({
+    "windwp/nvim-autopairs",
+    config = function()
+        require("nvim-autopairs").setup()
+    end,
+})
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if PACKER_BOOTSTRAP then
