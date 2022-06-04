@@ -88,7 +88,7 @@ local normalModeMappings = {
             I = { "<cmd>LspInstallInfo<cr>", "Install language server" },
         },
         d = {
-            name = "Debug",
+            name = "Debug Adapter Protocol",
             b = {
                 "<cmd>lua require'dap'.toggle_breakpoint()<cr>",
                 "Breakpoint",
@@ -108,6 +108,12 @@ local normalModeMappings = {
     ["<c-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Focus Right Pane" },
     ["<c-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Focus Down Pane" },
     ["<c-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Focus Up Pane" },
+
+    ["<a-Up>"] = { ":resize -2<CR>", "Resize UP" },
+    ["<a-Down>"] = { ":resize +2<CR>", "Resize Down" },
+    ["<a-Left>"] = { ":vertical resize +2<CR>", "Resize Left" },
+    ["<a-Right>"] = { ":vertical resize -2<CR>", "Resize Right" },
+
     ["1"] = {
         "<cmd>NvimTreeFindFileToggle<cr>",
         "Toggle Project Explorer and open currently opened file",
