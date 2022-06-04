@@ -151,7 +151,8 @@ use("folke/twilight.nvim")
 use({
     "mfussenegger/nvim-dap",
     run = function()
-        local installation_dir = vim.fn.stdpath("data") .. "/dap"
+        local installation_dir = vim.fn.stdpath("data")
+            .. "/dap/vscode-node-debug2"
 
         fn.system({
             "git",
@@ -159,14 +160,10 @@ use({
             "--depth",
             "1",
             "https://github.com/microsoft/vscode-node-debug2",
-            installation_dir .. "/vscode-node-debug2/",
+            installation_dir,
         })
-
-        print(
-            "Visit: "
-                .. installation_dir
-                .. "/vscode-node-debug2 and do npm install && npm run build"
-        )
+        fn.system({ "npm", "install", "--prefix", installation_dir })
+        fn.system({ "npm", "run", "build", "--prefix", installation_dir })
     end,
 })
 
