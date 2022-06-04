@@ -127,7 +127,12 @@ use({
 })
 
 -- git gutter
-use({ "lewis6991/gitsigns.nvim" })
+use({
+    "lewis6991/gitsigns.nvim",
+    config = function()
+        require("gitsigns").setup()
+    end,
+})
 
 -- integrate lazygit
 use("kdheepak/lazygit.nvim")
