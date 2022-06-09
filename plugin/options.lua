@@ -21,7 +21,8 @@ opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user 
 vim.opt.shortmess:append("c")
 
 -- show whitespaces correctly
-o.list = false
+vim.o.list = true
+vim.o.listchars = "tab:▸ ,trail:·"
 
 -- move cursor to next line when line ends
 o.whichwrap = "b,s,<,>,[,],h,l"
