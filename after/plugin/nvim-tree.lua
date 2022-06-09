@@ -5,9 +5,13 @@ if not status_ok then
 end
 
 nvim_tree.setup({
+    git = {
+        ignore = false,
+    },
     view = {
         width = 40,
         hide_root_folder = true,
         side = "right",
     },
 })
+
