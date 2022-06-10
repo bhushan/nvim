@@ -8,6 +8,7 @@ local servers = {
     "html",
     "cssls",
     "tsserver",
+    "intelephense",
     "sumneko_lua",
     "emmet_ls",
     "jsonls",
