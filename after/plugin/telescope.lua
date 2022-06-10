@@ -24,16 +24,6 @@ telescope.setup({
                 ["<esc>"] = actions.close,
             },
         },
-
-        file_ignore_patterns = {
-            "^.git/",
-            "^git/submodules/",
-            "^vendor",
-            "^node_modules",
-            "^.idea",
-            "^.vscode",
-            "^.DStore",
-        },
     },
 
     pickers = {
