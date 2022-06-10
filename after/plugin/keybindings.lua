@@ -119,6 +119,7 @@ local normalModeMappings = {
         "<cmd>NvimTreeFindFileToggle<cr>",
         "Toggle Project Explorer and open currently opened file",
     },
+    K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
     ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
     ["<c-r>"] = {
