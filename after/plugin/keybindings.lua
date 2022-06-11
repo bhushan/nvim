@@ -13,6 +13,7 @@ local normalModeMappings = {
         f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
         t = {
             name = "Telescope",
+            r = { "<cmd>Telescope oldfiles<cr>", "Open previously opened files" },
             g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
             b = { "<cmd>Telescope buffers<cr>", "Buffers" },
             n = {
