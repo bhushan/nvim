@@ -12,6 +12,7 @@ local run_command_table = {
     ["rust"] = "rustc % && ./%:r",
     ["go"] = "go run %",
     ["javascript"] = "node %",
+    ["typescript"] = "ts-node %",
 }
 
 function Run_code()
