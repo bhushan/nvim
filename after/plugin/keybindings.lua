@@ -69,7 +69,7 @@ local normalModeMappings = {
                 "Go to definition",
             },
             D = {
-                "<cmd>lua vim.lsp.buf.delaration()<CR>",
+                "<cmd>lua vim.lsp.buf.declaration()<CR>",
                 "Go to declaration",
             },
             r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
