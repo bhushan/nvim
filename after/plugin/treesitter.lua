@@ -24,7 +24,12 @@ treesitter_config.setup({
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
-
-        additional_vim_regex_highlighting = true,
+    },
+    indent = {
+        enable = true,
     },
 })
+
+local opt = vim.opt
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
