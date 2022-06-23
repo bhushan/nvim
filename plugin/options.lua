@@ -91,9 +91,3 @@ for type, icon in pairs(signs) do
         numhl = "",
     })
 end
-
--- set project directory to currently opened files directory
-vim.cmd("command! CDD cd %:p:h")
-
--- CpHelper config
-vim.g.cphdir = os.getenv("HOME") .. "/code/solutions"
