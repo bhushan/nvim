@@ -76,14 +76,14 @@ local function search_result()
         .. ")"
 end
 
-local function modified()
-    if vim.bo.modified then
-        return "+"
-    elseif vim.bo.modifiable == false or vim.bo.readonly == true then
-        return "-"
-    end
-    return ""
-end
+-- local function modified()
+--     if vim.bo.modified then
+--         return "+"
+--     elseif vim.bo.modifiable == false or vim.bo.readonly == true then
+--         return "-"
+--     end
+--     return ""
+-- end
 
 lualine.setup({
     options = {
@@ -99,8 +99,7 @@ lualine.setup({
             "branch",
             {
                 "filename",
-                file_status = false,
-                path = 3,
+                file_status = true,
             },
             {
                 "diagnostics",
