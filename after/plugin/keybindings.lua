@@ -128,6 +128,7 @@ local normalModeMappings = {
         "File Structure",
     },
     ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
+    ["<f5>"] = { "<cmd>PresentingStart<cr>", "Start presentation mode" },
 }
 
 wk.register(normalModeMappings, {
