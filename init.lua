@@ -212,5 +212,5 @@ end
 if os.getenv("LIGHT_MODE") then
     vim.cmd([[silent! colorscheme github_light ]])
 else
-    vim.cmd([[silent! colorscheme github_dark ]])
+    vim.cmd([[silent! colorscheme github_dimmed ]])
 end
