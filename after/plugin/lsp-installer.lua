@@ -13,6 +13,7 @@ local servers = {
     "sumneko_lua",
     "emmet_ls",
     "jsonls",
+    "marksman",
 }
 
 -- Ensure installed

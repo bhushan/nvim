@@ -8,11 +8,24 @@ o.fileencoding = "utf-8" -- file encoding
 
 -- markdown file syntax highlight support
 g.markdown_fenced_languages = {
-    "bash",
-    "php",
+    "html",
+    "css",
+    "scss",
+    "sass",
     "javascript",
     "js=javascript",
     "json=javascript",
+    "typescript=javascript",
+    "php",
+    "c",
+    "cpp",
+    "java",
+    "xml",
+    "vim",
+    "yaml",
+    "lua",
+    "sh",
+    "bash=sh",
 }
 
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
