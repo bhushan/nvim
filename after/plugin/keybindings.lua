@@ -13,7 +13,10 @@ local normalModeMappings = {
         f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
         t = {
             name = "Telescope",
-            r = { "<cmd>Telescope oldfiles<cr>", "Open previously opened files" },
+            r = {
+                "<cmd>Telescope oldfiles<cr>",
+                "Open previously opened files",
+            },
             g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
             b = { "<cmd>Telescope buffers<cr>", "Buffers" },
             n = {
@@ -128,7 +131,6 @@ local normalModeMappings = {
         "File Structure",
     },
     ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
-    ["<f5>"] = { "<cmd>PresentingStart<cr>", "Start presentation mode" },
 }
 
 wk.register(normalModeMappings, {
