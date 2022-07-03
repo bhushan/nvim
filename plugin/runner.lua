@@ -2,8 +2,8 @@
 -- https://vim.fandom.com/wiki/Get_the_name_of_the_current_file
 -- https://github.com/anurag3301/my-linux-setup/blob/main/config/nvim/lua/runner.lua
 local run_command_table = {
-    ["cpp"] = "g++ % -o %:r && ./%:r",
-    ["c"] = "gcc % -o %:r && ./%:r",
+    ["cpp"] = "g++ % -o %:r && %:r",
+    ["c"] = "gcc % -o %:r && %:r",
     ["python"] = "python %",
     ["lua"] = "luafile %",
     ["java"] = "javac % && java %:r",
