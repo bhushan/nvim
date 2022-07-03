@@ -138,7 +138,7 @@ use({
 use("kdheepak/lazygit.nvim")
 
 -- theme
-use("projekt0n/github-nvim-theme")
+use("bhushan/github-nvim-theme")
 
 -- Better keybindings management and shows hints
 use("folke/which-key.nvim")
