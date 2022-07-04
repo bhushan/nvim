@@ -109,10 +109,6 @@ local normalModeMappings = {
         },
         x = { "<cmd>Run<cr>", "Run current file" },
     },
-    ["<c-h>"] = { "<cmd>TmuxNavigateLeft<cr>", "Focus Left Pane" },
-    ["<c-l>"] = { "<cmd>TmuxNavigateRight<cr>", "Focus Right Pane" },
-    ["<c-j>"] = { "<cmd>TmuxNavigateDown<cr>", "Focus Down Pane" },
-    ["<c-k>"] = { "<cmd>TmuxNavigateUp<cr>", "Focus Up Pane" },
 
     ["<a-Up>"] = { ":resize -2<CR>", "Resize UP" },
     ["<a-Down>"] = { ":resize +2<CR>", "Resize Down" },
