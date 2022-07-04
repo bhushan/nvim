@@ -67,6 +67,9 @@ use({
     },
 })
 
+-- extra surrounding keybindings
+use("tpope/vim-surround")
+
 -- file explorer, might be useful sometimes
 use({
     "kyazdani42/nvim-tree.lua",
