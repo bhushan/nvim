@@ -24,7 +24,9 @@ treesitter_config.setup({
     highlight = {
         -- `false` will disable the whole extension
         enable = true,
+        disable = { "NvimTree" },
     },
+
     indent = {
         enable = true,
     },
