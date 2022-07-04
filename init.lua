@@ -90,9 +90,6 @@ use({
     },
 })
 
--- use telescope for code action
-use({ "nvim-telescope/telescope-ui-select.nvim" })
-
 -- better navigation to and from nvim to tmux
 use("christoomey/vim-tmux-navigator")
 

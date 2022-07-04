@@ -51,4 +51,3 @@ builtin.open_dotfiles = function()
 end
 
 telescope.load_extension("fzf")
-telescope.load_extension("ui-select")
