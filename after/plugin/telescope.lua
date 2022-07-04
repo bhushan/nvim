@@ -31,15 +31,6 @@ telescope.setup({
             sort_lastused = true,
         },
     },
-
-    extensions = {
-        fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-            case_mode = "smart_case",
-        },
-    },
 })
 
 -- Custom finders
@@ -56,7 +47,6 @@ builtin.open_dotfiles = function()
         cwd = "$HOME/.dotfiles",
         prompt_title = "Dotfiles",
         previewer = false,
-        file_ignore_patterns = { "plugged" },
     }))
 end
 
