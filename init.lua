@@ -52,6 +52,9 @@ use("wbthomason/packer.nvim")
 -- better syntax highlighting and parsing
 use({
     "nvim-treesitter/nvim-treesitter",
+    requires = {
+        "p00f/nvim-ts-rainbow",
+    },
     run = ":TSUpdate",
 })
 
@@ -180,22 +183,6 @@ use({
     "windwp/nvim-autopairs",
     config = function()
         require("nvim-autopairs").setup()
-    end,
-})
-
-use({
-    "p00f/nvim-ts-rainbow",
-    requires = {
-        "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            rainbow = {
-                enable = true,
-                extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-                max_file_lines = nil, -- Do not enable for files with more than n lines, int
-            },
-        })
     end,
 })
 
