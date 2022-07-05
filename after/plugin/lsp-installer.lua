@@ -14,6 +14,7 @@ local servers = {
     "emmet_ls",
     "jsonls",
     "marksman",
+    "jdtls",
 }
 
 -- Ensure installed
