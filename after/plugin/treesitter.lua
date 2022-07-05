@@ -19,6 +19,7 @@ treesitter_config.setup({
         "lua",
         "regex",
         "vim",
+        "java",
     },
 
     highlight = {
