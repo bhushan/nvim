@@ -4,6 +4,36 @@ if not status_ok then
     return
 end
 
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+    return
+end
+local cmp_nvim_lsp_status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
+if not cmp_nvim_lsp_status_ok then
+    return
+end
+
+lsp_installer.setup({
+    automatic_installation = true,
+    ui = {
+        border = "single",
+        icons = {
+            server_pending = "➜",
+            server_uninstalled = "✗",
+        },
+    },
+})
+
+-- hacky way to add border on LspInfo command
+local win = require("lspconfig.ui.windows")
+local _default_opts = win.default_opts
+
+win.default_opts = function(options)
+    local opts = _default_opts(options)
+    opts.border = "single"
+    return opts
+end
+
 local servers = {
     "html",
     "cssls",
@@ -17,64 +47,16 @@ local servers = {
     "jdtls",
 }
 
--- Ensure installed
 for _, name in pairs(servers) do
     local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found and not server:is_installed() then
-        print("Installing " .. name)
-        server:install()
+
+    if server_is_found then
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+        lspconfig[server.name]:setup({
+            capabilities = capabilities,
+        })
     end
 end
-
--- Enable snippet support
-local function make_config()
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-    return {
-        capabilities = capabilities,
-    }
-end
-
-lsp_installer.on_server_ready(function(server)
-    local config = make_config()
-
-    -- language specific config
-    if server.name == "tsserver" then
-        config.filetypes = {
-            "javascript",
-            "javascriptreact",
-            "javascript.jsx",
-            "typescript",
-            "typescriptreact",
-            "typescript.tsx",
-        }
-    end
-
-    if server.name == "emmet_ls" then
-        config.filetypes = {
-            "html",
-            "typescriptreact",
-            "javascriptreact",
-            "css",
-            "sass",
-            "scss",
-            "less",
-        }
-    end
-
-    if server.name == "sumneko_lua" then
-        config.settings = {
-            Lua = {
-                runtime = {
-                    version = "LuaJIT",
-                },
-                diagnostics = {
-                    globals = { "vim", "use", "packer_plugins" },
-                },
-            },
-        }
-    end
-
-    server:setup(config)
-end)
