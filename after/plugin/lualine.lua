@@ -41,8 +41,7 @@ local function process_sections(sections)
 
             local left = name:sub(9, 10) < "x"
 
-            comp.separator = left and { right = rightSeparator }
-                or { left = leftSeparator }
+            comp.separator = left and { right = rightSeparator } or { left = leftSeparator }
         end
     end
 
@@ -62,12 +61,7 @@ local function search_result()
 
     local searchcount = vim.fn.searchcount({ maxcount = 9999 })
 
-    return last_search
-        .. "("
-        .. searchcount.current
-        .. "/"
-        .. searchcount.total
-        .. ")"
+    return last_search .. "(" .. searchcount.current .. "/" .. searchcount.total .. ")"
 end
 
 lualine.setup({

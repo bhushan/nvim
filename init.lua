@@ -153,8 +153,7 @@ use("folke/twilight.nvim")
 use({
     "mfussenegger/nvim-dap",
     run = function()
-        local installation_dir = vim.fn.stdpath("data")
-            .. "/dap/vscode-node-debug2"
+        local installation_dir = vim.fn.stdpath("data") .. "/dap/vscode-node-debug2"
 
         fn.system({
             "git",
