@@ -106,17 +106,17 @@ use({
 -- better navigation to and from nvim to tmux
 use("christoomey/vim-tmux-navigator")
 
--- -- LSP plugins
--- use({
---     "neovim/nvim-lspconfig",
---     "williamboman/nvim-lsp-installer",
--- })
-
 use({
   "L3MON4D3/LuaSnip", -- create cool new snippets
   requires = {
     { "hrsh7th/nvim-cmp" }, -- cmp is needed to show dropdown
-    { "hrsh7th/cmp-nvim-lsp" }, -- cmp source to hook into lsp
+    {
+      "hrsh7th/cmp-nvim-lsp",
+      requires = {
+        "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
+        "williamboman/nvim-lsp-installer", -- lsp installer to install lsp servers
+      },
+    }, -- cmp source to hook into lsp
     { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
     { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
     { "hrsh7th/cmp-path" }, -- cmp source path

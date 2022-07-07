@@ -48,14 +48,14 @@ local servers = {
 }
 
 for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
+  local server_is_found, _ = lsp_installer.get_server(name)
 
   if server_is_found then
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-    lspconfig[server.name]:setup({
+    lspconfig[name]:setup({
       capabilities = capabilities,
     })
   end
