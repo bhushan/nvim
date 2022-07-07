@@ -16,19 +16,22 @@ if fn.empty(fn.glob(install_path)) > 0 then
     vim.api.nvim_command("packadd packer.nvim")
 end
 
--- Autocommand that reloads neovim whenever you save the init.lua file
--- vim.cmd([[
---   augroup packer_user_config
---     autocmd!
---     autocmd BufWritePost init.lua source <afile> | PackerSync
---   augroup end
--- ]])
-
 -- Use a protected require call (pcall) so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
     return
 end
+
+-- Autocommand that reloads neovim whenever you save the init.lua file
+local packer_group = vim.api.nvim_create_augroup(
+    "packer_group",
+    { clear = true }
+)
+vim.api.nvim_create_autocmd("BufWritePost", {
+    command = "source <afile> | PackerSync",
+    group = packer_group,
+    pattern = "init.lua",
+})
 
 -- Show packer messages in a popup. Looks cooler
 packer.init({
@@ -58,31 +61,38 @@ use({
     run = ":TSUpdate",
 })
 
+-- auto complete brackets
+use({
+    "windwp/nvim-autopairs",
+    config = function()
+        require("nvim-autopairs").setup()
+    end,
+})
+
+-- file formatter same as prettier but with extra file types
+use("sbdchd/neoformat")
+
 -- better commenting using treesitter
 use("numToStr/Comment.nvim")
+
+-- extra surrounding keybindings
+use("tpope/vim-surround")
 
 -- awesome status line
 use({
     "nvim-lualine/lualine.nvim",
     requires = {
         "kyazdani42/nvim-web-devicons",
-        opt = true,
     },
 })
-
--- extra surrounding keybindings
-use("tpope/vim-surround")
 
 -- file explorer, might be useful sometimes
-use({
-    "kyazdani42/nvim-tree.lua",
-    requires = {
-        "kyazdani42/nvim-web-devicons", -- optional, for file icon
-    },
-})
-
--- file formatter same as prettier but with extra file types
-use("sbdchd/neoformat")
+-- use({
+--     "kyazdani42/nvim-tree.lua",
+--     requires = {
+--         "kyazdani42/nvim-web-devicons", -- optional, for file icon
+--     },
+-- })
 
 -- easily fuzzy file search
 use({
@@ -99,35 +109,35 @@ use({
 -- better navigation to and from nvim to tmux
 use("christoomey/vim-tmux-navigator")
 
--- LSP plugins
-use({
-    "neovim/nvim-lspconfig",
-    "williamboman/nvim-lsp-installer",
-    "hrsh7th/nvim-cmp",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-nvim-lua",
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "octaltree/cmp-look", -- dictionary lookup
-    "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
-})
-
--- create cool new snippets
-use("L3MON4D3/LuaSnip")
+-- -- LSP plugins
+-- use({
+--     "neovim/nvim-lspconfig",
+--     "williamboman/nvim-lsp-installer",
+--     "hrsh7th/nvim-cmp",
+--     "hrsh7th/cmp-nvim-lsp",
+--     "hrsh7th/cmp-nvim-lua",
+--     "hrsh7th/cmp-buffer",
+--     "hrsh7th/cmp-path",
+--     "hrsh7th/cmp-cmdline",
+--     "octaltree/cmp-look", -- dictionary lookup
+--     "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
+-- })
+--
+-- -- create cool new snippets
+-- use("L3MON4D3/LuaSnip")
 
 -- extra snippets
-use({
-    "rafamadriz/friendly-snippets",
-    requires = { "L3MON4D3/LuaSnip" },
-    config = function()
-        require("luasnip/loaders/from_vscode").load({
-            paths = {
-                "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-            },
-        })
-    end,
-})
+-- use({
+--     "rafamadriz/friendly-snippets",
+--     requires = { "L3MON4D3/LuaSnip" },
+--     config = function()
+--         require("luasnip/loaders/from_vscode").load({
+--             paths = {
+--                 "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+--             },
+--         })
+--     end,
+-- })
 
 -- git gutter
 use({
@@ -138,10 +148,7 @@ use({
 })
 
 -- integrate lazygit
-use("kdheepak/lazygit.nvim")
-
--- theme
-use("bhushan/github-nvim-theme")
+-- use("kdheepak/lazygit.nvim")
 
 -- Better keybindings management and shows hints
 use("folke/which-key.nvim")
@@ -152,8 +159,18 @@ use("folke/twilight.nvim")
 -- DAP
 use({
     "mfussenegger/nvim-dap",
+    requires = {
+        {
+            "theHamsta/nvim-dap-virtual-text",
+            config = function()
+                require("nvim-dap-virtual-text").setup()
+            end,
+        },
+        { "rcarriga/nvim-dap-ui" },
+    },
     run = function()
-        local installation_dir = vim.fn.stdpath("data") .. "/dap/vscode-node-debug2"
+        local installation_dir = vim.fn.stdpath("data")
+            .. "/dap/vscode-node-debug2"
 
         fn.system({
             "git",
@@ -168,25 +185,11 @@ use({
     end,
 })
 
-use({
-    "theHamsta/nvim-dap-virtual-text",
-    config = function()
-        require("nvim-dap-virtual-text").setup()
-    end,
-})
-
-use("rcarriga/nvim-dap-ui")
-
--- auto complete brackets
-use({
-    "windwp/nvim-autopairs",
-    config = function()
-        require("nvim-autopairs").setup()
-    end,
-})
-
 -- present markdown files as presentation slides
 use("sotte/presenting.vim")
+
+-- theme
+use("bhushan/github-nvim-theme")
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
