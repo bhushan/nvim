@@ -8,24 +8,24 @@ o.fileencoding = "utf-8" -- file encoding
 
 -- markdown file syntax highlight support
 g.markdown_fenced_languages = {
-    "html",
-    "css",
-    "scss",
-    "sass",
-    "javascript",
-    "js=javascript",
-    "json=javascript",
-    "typescript=javascript",
-    "php",
-    "c",
-    "cpp",
-    "java",
-    "xml",
-    "vim",
-    "yaml",
-    "lua",
-    "sh",
-    "bash=sh",
+  "html",
+  "css",
+  "scss",
+  "sass",
+  "javascript",
+  "js=javascript",
+  "json=javascript",
+  "typescript=javascript",
+  "php",
+  "c",
+  "cpp",
+  "java",
+  "xml",
+  "vim",
+  "yaml",
+  "lua",
+  "sh",
+  "bash=sh",
 }
 
 opt.completeopt = { "menu", "menuone", "noselect", "noinsert" } -- Let the user decide about the autocomplete
@@ -90,17 +90,17 @@ vim.opt.dictionary:append("/usr/share/dict/words")
 
 -- update diagnostics icons
 local signs = {
-    Error = "",
-    Warn = "",
-    Hint = "",
-    Info = "",
+  Error = "",
+  Warn = "",
+  Hint = "",
+  Info = "",
 }
 
 for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, {
-        text = icon,
-        texthl = hl,
-        numhl = "",
-    })
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, {
+    text = icon,
+    texthl = hl,
+    numhl = "",
+  })
 end

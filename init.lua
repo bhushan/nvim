@@ -2,46 +2,43 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
-        "git",
-        "clone",
-        "--depth",
-        "1",
-        "https://github.com/wbthomason/packer.nvim",
-        install_path,
-    })
+  PACKER_BOOTSTRAP = fn.system({
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  })
 
-    print("Installing packer close and reopen Neovim...")
+  print("Installing packer close and reopen Neovim...")
 
-    vim.api.nvim_command("packadd packer.nvim")
+  vim.api.nvim_command("packadd packer.nvim")
 end
 
 -- Use a protected require call (pcall) so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
-    return
+  return
 end
 
 -- Autocommand that reloads neovim whenever you save the init.lua file
-local packer_group = vim.api.nvim_create_augroup(
-    "packer_group",
-    { clear = true }
-)
+local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-    command = "source <afile> | PackerSync",
-    group = packer_group,
-    pattern = "init.lua",
+  command = "source <afile> | PackerSync",
+  group = packer_group,
+  pattern = "init.lua",
 })
 
 -- Show packer messages in a popup. Looks cooler
 packer.init({
-    display = {
-        open_fn = function()
-            return require("packer.util").float({
-                border = "rounded",
-            })
-        end,
-    },
+  display = {
+    open_fn = function()
+      return require("packer.util").float({
+        border = "rounded",
+      })
+    end,
+  },
 })
 
 -- Alt installation of packer without a function
@@ -54,19 +51,19 @@ use("wbthomason/packer.nvim")
 
 -- better syntax highlighting and parsing
 use({
-    "nvim-treesitter/nvim-treesitter",
-    requires = {
-        "p00f/nvim-ts-rainbow",
-    },
-    run = ":TSUpdate",
+  "nvim-treesitter/nvim-treesitter",
+  requires = {
+    "p00f/nvim-ts-rainbow",
+  },
+  run = ":TSUpdate",
 })
 
 -- auto complete brackets
 use({
-    "windwp/nvim-autopairs",
-    config = function()
-        require("nvim-autopairs").setup()
-    end,
+  "windwp/nvim-autopairs",
+  config = function()
+    require("nvim-autopairs").setup()
+  end,
 })
 
 -- file formatter same as prettier but with extra file types
@@ -80,10 +77,10 @@ use("tpope/vim-surround")
 
 -- awesome status line
 use({
-    "nvim-lualine/lualine.nvim",
-    requires = {
-        "kyazdani42/nvim-web-devicons",
-    },
+  "nvim-lualine/lualine.nvim",
+  requires = {
+    "kyazdani42/nvim-web-devicons",
+  },
 })
 
 -- file explorer, might be useful sometimes
@@ -96,14 +93,14 @@ use({
 
 -- easily fuzzy file search
 use({
-    "nvim-telescope/telescope.nvim",
-    requires = {
-        { "nvim-lua/plenary.nvim" },
-        {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            run = "make",
-        },
+  "nvim-telescope/telescope.nvim",
+  requires = {
+    { "nvim-lua/plenary.nvim" },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      run = "make",
     },
+  },
 })
 
 -- better navigation to and from nvim to tmux
@@ -141,10 +138,10 @@ use("christoomey/vim-tmux-navigator")
 
 -- git gutter
 use({
-    "lewis6991/gitsigns.nvim",
-    config = function()
-        require("gitsigns").setup()
-    end,
+  "lewis6991/gitsigns.nvim",
+  config = function()
+    require("gitsigns").setup()
+  end,
 })
 
 -- integrate lazygit
@@ -158,31 +155,30 @@ use("folke/twilight.nvim")
 
 -- DAP
 use({
-    "mfussenegger/nvim-dap",
-    requires = {
-        {
-            "theHamsta/nvim-dap-virtual-text",
-            config = function()
-                require("nvim-dap-virtual-text").setup()
-            end,
-        },
-        { "rcarriga/nvim-dap-ui" },
+  "mfussenegger/nvim-dap",
+  requires = {
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      config = function()
+        require("nvim-dap-virtual-text").setup()
+      end,
     },
-    run = function()
-        local installation_dir = vim.fn.stdpath("data")
-            .. "/dap/vscode-node-debug2"
+    { "rcarriga/nvim-dap-ui" },
+  },
+  run = function()
+    local installation_dir = vim.fn.stdpath("data") .. "/dap/vscode-node-debug2"
 
-        fn.system({
-            "git",
-            "clone",
-            "--depth",
-            "1",
-            "https://github.com/microsoft/vscode-node-debug2",
-            installation_dir,
-        })
-        fn.system({ "npm", "install", "--prefix", installation_dir })
-        fn.system({ "npm", "run", "build", "--prefix", installation_dir })
-    end,
+    fn.system({
+      "git",
+      "clone",
+      "--depth",
+      "1",
+      "https://github.com/microsoft/vscode-node-debug2",
+      installation_dir,
+    })
+    fn.system({ "npm", "install", "--prefix", installation_dir })
+    fn.system({ "npm", "run", "build", "--prefix", installation_dir })
+  end,
 })
 
 -- present markdown files as presentation slides
@@ -194,12 +190,12 @@ use("bhushan/github-nvim-theme")
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if PACKER_BOOTSTRAP then
-    require("packer").sync()
+  require("packer").sync()
 end
 
 -- dynamically set theme based on zshell env variable
 if os.getenv("LIGHT_MODE") then
-    vim.cmd([[silent! colorscheme github_light ]])
+  vim.cmd([[silent! colorscheme github_light ]])
 else
-    vim.cmd([[silent! colorscheme github_dimmed ]])
+  vim.cmd([[silent! colorscheme github_dimmed ]])
 end
