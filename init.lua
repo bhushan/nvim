@@ -53,17 +53,17 @@ use("wbthomason/packer.nvim")
 use({
   "nvim-treesitter/nvim-treesitter",
   requires = {
-    "p00f/nvim-ts-rainbow",
+    "p00f/nvim-ts-rainbow", -- colorise matching brackets
+    {
+      "windwp/nvim-autopairs", -- auto complete brackets
+      config = function()
+        require("nvim-autopairs").setup({
+          check_ts = true,
+        })
+      end,
+    },
   },
   run = ":TSUpdate",
-})
-
--- auto complete brackets
-use({
-  "windwp/nvim-autopairs",
-  config = function()
-    require("nvim-autopairs").setup()
-  end,
 })
 
 -- file formatter same as prettier but with extra file types
