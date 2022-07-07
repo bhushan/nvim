@@ -40,6 +40,6 @@ treesitter_config.setup({
     },
 })
 
-local opt = vim.opt
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldenable = false
