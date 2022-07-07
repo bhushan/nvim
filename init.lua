@@ -110,31 +110,31 @@ use("christoomey/vim-tmux-navigator")
 -- use({
 --     "neovim/nvim-lspconfig",
 --     "williamboman/nvim-lsp-installer",
---     "hrsh7th/nvim-cmp",
---     "hrsh7th/cmp-nvim-lsp",
---     "hrsh7th/cmp-nvim-lua",
---     "hrsh7th/cmp-buffer",
---     "hrsh7th/cmp-path",
---     "hrsh7th/cmp-cmdline",
---     "octaltree/cmp-look", -- dictionary lookup
---     "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
 -- })
---
--- -- create cool new snippets
--- use("L3MON4D3/LuaSnip")
 
--- extra snippets
--- use({
---     "rafamadriz/friendly-snippets",
---     requires = { "L3MON4D3/LuaSnip" },
---     config = function()
---         require("luasnip/loaders/from_vscode").load({
---             paths = {
---                 "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
---             },
---         })
---     end,
--- })
+use({
+  "L3MON4D3/LuaSnip", -- create cool new snippets
+  requires = {
+    { "hrsh7th/nvim-cmp" }, -- cmp is needed to show dropdown
+    { "hrsh7th/cmp-nvim-lsp" }, -- cmp source to hook into lsp
+    { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
+    { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
+    { "hrsh7th/cmp-path" }, -- cmp source path
+    { "hrsh7th/cmp-buffer" }, -- cmp source buffer
+    { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
+    { "octaltree/cmp-look" }, -- cmp source dictionary lookup
+    {
+      "rafamadriz/friendly-snippets", -- add user friendly snippets
+      config = function()
+        require("luasnip/loaders/from_vscode").load({
+          paths = {
+            "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+          },
+        })
+      end,
+    },
+  },
+})
 
 -- git gutter
 use({

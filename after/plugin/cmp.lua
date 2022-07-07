@@ -45,20 +45,25 @@ local lsp_symbols = {
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- not sure how to go inside docs yet
+    ["<C-d>"] = cmp.mapping.scroll_docs(4), -- not sure how to go inside docs yet
+
+    ["<C-Space>"] = cmp.mapping.complete(), -- not sure if i will use it
+
     ["<CR>"] = cmp.mapping.confirm({
-      select = true,
-    }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    ["<C-e>"] = cmp.mapping({
+      select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+
+    ["<Esc>"] = cmp.mapping({
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     }),
+
     ["<C-y>"] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
     }),
+
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -85,7 +90,7 @@ cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+      luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
 
@@ -95,10 +100,11 @@ cmp.setup({
   },
 
   min_length = 1,
+
   preselect = true,
 
   formatting = {
-    format = function(_, item)
+    format = function(name, item)
       item.kind = lsp_symbols[item.kind]
 
       return item
@@ -111,22 +117,30 @@ cmp.setup({
       priority = 1000,
     },
     {
+      name = "nvim_lua",
+      priority = 800,
+    },
+    {
       name = "luasnip",
-      priority = 900,
+      priority = 700,
     },
     {
       name = "path",
-      priority = 800,
+      priority = 600,
+    },
+    {
+      name = "cmdline",
+      priority = 500,
+    },
+    {
+      name = "buffer",
+      keyword_length = 3,
+      priority = 400,
     },
     {
       name = "look",
       keyword_length = 4,
-      priority = 700,
-    },
-    {
-      name = "buffer",
-      keyword_length = 4,
-      priority = 600,
+      priority = 300,
     },
   }),
 
@@ -146,10 +160,10 @@ cmp.setup.cmdline("/", {
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources({
     {
-      name = "path",
+      name = "cmdline",
     },
     {
-      name = "cmdline",
+      name = "path",
     },
   }),
 })
