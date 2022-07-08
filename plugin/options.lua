@@ -6,6 +6,8 @@ vim.cmd("filetype plugin indent on")
 
 o.fileencoding = "utf-8" -- file encoding
 
+vim.opt.belloff = "all" -- never ring the bell for any reason
+
 -- markdown file syntax highlight support
 g.markdown_fenced_languages = {
   "html",
@@ -16,6 +18,7 @@ g.markdown_fenced_languages = {
   "js=javascript",
   "json=javascript",
   "typescript=javascript",
+  "ts=javascript",
   "php",
   "c",
   "cpp",
@@ -35,7 +38,13 @@ vim.opt.shortmess:append("c")
 
 -- show whitespaces correctly
 vim.o.list = true
-vim.o.listchars = "tab:▸ ,trail:·"
+vim.opt.listchars = {
+  nbsp = "⦸", -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
+  extends = "»", -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
+  precedes = "«", -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB)
+  tab = "▷⋯", -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + MIDLINE HORIZONTAL ELLIPSIS (U+22EF, UTF-8: E2 8B AF)
+  trail = "•", -- BULLET (U+2022, UTF-8: E2 80 A2)
+}
 
 -- move cursor to next line when line ends
 o.whichwrap = "b,s,<,>,[,],h,l"
