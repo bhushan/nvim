@@ -51,3 +51,5 @@ builtin.open_dotfiles = function()
 end
 
 telescope.load_extension("fzf")
+telescope.load_extension("project")
+telescope.load_extension("file_browser")

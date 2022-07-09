@@ -13,17 +13,13 @@ local normalModeMappings = {
     f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
     t = {
       name = "Telescope",
-      r = {
-        "<cmd>Telescope oldfiles<cr>",
-        "Open previously opened files",
-      },
+      ["1"] = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
+      r = { "<cmd>Telescope oldfiles<cr>", "Open previously opened files" },
       g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      n = {
-        "<cmd>Telescope open_nvim_files<cr>",
-        "Open Nvim Config Files",
-      },
+      n = { "<cmd>Telescope open_nvim_files<cr>", "Open Nvim Config Files" },
       d = { "<cmd>Telescope open_dotfiles<cr>", "Open Dotfiles" },
+      m = { "<cmd>Telescope project<CR>", "Open Projects" },
     },
     p = {
       name = "Packer",
@@ -116,10 +112,6 @@ local normalModeMappings = {
   ["<a-Left>"] = { ":vertical resize +2<CR>", "Resize Left" },
   ["<a-Right>"] = { ":vertical resize -2<CR>", "Resize Right" },
 
-  ["1"] = {
-    "<cmd>NvimTreeFindFileToggle<cr>",
-    "Toggle Project Explorer and open currently opened file",
-  },
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
   ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
   ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },

@@ -27,7 +27,7 @@ local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true 
 vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source <afile> | PackerSync",
   group = packer_group,
-  pattern = "nvim/init.lua",
+  pattern = "init.lua",
 })
 
 -- Show packer messages in a popup. Looks cooler
@@ -83,23 +83,17 @@ use({
   },
 })
 
--- file explorer, might be useful sometimes
-use({
-  "kyazdani42/nvim-tree.lua",
-  requires = {
-    "kyazdani42/nvim-web-devicons", -- optional, for file icon
-  },
-})
-
 -- easily fuzzy file search
 use({
   "nvim-telescope/telescope.nvim",
   requires = {
-    { "nvim-lua/plenary.nvim" },
+    { "nvim-lua/plenary.nvim" }, -- cmp is needed to show dropdown
+    { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
     {
-      "nvim-telescope/telescope-fzf-native.nvim",
+      "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search
       run = "make",
     },
+    { "nvim-telescope/telescope-file-browser.nvim" }, -- file browser
   },
 })
 
