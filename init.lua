@@ -84,12 +84,12 @@ use({
 })
 
 -- file explorer, might be useful sometimes
--- use({
---     "kyazdani42/nvim-tree.lua",
---     requires = {
---         "kyazdani42/nvim-web-devicons", -- optional, for file icon
---     },
--- })
+use({
+  "kyazdani42/nvim-tree.lua",
+  requires = {
+    "kyazdani42/nvim-web-devicons", -- optional, for file icon
+  },
+})
 
 -- easily fuzzy file search
 use({
