@@ -12,24 +12,10 @@ telescope.setup({
 
     selection_caret = "» ",
 
-    preview = false,
-
-    layout_config = {
-      prompt_position = "top",
-    },
-
-    sorting_strategy = "ascending",
-
     mappings = {
       i = {
         ["<esc>"] = actions.close,
       },
-    },
-  },
-
-  pickers = {
-    buffers = {
-      sort_lastused = true,
     },
   },
 })
