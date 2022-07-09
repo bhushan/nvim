@@ -5,7 +5,6 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
-local builtin = require("telescope.builtin")
 
 telescope.setup({
   defaults = {
@@ -32,23 +31,6 @@ telescope.setup({
     },
   },
 })
-
--- Custom finders
-builtin.open_nvim_files = function()
-  builtin.find_files(require("telescope.themes").get_dropdown({
-    cwd = "$HOME/.config/nvim",
-    prompt_title = "Nvim Config",
-    previewer = false,
-  }))
-end
-
-builtin.open_dotfiles = function()
-  builtin.find_files(require("telescope.themes").get_dropdown({
-    cwd = "$HOME/.dotfiles",
-    prompt_title = "Dotfiles",
-    previewer = false,
-  }))
-end
 
 telescope.load_extension("fzf")
 telescope.load_extension("project")

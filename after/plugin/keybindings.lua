@@ -14,12 +14,10 @@ local normalModeMappings = {
     t = {
       name = "Telescope",
       ["1"] = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
+      m = { "<cmd>Telescope project<CR>", "Open Projects" },
       r = { "<cmd>Telescope oldfiles<cr>", "Open previously opened files" },
       g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
       b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-      n = { "<cmd>Telescope open_nvim_files<cr>", "Open Nvim Config Files" },
-      d = { "<cmd>Telescope open_dotfiles<cr>", "Open Dotfiles" },
-      m = { "<cmd>Telescope project<CR>", "Open Projects" },
     },
     p = {
       name = "Packer",
