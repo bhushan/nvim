@@ -12,6 +12,7 @@ treesitter_config.setup({
     "scss",
     "javascript",
     "typescript",
+    "php",
     "json",
     "yaml",
     "markdown",
