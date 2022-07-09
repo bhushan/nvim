@@ -10,6 +10,8 @@ telescope.setup({
   defaults = {
     prompt_prefix = " 🔍 ",
 
+    selection_caret = "» ",
+
     preview = false,
 
     layout_config = {
