@@ -27,7 +27,7 @@ local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true 
 vim.api.nvim_create_autocmd("BufWritePost", {
   command = "source <afile> | PackerSync",
   group = packer_group,
-  pattern = "init.lua",
+  pattern = "nvim/init.lua",
 })
 
 -- Show packer messages in a popup. Looks cooler
