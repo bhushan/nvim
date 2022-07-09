@@ -23,12 +23,12 @@ if not status_ok then
 end
 
 -- Autocommand that reloads neovim whenever you save the init.lua file
-local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
-vim.api.nvim_create_autocmd("BufWritePost", {
-  command = "source <afile> | PackerSync",
-  group = packer_group,
-  pattern = "init.lua",
-})
+-- local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   command = "source <afile> | PackerSync",
+--   group = packer_group,
+--   pattern = "init.lua",
+-- })
 
 -- Show packer messages in a popup. Looks cooler
 packer.init({
@@ -187,9 +187,4 @@ if PACKER_BOOTSTRAP then
   require("packer").sync()
 end
 
--- dynamically set theme based on zshell env variable
-if os.getenv("LIGHT_MODE") then
-  vim.cmd([[silent! colorscheme github_light ]])
-else
-  vim.cmd([[silent! colorscheme github_dimmed ]])
-end
+vim.cmd("silent! colorscheme " .. os.getenv("SET_THEME"))
