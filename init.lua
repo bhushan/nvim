@@ -180,6 +180,7 @@ use("sotte/presenting.vim")
 
 -- theme
 use("bhushan/github-nvim-theme")
+use("dracula/vim")
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
