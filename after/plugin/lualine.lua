@@ -4,17 +4,14 @@ if not status_ok then
   return
 end
 
-local transparent = {}
-
 local leftSeparator = ""
 local rightSeparator = ""
 
-if vim.o.background == "dark" then
-  transparent = { bg = "#22272e" }
-else
-  -- inverting colors for light colorschemes
-  transparent = { bg = "#ffffff" }
-end
+local colors = vim.api.nvim_get_hl_by_name("Normal", true)
+local bg = string.format("#%06x", colors.background) -- convert decimal number to 6 digit hexadecimal color code
+local transparent = {}
+
+transparent = { bg = bg }
 
 local empty = require("lualine.component"):extend()
 
