@@ -18,6 +18,19 @@ telescope.setup({
       },
     },
   },
+  pickers = {
+    find_files = {
+      previewer = false,
+    },
+    git_files = {
+      previewer = false,
+    },
+  },
+  extensions = {
+    file_browser = {
+      previewer = false,
+    },
+  },
 })
 
 telescope.load_extension("fzf")

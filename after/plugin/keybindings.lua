@@ -112,7 +112,8 @@ local normalModeMappings = {
 
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
   ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
-  ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Find Files" },
+  ["<c-p>"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
+  ["<c-p><c-p>"] = { "<cmd>Telescope find_files<cr>", "All Files" },
   ["<c-r>"] = {
     "<cmd>Telescope lsp_document_symbols<cr>",
     "File Structure",
