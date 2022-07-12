@@ -9,9 +9,8 @@ local rightSeparator = ""
 
 local colors = vim.api.nvim_get_hl_by_name("Normal", true)
 local bg = string.format("#%06x", colors.background) -- convert decimal number to 6 digit hexadecimal color code
-local transparent = {}
 
-transparent = { bg = bg }
+local transparent = { bg = bg }
 
 local empty = require("lualine.component"):extend()
 
