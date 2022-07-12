@@ -139,7 +139,7 @@ use({
 })
 
 -- integrate lazygit
--- use("kdheepak/lazygit.nvim")
+use("kdheepak/lazygit.nvim")
 
 -- Better keybindings management and shows hints
 use("folke/which-key.nvim")
