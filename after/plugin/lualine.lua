@@ -10,6 +10,14 @@ local rightSeparator = ""
 local colors = vim.api.nvim_get_hl_by_name("Normal", true)
 local bg = string.format("#%06x", colors.background) -- convert decimal number to 6 digit hexadecimal color code
 
+local dracula = require("lualine.themes.dracula")
+dracula.normal.c.bg = bg
+dracula.insert.c.bg = bg
+dracula.visual.c.bg = bg
+dracula.replace.c.bg = bg
+dracula.command.c.bg = bg
+dracula.inactive.c.bg = bg
+
 local transparent = { bg = bg }
 
 local empty = require("lualine.component"):extend()
@@ -62,7 +70,7 @@ end
 
 lualine.setup({
   options = {
-    theme = "auto",
+    theme = dracula,
     section_separators = {
       left = leftSeparator,
       right = rightSeparator,
