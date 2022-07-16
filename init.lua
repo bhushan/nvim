@@ -177,7 +177,7 @@ use({
 use("sotte/presenting.vim")
 
 -- theme
-use("bhushan/github-nvim-theme")
+use("projekt0n/github-nvim-theme")
 use("dracula/vim")
 
 -- Automatically set up your configuration after cloning packer.nvim
