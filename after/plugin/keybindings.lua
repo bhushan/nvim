@@ -11,7 +11,7 @@ local normalModeMappings = {
     name = "Leader",
     i = { "<cmd>Twilight<cr>", "Toggle focus mode" },
     f = { "<cmd>Neoformat<cr>", "Apply formatting on current buffer" },
-    ["1"] = { "<cmd>Telescope file_browser<cr>", "Telescope file browser" },
+    ["1"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "Telescope file browser" },
     m = { "<cmd>Telescope project<CR>", "Open Projects" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
     t = {
