@@ -12,6 +12,8 @@ telescope.setup({
 
     selection_caret = " » ",
 
+    winblend = 10,
+
     mappings = {
       i = {
         ["<esc>"] = actions.close,
@@ -20,10 +22,14 @@ telescope.setup({
   },
   pickers = {
     find_files = {
+      prompt_title = "All Files",
+      find_command = { "rg", "--files", "--no-ignore", "--hidden" },
       previewer = false,
     },
+
     git_files = {
-      previewer = false,
+      prompt_title = "Project Files",
+      find_command = { "rg", "--files" },
     },
   },
   extensions = {
