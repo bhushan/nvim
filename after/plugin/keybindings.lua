@@ -119,6 +119,8 @@ local normalModeMappings = {
     "File Structure",
   },
   ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
+  ["<c-t>"] = { "<cmd>TestNearest<cr>", "Test Nearest" },
+  ["<c-s-t>"] = { "<cmd>TestLast<cr>", "Test Last" },
 }
 
 wk.register(normalModeMappings, {
