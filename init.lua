@@ -173,6 +173,9 @@ use({
   end,
 })
 
+-- runs tests
+use("vim-test/vim-test")
+
 -- present markdown files as presentation slides
 use("sotte/presenting.vim")
 
