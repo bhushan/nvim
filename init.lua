@@ -183,6 +183,9 @@ use("sotte/presenting.vim")
 use("projekt0n/github-nvim-theme")
 use("dracula/vim")
 
+-- kitty config highlighting
+use("fladson/vim-kitty")
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if PACKER_BOOTSTRAP then
