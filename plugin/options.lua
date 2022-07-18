@@ -113,3 +113,8 @@ for type, icon in pairs(signs) do
     numhl = "",
   })
 end
+
+local colors = vim.api.nvim_get_hl_by_name("Normal", true)
+local bg = string.format("#%06x", colors.background) -- convert decimal number to 6 digit hexadecimal color code
+
+vim.cmd("highlight NonText guibg=" .. bg .. " guifg=" .. bg)
