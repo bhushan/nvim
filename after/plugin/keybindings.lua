@@ -14,6 +14,7 @@ local normalModeMappings = {
     ["1"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "Telescope file browser" },
     m = { "<cmd>Telescope project<CR>", "Open Projects" },
     b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+    c = { "<cmd>ColorizerToggle<cr>", "Show/Hide Colors" },
     t = {
       name = "Telescope",
       r = { "<cmd>Telescope oldfiles<cr>", "Open previously opened files" },
