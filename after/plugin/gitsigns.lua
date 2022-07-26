@@ -51,4 +51,4 @@ local bg = string.format("#%06x", colors.background) -- convert decimal number t
 local fg = string.format("#%06x", colors.foreground) -- convert decimal number to 6 digit hexadecimal color code
 
 vim.cmd("highlight GitSignsDelete guibg=" .. bg)
-vim.cmd("highlight GitSignsCurrentLineBlame guibg=" .. bg .. " guifg=" .. fg)
+vim.cmd("highlight GitSignsCurrentLineBlame guibg=NONE" .. " guifg=" .. fg)
