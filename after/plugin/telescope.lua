@@ -12,6 +12,8 @@ telescope.setup({
 
     selection_caret = " » ",
 
+    path_display = { "shorten" },
+
     winblend = 10,
 
     mappings = {
