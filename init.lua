@@ -183,7 +183,7 @@ use("vim-test/vim-test")
 use("sotte/presenting.vim")
 
 -- theme
-use("projekt0n/github-nvim-theme")
+use("bhushan/github-nvim-theme")
 use("dracula/vim")
 
 -- kitty config highlighting
