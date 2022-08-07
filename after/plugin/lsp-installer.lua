@@ -38,13 +38,9 @@ local servers = {
   "html",
   "cssls",
   "tsserver",
-  "clangd",
   "intelephense",
   "sumneko_lua",
   "emmet_ls",
-  "jsonls",
-  "marksman",
-  "jdtls",
 }
 
 for _, name in pairs(servers) do
