@@ -35,12 +35,10 @@ win.default_opts = function(options)
 end
 
 local servers = {
-  "html",
-  "cssls",
+  "emmet_ls",
   "tsserver",
   "intelephense",
   "sumneko_lua",
-  "emmet_ls",
 }
 
 for _, name in pairs(servers) do
@@ -51,8 +49,28 @@ for _, name in pairs(servers) do
     capabilities.textDocument.completion.completionItem.snippetSupport = true
     capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-    lspconfig[name]:setup({
+    local config = {
       capabilities = capabilities,
-    })
+    }
+
+    if name == "emmet_ls" then
+      config.filetypes = {
+        "html",
+        "typescriptreact",
+        "javascriptreact",
+      }
+    end
+
+    if name == "tsserver" then
+      config.filetypes = {
+        "html",
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact",
+      }
+    end
+
+    lspconfig[name]:setup(config)
   end
 end
