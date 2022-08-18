@@ -67,9 +67,6 @@ use({
   run = ":TSUpdate",
 })
 
--- show colors of hex, rgb etc inline
-use("norcalli/nvim-colorizer.lua")
-
 -- file formatter same as prettier but with extra file types
 use("sbdchd/neoformat")
 
