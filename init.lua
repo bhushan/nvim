@@ -79,12 +79,12 @@ use("numToStr/Comment.nvim")
 use("tpope/vim-surround")
 
 -- awesome status line
-use({
-  "nvim-lualine/lualine.nvim",
-  requires = {
-    "kyazdani42/nvim-web-devicons",
-  },
-})
+-- use({
+--   "nvim-lualine/lualine.nvim",
+--   requires = {
+--     "kyazdani42/nvim-web-devicons",
+--   },
+-- })
 
 -- easily fuzzy file search
 use({

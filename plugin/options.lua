@@ -53,7 +53,9 @@ o.whichwrap = "b,s,<,>,[,],h,l"
 o.splitbelow = true
 o.splitright = true
 
-o.laststatus = 3 -- 3: always and ONLY the last window
+-- 3: always and ONLY the last window
+-- 0: disable
+o.laststatus = 0
 
 vim.opt.termguicolors = true -- use 256 colors when possible
 
