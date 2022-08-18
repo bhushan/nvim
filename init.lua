@@ -177,9 +177,6 @@ use({
 -- runs tests
 use("vim-test/vim-test")
 
--- present markdown files as presentation slides
-use("sotte/presenting.vim")
-
 -- Live server for html css files edit on fly
 use({ "turbio/bracey.vim", run = "npm install --prefix server" })
 
