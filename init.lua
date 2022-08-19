@@ -76,6 +76,8 @@ use("numToStr/Comment.nvim")
 -- extra surrounding keybindings
 use("tpope/vim-surround")
 
+use("kyazdani42/nvim-web-devicons")
+
 -- awesome status line
 -- use({
 --   "nvim-lualine/lualine.nvim",
