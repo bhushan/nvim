@@ -32,6 +32,7 @@ telescope.setup({
     git_files = {
       prompt_title = "Project Files",
       find_command = { "rg", "--files" },
+      previewer = false,
     },
   },
   extensions = {
