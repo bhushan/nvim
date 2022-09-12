@@ -65,7 +65,7 @@ o.showmode = false
 o.backup = false
 o.writebackup = false
 
-o.updatetime = 300 -- vim updatetime for UI
+o.updatetime = 50 -- vim updatetime for UI
 
 o.clipboard = "unnamedplus" -- universal clipboard
 
