@@ -99,10 +99,10 @@ use({
 })
 
 -- better navigation to and from nvim to tmux
--- use("christoomey/vim-tmux-navigator")
+use("christoomey/vim-tmux-navigator")
 
 -- better navigation to and from nvim to kitty
-use("knubie/vim-kitty-navigator")
+-- use("knubie/vim-kitty-navigator")
 
 use({
   "L3MON4D3/LuaSnip", -- create cool new snippets

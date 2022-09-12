@@ -55,7 +55,7 @@ o.splitright = true
 
 -- 3: always and ONLY the last window
 -- 0: disable
-o.laststatus = 0
+o.laststatus = 3
 
 vim.opt.termguicolors = true -- use 256 colors when possible
 
