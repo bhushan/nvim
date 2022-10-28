@@ -187,6 +187,9 @@ use("dracula/vim")
 -- kitty config highlighting
 use("fladson/vim-kitty")
 
+-- vim game
+use("ThePrimeagen/vim-be-good")
+
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
 if PACKER_BOOTSTRAP then
