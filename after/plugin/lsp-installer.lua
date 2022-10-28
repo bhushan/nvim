@@ -47,7 +47,7 @@ for _, name in pairs(servers) do
   if server_is_found then
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
-    capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+    capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
     local config = {
       capabilities = capabilities,
