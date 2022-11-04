@@ -82,7 +82,7 @@ o.mouse = "a" -- enable mouse
 vim.wo.wrap = false -- dont wrap lines
 vim.wo.number = true -- show line numbers on gutter line
 vim.wo.relativenumber = true -- relative line numbers on gutter line
-vim.wo.cursorline = true -- highlight currently selected line
+vim.wo.cursorline = false -- highlight currently selected line
 
 o.tabstop = 2
 vim.bo.tabstop = 2
