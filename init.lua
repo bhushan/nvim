@@ -68,7 +68,7 @@ use({
 })
 
 -- file formatter same as prettier but with extra file types
-use("sbdchd/neoformat")
+-- use("sbdchd/neoformat")
 
 -- better commenting using treesitter
 use("numToStr/Comment.nvim")
