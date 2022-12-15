@@ -52,19 +52,19 @@ use("wbthomason/packer.nvim")
 -- better syntax highlighting and parsing
 use({
   "nvim-treesitter/nvim-treesitter",
-  requires = {
-    "p00f/nvim-ts-rainbow", -- colorise matching brackets
-    {
-      "windwp/nvim-autopairs", -- auto complete brackets
-      config = function()
-        require("nvim-autopairs").setup({
-          check_ts = true,
-          disable_in_macro = true,
-        })
-      end,
-    },
-  },
   run = ":TSUpdate",
+  -- requires = {
+  --   "p00f/nvim-ts-rainbow", -- colorise matching brackets
+  --   {
+  --     "windwp/nvim-autopairs", -- auto complete brackets
+  --     config = function()
+  --       require("nvim-autopairs").setup({
+  --         check_ts = true,
+  --         disable_in_macro = true,
+  --       })
+  --     end,
+  --   },
+  -- },
 })
 
 -- file formatter same as prettier but with extra file types
@@ -115,80 +115,80 @@ use({
         "williamboman/nvim-lsp-installer", -- lsp installer to install lsp servers
       },
     }, -- cmp source to hook into lsp
-    { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
-    { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
-    { "hrsh7th/cmp-path" }, -- cmp source path
-    { "hrsh7th/cmp-buffer" }, -- cmp source buffer
-    { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
-    { "octaltree/cmp-look" }, -- cmp source dictionary lookup
-    {
-      "rafamadriz/friendly-snippets", -- add user friendly snippets
-      config = function()
-        require("luasnip/loaders/from_vscode").load({
-          paths = {
-            "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-          },
-        })
-      end,
-    },
+    -- { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
+    -- { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
+    -- { "hrsh7th/cmp-path" }, -- cmp source path
+    -- { "hrsh7th/cmp-buffer" }, -- cmp source buffer
+    -- { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
+    -- { "octaltree/cmp-look" }, -- cmp source dictionary lookup
+    -- {
+    --   "rafamadriz/friendly-snippets", -- add user friendly snippets
+    --   config = function()
+    --     require("luasnip/loaders/from_vscode").load({
+    --       paths = {
+    --         "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
+    --       },
+    --     })
+    --   end,
+    -- },
   },
 })
 
 -- git gutter
-use("lewis6991/gitsigns.nvim")
+-- use("lewis6991/gitsigns.nvim")
 
 -- integrate lazygit
-use("kdheepak/lazygit.nvim")
+-- use("kdheepak/lazygit.nvim")
 
 -- Better keybindings management and shows hints
 use("folke/which-key.nvim")
 
 -- Zend mode hightlighting block of code using treesitter
-use("folke/twilight.nvim")
+-- use("folke/twilight.nvim")
 
 -- DAP
-use({
-  "mfussenegger/nvim-dap",
-  requires = {
-    {
-      "theHamsta/nvim-dap-virtual-text",
-      config = function()
-        require("nvim-dap-virtual-text").setup()
-      end,
-    },
-    { "rcarriga/nvim-dap-ui" },
-  },
-  run = function()
-    local installation_dir = vim.fn.stdpath("data") .. "/dap/vscode-node-debug2"
-
-    fn.system({
-      "git",
-      "clone",
-      "--depth",
-      "1",
-      "https://github.com/microsoft/vscode-node-debug2",
-      installation_dir,
-    })
-    fn.system({ "npm", "install", "--prefix", installation_dir })
-    fn.system({ "npm", "run", "build", "--prefix", installation_dir })
-  end,
-})
+-- use({
+--   "mfussenegger/nvim-dap",
+--   requires = {
+--     {
+--       "theHamsta/nvim-dap-virtual-text",
+--       config = function()
+--         require("nvim-dap-virtual-text").setup()
+--       end,
+--     },
+--     { "rcarriga/nvim-dap-ui" },
+--   },
+--   run = function()
+--     local installation_dir = vim.fn.stdpath("data") .. "/dap/vscode-node-debug2"
+--
+--     fn.system({
+--       "git",
+--       "clone",
+--       "--depth",
+--       "1",
+--       "https://github.com/microsoft/vscode-node-debug2",
+--       installation_dir,
+--     })
+--     fn.system({ "npm", "install", "--prefix", installation_dir })
+--     fn.system({ "npm", "run", "build", "--prefix", installation_dir })
+--   end,
+-- })
 
 -- runs tests
 use("vim-test/vim-test")
 
 -- Live server for html css files edit on fly
-use({ "turbio/bracey.vim", run = "npm install --prefix server" })
+-- use({ "turbio/bracey.vim", run = "npm install --prefix server" })
 
 -- theme
-use("bhushan/github-nvim-theme")
+-- use("bhushan/github-nvim-theme")
 use("dracula/vim")
 
 -- kitty config highlighting
-use("fladson/vim-kitty")
+-- use("fladson/vim-kitty")
 
 -- vim game
-use("ThePrimeagen/vim-be-good")
+-- use("ThePrimeagen/vim-be-good")
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins

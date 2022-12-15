@@ -6,8 +6,7 @@ end
 
 treesitter_config.setup({
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "all",
-  ignore_install = { "phpdoc" },
+  ensure_installed = {"html", "css", "javascript", "php", "lua"},
 
   highlight = {
     -- `false` will disable the whole extension
