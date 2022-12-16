@@ -83,6 +83,7 @@ wo.wrap = false -- dont wrap lines
 wo.number = true -- show line numbers on gutter line
 wo.relativenumber = true -- relative line numbers on gutter line
 -- wo.cursorline = true -- highlight currently selected line
+opt.signcolumn = 'yes' -- always have gutter padding
 
 o.tabstop = 4
 bo.tabstop = 4
