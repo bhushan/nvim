@@ -112,7 +112,9 @@ local normalModeMappings = {
   ["<a-Left>"] = { ":vertical resize +2<CR>", "Resize Left" },
   ["<a-Right>"] = { ":vertical resize -2<CR>", "Resize Right" },
 
+  J = { "mzJ`z", "Join next lines" }, -- keeps the cursor on current position
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
+
   ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
   ["<c-p>"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
   ["<c-p><c-p>"] = { "<cmd>Telescope find_files<cr>", "All Files" },
