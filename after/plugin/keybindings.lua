@@ -143,6 +143,7 @@ wk.register(insertModeMappings, {
 local visualModeMappings = {
   ["<"] = { "<gv", "Left Indent Code" },
   [">"] = { ">gv", "Right Indent Code" },
+  ["p"] = { '"_dP', "Paste without yanking" },
 }
 
 wk.register(visualModeMappings, {
