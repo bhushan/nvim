@@ -105,6 +105,7 @@ local normalModeMappings = {
     x = { "<cmd>Run<cr>", "Run current file" },
     s = { "<cmd>w<cr>", "Save current file" },
     q = { "<cmd>bdelete<cr>", "Close current file" },
+    c = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace currently selected word in file" },
   },
 
   ["<a-Up>"] = { ":resize -2<CR>", "Resize UP" },
