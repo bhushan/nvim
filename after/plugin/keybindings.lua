@@ -104,6 +104,8 @@ local normalModeMappings = {
       x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
     },
     x = { "<cmd>Run<cr>", "Run current file" },
+    s = { "<cmd>w<cr>", "Save current file" },
+    q = { "<cmd>bdelete<cr>", "Close current file" },
   },
 
   ["<a-Up>"] = { ":resize -2<CR>", "Resize UP" },
@@ -122,6 +124,8 @@ local normalModeMappings = {
   ["<c-\\>"] = { "<cmd>vsp<cr>", "Vertical Split Window" },
   ["<c-t>"] = { "<cmd>TestNearest<cr>", "Test Nearest" },
   ["<c-s-t>"] = { "<cmd>TestLast<cr>", "Test Last" },
+  ["<c-d>"] = { "<c-d>zz", "Move down" },
+  ["<c-u>"] = { "<c-u>zz", "Move up" },
 }
 
 wk.register(normalModeMappings, {
