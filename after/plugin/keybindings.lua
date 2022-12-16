@@ -115,6 +115,9 @@ local normalModeMappings = {
   J = { "mzJ`z", "Join next lines" }, -- keeps the cursor on current position
   K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
 
+  n = { "nzzzv", "Goto next search" },
+  N = { "Nzzzv", "Goto Previous Search" },
+
   ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
   ["<c-p>"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
   ["<c-p><c-p>"] = { "<cmd>Telescope find_files<cr>", "All Files" },
