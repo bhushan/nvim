@@ -132,8 +132,8 @@ use({
         "williamboman/nvim-lsp-installer", -- lsp installer to install lsp servers
       },
     }, -- cmp source to hook into lsp
-    -- { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
-    -- { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
+    { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
+    { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
     -- { "hrsh7th/cmp-path" }, -- cmp source path
     -- { "hrsh7th/cmp-buffer" }, -- cmp source buffer
     -- { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
