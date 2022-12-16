@@ -152,7 +152,7 @@ use({
 })
 
 -- git gutter
-use("lewis6991/gitsigns.nvim")
+use("mhinz/vim-signify")
 
 -- integrate lazygit
 use("kdheepak/lazygit.nvim")
