@@ -213,4 +213,5 @@ if PACKER_BOOTSTRAP then
     require("packer").sync()
 end
 
-vim.cmd("silent! colorscheme " .. os.getenv("SET_THEME"))
+-- set theme based on zsh env variable
+vim.cmd.colorscheme(os.getenv("SET_THEME"))
