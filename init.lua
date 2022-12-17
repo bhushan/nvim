@@ -75,10 +75,7 @@ use({ -- Additional text objects via treesitter
 })
 
 -- file formatter same as prettier but with extra file types
--- use("sbdchd/neoformat")
-
--- for formatters and linters
-use("jose-elias-alvarez/null-ls.nvim")
+use("sbdchd/neoformat")
 
 -- better commenting using treesitter
 use("numToStr/Comment.nvim")
