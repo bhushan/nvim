@@ -39,10 +39,10 @@ local lsp_symbols = {
 
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
-        ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- not sure how to go inside docs yet
-        ["<C-d>"] = cmp.mapping.scroll_docs(4), -- not sure how to go inside docs yet
+        -- ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- not sure how to go inside docs yet
+        -- ["<C-d>"] = cmp.mapping.scroll_docs(4), -- not sure how to go inside docs yet
 
-        ["<C-Space>"] = cmp.mapping.complete(), -- not sure if i will use it
+        -- ["<C-Space>"] = cmp.mapping.complete(), -- not sure if i will use it
 
         ["<CR>"] = cmp.mapping.confirm({
             select = true, -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -53,10 +53,10 @@ cmp.setup({
             c = cmp.mapping.close(),
         }),
 
-        ["<C-y>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        }),
+        -- ["<C-y>"] = cmp.mapping.confirm({
+        --     behavior = cmp.ConfirmBehavior.Insert,
+        --     select = true,
+        -- }),
 
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -98,7 +98,7 @@ cmp.setup({
     preselect = true,
 
     formatting = {
-        format = function(name, item)
+        format = function(_, item)
             item.kind = lsp_symbols[item.kind]
 
             return item
@@ -111,6 +111,10 @@ cmp.setup({
             priority = 1000,
         },
         {
+            name = "nvim_lsp_signature_help",
+            priority = 1000,
+        },
+        {
             name = "nvim_lua",
             priority = 800,
         },
@@ -118,24 +122,24 @@ cmp.setup({
             name = "luasnip",
             priority = 700,
         },
-        {
-            name = "path",
-            priority = 600,
-        },
-        {
-            name = "cmdline",
-            priority = 500,
-        },
+        -- {
+        --     name = "path",
+        --     priority = 600,
+        -- },
+        -- {
+        --     name = "cmdline",
+        --     priority = 500,
+        -- },
         {
             name = "buffer",
             keyword_length = 3,
             priority = 400,
         },
-        {
-            name = "look",
-            keyword_length = 4,
-            priority = 300,
-        },
+        -- {
+        --     name = "look",
+        --     keyword_length = 4,
+        --     priority = 300,
+        -- },
     }),
 
     experimental = {
@@ -144,20 +148,20 @@ cmp.setup({
 })
 
 -- Use buffer source while searching anything
-cmp.setup.cmdline("/", {
-    sources = { {
-        name = "buffer",
-    } },
-})
+-- cmp.setup.cmdline("/", {
+--     sources = { {
+--         name = "buffer",
+--     } },
+-- })
 
 -- Use cmdline & path source while in command mode
-cmp.setup.cmdline(":", {
-    sources = cmp.config.sources({
-        {
-            name = "cmdline",
-        },
-        {
-            name = "path",
-        },
-    }),
-})
+-- cmp.setup.cmdline(":", {
+--     sources = cmp.config.sources({
+--         {
+--             name = "cmdline",
+--         },
+--         {
+--             name = "path",
+--         },
+--     }),
+-- })
