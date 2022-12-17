@@ -82,7 +82,7 @@ local normalModeMappings = {
             --     "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
             --     "Go to previous diagnostic",
             -- },
-            I = { "<cmd>LspInstallInfo<cr>", "Install language server" },
+            I = { "<cmd>Mason<cr>", "Install language server" },
         },
         d = {
             name = "Debug Adapter Protocol",
