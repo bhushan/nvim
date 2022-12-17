@@ -6,8 +6,7 @@ end
 
 treesitter_config.setup({
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { "c", "cpp", "go", "lua", "python", "rust", "typescript", "help" },
+    ensure_installed = "all",
 
     highlight = {
         -- `false` will disable the whole extension
