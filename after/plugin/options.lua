@@ -45,7 +45,7 @@ opt.updatetime = 50 -- vim updatetime for UI
 
 opt.clipboard = "unnamedplus" -- universal clipboard
 
-opt.hlsearch = true -- highlight search
+ opt.hlsearch = false -- highlight search
 opt.ignorecase = true -- always do a case-insensitive search
 opt.smartcase = true -- override ignorecase if uppercase chars present
 opt.incsearch = true -- highlight matches while searching
