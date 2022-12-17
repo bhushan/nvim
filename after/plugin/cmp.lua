@@ -1,12 +1,6 @@
--- Use a protected require call (pcall) so we don't error out on first use
 local status_ok, cmp = pcall(require, "cmp")
-if not status_ok then
-    return
-end
-
--- Use a protected require call (pcall) so we don't error out on first use
 local status_ok_luasnip, luasnip = pcall(require, "luasnip")
-if not status_ok_luasnip then
+if not status_ok or not status_ok_luasnip then
     return
 end
 
