@@ -116,6 +116,7 @@ use({
         -- { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
         {
             "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search
+            cond = vim.fn.executable("make") == 1,
             run = "make",
         },
         { "nvim-telescope/telescope-file-browser.nvim" }, -- file browser
