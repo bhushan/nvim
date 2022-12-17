@@ -106,7 +106,7 @@ use({
     "nvim-telescope/telescope.nvim",
     requires = {
         { "nvim-lua/plenary.nvim" }, -- cmp is needed to show dropdown
-        { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
+        -- { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
         {
             "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search
             run = "make",
