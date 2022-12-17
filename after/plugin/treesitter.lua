@@ -16,6 +16,7 @@ treesitter_config.setup({
     },
 
     indent = { enable = true },
+
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -25,6 +26,7 @@ treesitter_config.setup({
             node_decremental = "<c-backspace>",
         },
     },
+
     textobjects = {
         select = {
             enable = true,
