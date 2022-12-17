@@ -42,6 +42,7 @@ telescope.setup({
     },
 })
 
-telescope.load_extension("fzf") -- use regular expressions to search things in telescope
--- telescope.load_extension("project")
-telescope.load_extension("file_browser")
+-- Enable telescope fzf native, if installed to use regular expressions to search things in telescope
+pcall(require("telescope").load_extension, "fzf")
+-- pcall(require('telescope').load_extension, 'project')
+pcall(require("telescope").load_extension, "file_browser")
