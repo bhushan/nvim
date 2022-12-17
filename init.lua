@@ -52,7 +52,9 @@ use("wbthomason/packer.nvim")
 -- better syntax highlighting and parsing
 use({
     "nvim-treesitter/nvim-treesitter",
-    run = ":TSUpdate",
+    run = function()
+        pcall(require("nvim-treesitter.install").update({ with_sync = true }))
+    end,
     -- requires = {
     --   "p00f/nvim-ts-rainbow", -- colorise matching brackets
     --   {
@@ -65,6 +67,11 @@ use({
     --     end,
     --   },
     -- },
+})
+
+use({ -- Additional text objects via treesitter
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    after = "nvim-treesitter",
 })
 
 -- file formatter same as prettier but with extra file types
@@ -122,16 +129,17 @@ use("christoomey/vim-tmux-navigator")
 -- use("knubie/vim-kitty-navigator")
 
 use({
-    "L3MON4D3/LuaSnip", -- create cool new snippets
+    "hrsh7th/nvim-cmp", -- cmp is needed to show dropdown
     requires = {
-        { "hrsh7th/nvim-cmp" }, -- cmp is needed to show dropdown
         {
             "hrsh7th/cmp-nvim-lsp",
             requires = {
                 "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
-                "williamboman/nvim-lsp-installer", -- lsp installer to install lsp servers
+                "williamboman/mason.nvim", -- lsp installer to install lsp servers
+                "williamboman/mason-lspconfig.nvim",
             },
         }, -- cmp source to hook into lsp
+        { "L3MON4D3/LuaSnip" }, -- create cool new snippets
         { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
         { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
         -- { "hrsh7th/cmp-path" }, -- cmp source path
