@@ -55,18 +55,18 @@ use({
     run = function()
         pcall(require("nvim-treesitter.install").update({ with_sync = true }))
     end,
-    -- requires = {
-    --   "p00f/nvim-ts-rainbow", -- colorise matching brackets
-    --   {
-    --     "windwp/nvim-autopairs", -- auto complete brackets
-    --     config = function()
-    --       require("nvim-autopairs").setup({
-    --         check_ts = true,
-    --         disable_in_macro = true,
-    --       })
-    --     end,
-    --   },
-    -- },
+    requires = {
+        "p00f/nvim-ts-rainbow", -- colorise matching brackets
+        {
+            "windwp/nvim-autopairs", -- auto complete brackets
+            config = function()
+                require("nvim-autopairs").setup({
+                    check_ts = true,
+                    disable_in_macro = true,
+                })
+            end,
+        },
+    },
 })
 
 use({ -- Additional text objects via treesitter
