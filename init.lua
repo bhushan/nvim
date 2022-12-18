@@ -85,6 +85,14 @@ use({
     after = "nvim-treesitter",
 })
 
+-- get nice looking explorer for exploring files
+use({
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+        "nvim-tree/nvim-web-devicons",
+    },
+})
+
 -- file formatter same as prettier but with extra file types
 use("sbdchd/neoformat")
 
@@ -98,7 +106,7 @@ use("tpope/vim-surround")
 use({
     "nvim-lualine/lualine.nvim",
     requires = {
-        "kyazdani42/nvim-web-devicons",
+        "nvim-tree/nvim-web-devicons",
     },
 })
 
