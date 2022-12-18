@@ -69,7 +69,18 @@ use({
     },
 })
 
-use({ -- Additional text objects via treesitter
+use({
+    "lukas-reineke/indent-blankline.nvim",
+    config = function()
+        require("indent_blankline").setup({
+            char = "┊",
+            show_trailing_blankline_indent = false,
+        })
+    end,
+}) -- Add indentation guides even on blank lines
+
+-- Additional text objects via treesitter
+use({
     "nvim-treesitter/nvim-treesitter-textobjects",
     after = "nvim-treesitter",
 })
