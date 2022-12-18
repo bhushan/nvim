@@ -13,6 +13,7 @@ local run_command_table = {
     ["go"] = "go run %",
     ["javascript"] = "node %",
     ["typescript"] = "ts-node %",
+    ["php"] = "php %",
 }
 
 function Run_code()
