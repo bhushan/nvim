@@ -10,7 +10,8 @@ local normalModeMappings = {
     ["<leader>"] = {
         name = "Leader",
         -- i = { "<cmd>Twilight<cr>", "Toggle focus mode" },
-        f = { "<cmd>lua vim.lsp.buf.format()<cr><cmd>w<cr>", "Apply formatting on current buffer and save" },
+        -- f = { "<cmd>lua vim.lsp.buf.format()<cr><cmd>w<cr>", "Apply formatting on current buffer and save" },
+        f = { "<cmd>Neoformat<cr><cmd>w<cr>", "Apply formatting on current buffer and save" },
         ["1"] = { "<cmd>Telescope file_browser path=%:p:h<cr>", "Telescope file browser" },
         m = { "<cmd>Telescope project<CR>", "Open Projects" },
         b = { "<cmd>Telescope buffers<cr>", "Buffers" },
