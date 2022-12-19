@@ -114,8 +114,9 @@ local normalModeMappings = {
     J = { "mzJ`z", "Join next lines" }, -- keeps the cursor on current position
     K = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover" }, -- override default K kemap to find in man pages
 
-    n = { "nzzzv", "Goto next search" },
-    N = { "Nzzzv", "Goto Previous Search" },
+    n = { "nzzzv", "Goto next search but keep position at center" },
+    N = { "Nzzzv", "Goto previous search but keep position at center" },
+
     ["q:"] = { ":q<CR>", "Fix annoying command line thing" },
 
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
