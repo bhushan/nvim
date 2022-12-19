@@ -138,6 +138,8 @@ wk.register(normalModeMappings, {
 
 local insertModeMappings = {
     ["jj"] = { "<ESC>", "Escape" },
+    [";;"] = { "<Esc>A;<Esc>", "Easy insertion of a trailing ;" },
+    [",,"] = { "<Esc>A,<Esc>", "Easy insertion of a trailing ," },
 }
 
 wk.register(insertModeMappings, {
