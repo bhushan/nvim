@@ -116,6 +116,7 @@ local normalModeMappings = {
 
     n = { "nzzzv", "Goto next search" },
     N = { "Nzzzv", "Goto Previous Search" },
+    ["q:"] = { ":q<CR>", "Fix annoying command line thing" },
 
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
     ["<c-p>"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
