@@ -151,6 +151,8 @@ local visualModeMappings = {
     ["<"] = { "<gv", "Left Indent Code" },
     [">"] = { ">gv", "Right Indent Code" },
     ["p"] = { '"_dP', "Paste without yanking" },
+    ["y"] = { "myy`y", "Maintain the cursor position when yanking a visual selection" },
+    ["Y"] = { "myY`y", "Maintain the cursor position when yanking a visual selection" },
 }
 
 wk.register(visualModeMappings, {
