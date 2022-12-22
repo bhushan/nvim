@@ -12,17 +12,17 @@ opt.belloff = "all" -- never ring the bell for any reason
 -- show whitespaces correctly
 opt.list = true
 opt.listchars = {
-    nbsp = "⦸", -- CIRCLED REVERSE SOLIDUS (U+29B8, UTF-8: E2 A6 B8)
-    extends = "»", -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB, UTF-8: C2 BB)
-    precedes = "«", -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB, UTF-8: C2 AB) tab = "▷⋯", -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + MIDLINE HORIZONTAL ELLIPSIS (U+22EF, UTF-8: E2 8B AF)
-    tab = "▷⋯", -- WHITE RIGHT-POINTING TRIANGLE (U+25B7, UTF-8: E2 96 B7) + MIDLINE HORIZONTAL ELLIPSIS (U+22EF, UTF-8: E2 8B AF)
-    trail = "•", -- BULLET (U+2022, UTF-8: E2 80 A2)
+    nbsp = "⦸", -- CIRCLED REVERSE SOLIDUS (U+29B8)
+    extends = "»", -- RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00BB)
+    precedes = "«", -- LEFT-POINTING DOUBLE ANGLE QUOTATION MARK (U+00AB)
+    tab = "▷⋯", -- WHITE RIGHT-POINTING TRIANGLE (U+25B7) + MIDLINE HORIZONTAL ELLIPSIS (U+22EF)
+    trail = "•", -- BULLET (U+2022)
 }
 opt.fillchars = {
-    diff = "∙", -- BULLET OPERATOR (U+2219, UTF-8: E2 88 99)
-    eob = " ", -- NO-BREAK SPACE (U+00A0, UTF-8: C2 A0) to suppress ~ at EndOfBuffer
-    fold = "·", -- MIDDLE DOT (U+00B7, UTF-8: C2 B7)
-    vert = "┃", -- BOX DRAWINGS HEAVY VERTICAL (U+2503, UTF-8: E2 94 83)
+    diff = "∙", -- BULLET OPERATOR (U+2219)
+    eob = " ", -- NO-BREAK SPACE (U+00A0) to suppress ~ at EndOfBuffer
+    fold = "·", -- MIDDLE DOT (U+00B7)
+    vert = "┃", -- BOX DRAWINGS HEAVY VERTICAL (U+2503)
 }
 
 -- move cursor to next line when line ends
