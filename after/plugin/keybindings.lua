@@ -160,3 +160,11 @@ local visualModeMappings = {
 wk.register(visualModeMappings, {
     mode = "v",
 })
+
+local terminalModeMappings = {
+    ["<Esc>"] = { "<C-\\><C-n>", "Exit to terminal mode" },
+}
+
+wk.register(terminalModeMappings, {
+    mode = "t",
+})
