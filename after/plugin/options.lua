@@ -22,7 +22,8 @@ opt.fillchars = {
     diff = "∙", -- BULLET OPERATOR (U+2219)
     eob = " ", -- NO-BREAK SPACE (U+00A0) to suppress ~ at EndOfBuffer
     fold = "·", -- MIDDLE DOT (U+00B7)
-    vert = "┃", -- BOX DRAWINGS HEAVY VERTICAL (U+2503)
+    -- vert = "┃", -- BOX DRAWINGS HEAVY VERTICAL (U+2503)
+    vert = "│", -- BOX DRAWINGS HEAVY VERTICAL (U+007C)
 }
 
 -- move cursor to next line when line ends

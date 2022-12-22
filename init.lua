@@ -226,3 +226,4 @@ end
 
 -- set theme based on zsh env variable
 vim.cmd.colorscheme(os.getenv("SET_THEME"))
+vim.api.nvim_set_hl(0, 'DraculaWinSeparator', { fg = NONE, bg = NONE })
