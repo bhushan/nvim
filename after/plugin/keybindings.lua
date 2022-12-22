@@ -106,6 +106,8 @@ local normalModeMappings = {
         c = { ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>", "Replace currently selected word in file" },
     },
 
+    ["gf"] = { "<cmd>edit <cfile><cr>", "Opens file under cursor even if doesnt exists" },
+
     ["<a-Up>"] = { ":resize -2<CR>", "Resize UP" },
     ["<a-Down>"] = { ":resize +2<CR>", "Resize Down" },
     ["<a-Left>"] = { ":vertical resize +2<CR>", "Resize Left" },
