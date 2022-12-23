@@ -39,6 +39,7 @@ local normalModeMappings = {
         l = {
             name = "Language server protocol",
             i = { "<cmd>LspInfo<cr>", "Connected Language Servers" },
+            I = { "<cmd>Mason<cr>", "Install language server" },
             -- k = {
             --     "<cmd>lua vim.lsp.buf.signature_help()<CR>",
             --     "Signature help",
@@ -60,17 +61,17 @@ local normalModeMappings = {
             --     "<cmd>lua vim.lsp.buf.type_definition()<CR>",
             --     "Type definition",
             -- },
-            d = {
-                "<cmd>lua vim.lsp.buf.definition()<CR>",
-                "Go to definition",
-            },
+            -- d = {
+            --     "<cmd>lua vim.lsp.buf.definition()<CR>",
+            --     "Go to definition",
+            -- },
             -- D = {
             --     "<cmd>lua vim.lsp.buf.declaration()<CR>",
             --     "Go to declaration",
             -- },
             -- R = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
-            r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
-            a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
+            -- r = { "<cmd>lua vim.lsp.buf.rename()<CR>", "Rename" },
+            -- a = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "Code actions" },
             -- e = {
             --     "<cmd>lua vim.diagnostic.open_float()<CR>",
             --     "Show line diagnostics",
@@ -83,7 +84,6 @@ local normalModeMappings = {
             --     "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>",
             --     "Go to previous diagnostic",
             -- },
-            I = { "<cmd>Mason<cr>", "Install language server" },
         },
         d = {
             name = "Debug Adapter Protocol",
