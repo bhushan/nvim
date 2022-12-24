@@ -39,9 +39,10 @@ local on_attach = function(server, bufnr)
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
     map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+    map("n", "gr", ":Telescope lsp_references<CR>")
     map("n", "<leader>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
     map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
-    map("n", "gr", ":Telescope lsp_references<CR>")
+    map("n", "<leader>k", "<cmd>lua vim.diagnostic.open_float()<CR>")
 end
 
 for _, lsp in ipairs(servers) do
