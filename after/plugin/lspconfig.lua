@@ -31,8 +31,8 @@ local function map(mode, lhs, rhs, opts)
     vim.api.nvim_buf_set_keymap(0, mode, lhs, rhs, options)
 end
 
-local on_attach = function(_, bufnr)
-    print("LSP attached to buffer number: " .. bufnr)
+local on_attach = function(server, bufnr)
+    print(server.name .. " LSP attached to buffer number: " .. bufnr)
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
