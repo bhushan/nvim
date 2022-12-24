@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 local actions = require("telescope.actions")
+local builtin = require("telescope.builtin")
 
 telescope.setup({
     defaults = {
@@ -24,13 +25,7 @@ telescope.setup({
     },
     pickers = {
         find_files = {
-            prompt_title = "All Files",
-            find_command = { "rg", "--files", "--no-ignore", "--hidden" },
-            previewer = false,
-        },
-
-        git_files = {
-            prompt_title = "Project Files",
+            prompt_title = "Git Files",
             find_command = { "rg", "--files" },
             previewer = false,
         },
@@ -42,7 +37,17 @@ telescope.setup({
     },
 })
 
+-- Custom finders
+builtin.find_all_files = function()
+    builtin.find_files({
+        prompt_title = "All Files",
+        find_command = { "rg", "--files", "--no-ignore", "--hidden" },
+        previewer = false,
+    })
+end
+
 -- Enable telescope fzf native, if installed to use regular expressions to search things in telescope
 pcall(require("telescope").load_extension, "fzf")
--- pcall(require('telescope').load_extension, 'project')
+pcall(require("telescope").load_extension, "project")
+pcall(require("telescope").load_extension, "file_browser")
 pcall(require("telescope").load_extension, "file_browser")

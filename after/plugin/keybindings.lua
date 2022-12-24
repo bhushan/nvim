@@ -122,8 +122,8 @@ local normalModeMappings = {
     ["q:"] = { ":q", "Fix annoying command line history thing" },
 
     ["<space>"] = { "<cmd>nohlsearch<cr>", "Remove highlighting" },
-    ["<c-p>"] = { "<cmd>Telescope git_files<cr>", "Git Files" },
-    ["<c-p><c-p>"] = { "<cmd>Telescope find_files<cr>", "All Files" },
+    ["<c-p>"] = { "<cmd>Telescope find_files<cr>", "Git Files" },
+    ["<c-p><c-p>"] = { "<cmd>Telescope find_all_files<cr>", "All Files" },
     ["<c-r>"] = {
         "<cmd>Telescope lsp_document_symbols<cr>",
         "File Structure",
