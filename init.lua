@@ -142,7 +142,13 @@ use({
                 "williamboman/mason-lspconfig.nvim",
             },
         }, -- cmp source to hook into lsp
-        { "L3MON4D3/LuaSnip" }, -- create cool new snippets
+        { "L3MON4D3/LuaSnip", config = function ()
+            require("luasnip/loaders/from_vscode").load({
+              paths = {
+                "~/.config/nvim/my-snippets",
+              },
+            })
+        end }, -- create cool new snippets
         { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
         { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
         -- { "hrsh7th/cmp-path" }, -- cmp source path
