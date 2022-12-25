@@ -14,6 +14,9 @@ comment.setup({
         block = "gb",
     },
 
+    -- ignore empty lines for commenting
+    ignore = '^$',
+
     -- Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
     mappings = {
 
