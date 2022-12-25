@@ -1,3 +1,8 @@
+local status_ok, _ = pcall(require, "neoformat")
+if not status_ok then
+    return
+end
+
 local g = vim.g
 
 -- Enable alignment
