@@ -36,6 +36,7 @@ local on_attach = function(server, bufnr)
     vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+    map("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<CR>")
     map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
     map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
     map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
