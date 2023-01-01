@@ -11,7 +11,19 @@ end
 mason.setup()
 
 -- Enable the following language servers
-local servers = { "html", "cssls", "jsonls", "tsserver", "sumneko_lua", "intelephense" }
+local servers = {
+    "sqls",
+    "html",
+    "cssls",
+    "bashls",
+    "jsonls",
+    "dockerls",
+    "emmet_ls",
+    "tsserver",
+    "tailwindcss",
+    "sumneko_lua",
+    "intelephense",
+}
 
 -- Ensure the servers above are installed
 masonconfig.setup({
