@@ -1116,5 +1116,59 @@
             "$0"
         ],
         "description": "The setDate() method changes the day of the month of a given Date instance, based on local time."
+    },
+    "areacalculator": {
+        "prefix": "areacalculator",
+        "body": [
+            "class AreaCalculator {",
+            "\tcalculate(squares) {",
+            "\t\treturn squares.reduce((carry, square) => {",
+            "\t\t\treturn carry + square.side ** 2",
+            "\t\t}, 0)",
+            "\t}",
+            "}"
+        ]
+    },
+    "square": {
+        "prefix": "square",
+        "body": [
+            "class Square {",
+            "\tconstructor(side) {",
+            "\t\tthis.side = side",
+            "\t}",
+            "}"
+        ]
+    },
+    "circle": {
+        "prefix": "circle",
+        "body": [
+            "class Circle {",
+            "\tconstructor(radius) {",
+            "\t\tthis.radius = radius",
+            "\t}",
+            "}"
+        ]
+    },
+    "triangle": {
+        "prefix": "triangle",
+        "body": [
+            "class Triangle {",
+            "\tconstructor(base,height) {",
+            "\t\tthis.base = base",
+            "\t\tthis.height = height",
+            "\t}",
+            "}"
+        ]
+    },
+    "rectangle": {
+        "prefix": "rectangle",
+        "body": [
+            "class Rectangle {",
+            "\tconstructor(width,height) {",
+            "\t\tthis.width = width",
+            "\t\tthis.height = height",
+            "\t}",
+            "}"
+        ]
     }
 }

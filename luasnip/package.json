@@ -1,5 +1,5 @@
 {
-    "name": "my-snippets",
+    "name": "luasnip-snippets",
     "engines": {
         "vscode": "^1.11.0"
     },
