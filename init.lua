@@ -112,7 +112,7 @@ use("tpope/vim-commentary")
 use("tpope/vim-surround")
 
 -- extra keybindings starting with [ and ]
--- use("tpope/vim-unimpaired")
+use("tpope/vim-unimpaired")
 
 -- make tpope keybindings repeatable with . (dot)
 use("tpope/vim-repeat")
