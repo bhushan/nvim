@@ -172,7 +172,7 @@ use({
         { "nvim-lua/plenary.nvim" }, -- needed to do system task telescope dependency
         -- { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
         {
-            "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search
+            "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search better regex based search
             cond = vim.fn.executable("make") == 1,
             run = "make",
         },
