@@ -1,5 +1,5 @@
 local fn = vim.fn
-local standard_path = fn.stdpath('data')
+local standard_path = fn.stdpath("data")
 local install_path = standard_path .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
@@ -33,7 +33,7 @@ end
 
 -- Show packer messages in a popup. Looks cooler
 packer.init({
-    compile_path = standard_path .. '/site/plugin/packer_compiled.lua',
+    compile_path = standard_path .. "/site/plugin/packer_compiled.lua",
     display = {
         open_fn = function()
             return require("packer.util").float({
@@ -144,13 +144,16 @@ use({
                 "williamboman/mason-lspconfig.nvim",
             },
         }, -- cmp source to hook into lsp
-        { "L3MON4D3/LuaSnip", config = function ()
-            require("luasnip/loaders/from_vscode").load({
-              paths = {
-                "~/.config/nvim/luasnip",
-              },
-            })
-        end }, -- create cool new snippets
+        {
+            "L3MON4D3/LuaSnip",
+            config = function()
+                require("luasnip/loaders/from_vscode").load({
+                    paths = {
+                        "~/.config/nvim/luasnip",
+                    },
+                })
+            end,
+        }, -- create cool new snippets
         { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
         { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
         -- { "hrsh7th/cmp-path" }, -- cmp source path
@@ -234,4 +237,4 @@ end
 
 -- set theme based on zsh env variable
 vim.cmd.colorscheme(os.getenv("SET_THEME"))
-vim.api.nvim_set_hl(0, 'DraculaWinSeparator', { fg = NONE, bg = NONE })
+vim.api.nvim_set_hl(0, "DraculaWinSeparator", { fg = NONE, bg = NONE })

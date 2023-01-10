@@ -15,7 +15,7 @@ comment.setup({
     },
 
     -- ignore empty lines for commenting
-    ignore = '^$',
+    ignore = "^$",
 
     -- Create basic (operator-pending) and extended mappings for NORMAL + VISUAL mode
     mappings = {
