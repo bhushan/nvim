@@ -99,7 +99,7 @@ use({
 -- use("sbdchd/neoformat")
 
 -- better commenting using treesitter
-use("numToStr/Comment.nvim")
+use("tpope/vim-commentary")
 
 -- extra surrounding keybindings
 use("tpope/vim-surround")
