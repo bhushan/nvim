@@ -57,20 +57,27 @@ use({
     run = function()
         pcall(require("nvim-treesitter.install").update({ with_sync = true }))
     end,
-    requires = {
-        "p00f/nvim-ts-rainbow", -- colorise matching brackets
-        {
-            "windwp/nvim-autopairs", -- auto complete brackets
-            config = function()
-                require("nvim-autopairs").setup({
-                    check_ts = true,
-                    disable_in_macro = true,
-                })
-            end,
-        },
-    },
 })
 
+-- colorise matching brackets
+-- use({
+--     "p00f/nvim-ts-rainbow",
+--     requires = 'nvim-treesitter/nvim-treesitter'
+-- })
+
+-- auto complete brackets
+use({
+    "windwp/nvim-autopairs",
+    config = function()
+        require("nvim-autopairs").setup({
+            check_ts = true,
+            disable_in_macro = true,
+        })
+    end,
+    requires = 'nvim-treesitter/nvim-treesitter'
+})
+
+-- Add indentation guides even on blank lines
 use({
     "lukas-reineke/indent-blankline.nvim",
     config = function()
@@ -79,21 +86,21 @@ use({
             show_trailing_blankline_indent = false,
         })
     end,
-}) -- Add indentation guides even on blank lines
+})
 
 -- Additional text objects via treesitter
-use({
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    after = "nvim-treesitter",
-})
+-- use({
+--     "nvim-treesitter/nvim-treesitter-textobjects",
+--     after = "nvim-treesitter",
+-- })
 
 -- get nice looking explorer for exploring files
-use({
-    "nvim-tree/nvim-tree.lua",
-    requires = {
-        "nvim-tree/nvim-web-devicons",
-    },
-})
+-- use({
+--     "nvim-tree/nvim-tree.lua",
+--     requires = {
+--         "nvim-tree/nvim-web-devicons",
+--     },
+-- })
 
 -- file formatter same as prettier but with extra file types
 -- use("sbdchd/neoformat")
@@ -103,6 +110,52 @@ use("tpope/vim-commentary")
 
 -- extra surrounding keybindings
 use("tpope/vim-surround")
+
+-- extra keybindings starting with [ and ]
+-- use("tpope/vim-unimpaired")
+
+-- make tpope keybindings repeatable with . (dot)
+use("tpope/vim-repeat")
+
+-- create parent directories if not exists while saving file
+use("jessarcher/vim-heritage")
+
+-- add more language support kind of like treesiter
+-- NOTE: checkcheck more on it
+use("sheerun/vim-polyglot")
+
+-- better html tag operation
+-- NOTE: need to understand more about it
+use({
+    'whatyouhide/vim-textobj-xmlattr',
+    requires = 'kana/vim-textobj-user',
+})
+
+-- smooth scrolling while doing c-d and c-u
+use({
+    'karb94/neoscroll.nvim',
+    config = function()
+        require('neoscroll').setup()
+    end,
+})
+
+-- split arrays and objects with gJ gK
+-- use({
+--     'AndrewRadev/splitjoin.vim',
+--     config = function()
+--         vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+--         vim.g.splitjoin_trailing_comma = 1
+--         vim.g.splitjoin_php_method_chain_full = 1
+--     end
+-- })
+
+-- paste items with correct indentation
+use({
+    'sickill/vim-pasta',
+    config = function()
+        vim.g.pasta_disabled_filetypes = { 'fugitive' }
+    end,
+})
 
 -- awesome status line
 use({
@@ -116,7 +169,7 @@ use({
 use({
     "nvim-telescope/telescope.nvim",
     requires = {
-        { "nvim-lua/plenary.nvim" }, -- cmp is needed to show dropdown
+        { "nvim-lua/plenary.nvim" }, -- needed to do system task telescope dependency
         -- { "nvim-telescope/telescope-project.nvim" }, -- extension for project switching
         {
             "nvim-telescope/telescope-fzf-native.nvim", -- use fzf for quick search
@@ -137,15 +190,15 @@ use({
     "hrsh7th/nvim-cmp", -- cmp is needed to show dropdown
     requires = {
         {
-            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-nvim-lsp", -- cmp source to hook into lsp
             requires = {
                 "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
                 "williamboman/mason.nvim", -- lsp installer to install lsp servers
                 "williamboman/mason-lspconfig.nvim",
             },
-        }, -- cmp source to hook into lsp
+        },
         {
-            "L3MON4D3/LuaSnip",
+            "L3MON4D3/LuaSnip", -- create cool new snippets
             config = function()
                 require("luasnip/loaders/from_vscode").load({
                     paths = {
@@ -153,7 +206,7 @@ use({
                     },
                 })
             end,
-        }, -- create cool new snippets
+        },
         { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
         { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
         -- { "hrsh7th/cmp-path" }, -- cmp source path
