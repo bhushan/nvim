@@ -1,5 +1,6 @@
 local fn = vim.fn
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+local standard_path = fn.stdpath('data')
+local install_path = standard_path .. "/site/pack/packer/start/packer.nvim"
 
 if fn.empty(fn.glob(install_path)) > 0 then
     PACKER_BOOTSTRAP = fn.system({
@@ -32,6 +33,7 @@ end
 
 -- Show packer messages in a popup. Looks cooler
 packer.init({
+    compile_path = standard_path .. '/site/plugin/packer_compiled.lua',
     display = {
         open_fn = function()
             return require("packer.util").float({
