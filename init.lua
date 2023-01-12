@@ -117,6 +117,9 @@ use("tpope/vim-unimpaired")
 -- make tpope keybindings repeatable with . (dot)
 use("tpope/vim-repeat")
 
+-- Indent autodetection with editorconfig support
+use("tpope/vim-sleuth")
+
 -- create parent directories if not exists while saving file
 use("jessarcher/vim-heritage")
 
@@ -139,15 +142,15 @@ use({
     end,
 })
 
--- split arrays and objects with gJ gK
--- use({
---     'AndrewRadev/splitjoin.vim',
---     config = function()
---         vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
---         vim.g.splitjoin_trailing_comma = 1
---         vim.g.splitjoin_php_method_chain_full = 1
---     end
--- })
+-- split arrays and objects with gJ gS
+use({
+    'AndrewRadev/splitjoin.vim',
+    config = function()
+        vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+        vim.g.splitjoin_trailing_comma = 1
+        vim.g.splitjoin_php_method_chain_full = 1
+    end
+})
 
 -- paste items with correct indentation
 use({
