@@ -13,13 +13,15 @@ telescope.setup({
 
         selection_caret = " » ",
 
-        path_display = { "shorten" },
+        path_display = { truncate = 1 },
 
         winblend = 10,
 
         mappings = {
             i = {
                 ["<esc>"] = actions.close,
+                ["<c-k>"] = actions.move_selection_previous,
+                ["<c-j>"] = actions.move_selection_next,
             },
         },
     },
