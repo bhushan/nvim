@@ -120,6 +120,9 @@ use("tpope/vim-repeat")
 -- Indent autodetection with editorconfig support
 use("tpope/vim-sleuth")
 
+-- use Rename Move command like these
+use("tpope/vim-eunuch")
+
 -- create parent directories if not exists while saving file
 use("jessarcher/vim-heritage")
 
