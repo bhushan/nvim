@@ -118,12 +118,10 @@ use("tpope/vim-eunuch")
 -- create parent directories if not exists while saving file
 use("jessarcher/vim-heritage")
 
--- add more language support kind of like treesiter
--- NOTE: checkcheck more on it
+-- better syntax highlighting on top of treesitter
 use("sheerun/vim-polyglot")
 
--- better html tag operation
--- NOTE: need to understand more about it
+-- better html tag operation <motion>ax and <motion>ix
 use({
     "whatyouhide/vim-textobj-xmlattr",
     requires = "kana/vim-textobj-user",
