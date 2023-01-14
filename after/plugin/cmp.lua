@@ -130,16 +130,16 @@ cmp.setup({
         --     name = "cmdline",
         --     priority = 500,
         -- },
-        {
-            name = "buffer",
-            keyword_length = 3,
-            priority = 400,
-        },
         -- {
-        --     name = "look",
-        --     keyword_length = 4,
-        --     priority = 300,
+        --     name = "buffer",
+        --     keyword_length = 3,
+        --     priority = 400,
         -- },
+        {
+            name = "look",
+            keyword_length = 4,
+            priority = 300,
+        },
     }),
 
     experimental = {

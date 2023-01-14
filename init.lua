@@ -208,17 +208,7 @@ use({
         -- { "hrsh7th/cmp-path" }, -- cmp source path
         -- { "hrsh7th/cmp-buffer" }, -- cmp source buffer
         -- { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
-        -- { "octaltree/cmp-look" }, -- cmp source dictionary lookup
-        -- {
-        --   "rafamadriz/friendly-snippets", -- add user friendly snippets
-        --   config = function()
-        --     require("luasnip/loaders/from_vscode").load({
-        --       paths = {
-        --         "~/.local/share/nvim/site/pack/packer/start/friendly-snippets",
-        --       },
-        --     })
-        --   end,
-        -- },
+        { "octaltree/cmp-look" }, -- cmp source dictionary lookup
     },
 })
 
