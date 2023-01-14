@@ -23,14 +23,6 @@ if not status_ok then
     return
 end
 
--- Autocommand that reloads neovim whenever you save the init.lua file
--- local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   command = "source <afile> | PackerSync",
---   group = packer_group,
---   pattern = "init.lua",
--- })
-
 -- Show packer messages in a popup. Looks cooler
 packer.init({
     compile_path = standard_path .. "/site/plugin/packer_compiled.lua",
@@ -300,3 +292,11 @@ use({
 if PACKER_BOOTSTRAP then
     require("packer").sync()
 end
+
+-- Autocommand that reloads neovim whenever you save the init.lua file
+local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePost", {
+    command = "source <afile>",
+    group = packer_group,
+    pattern = "init.lua",
+})
