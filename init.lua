@@ -74,7 +74,7 @@ use({
             disable_in_macro = true,
         })
     end,
-    requires = 'nvim-treesitter/nvim-treesitter'
+    requires = "nvim-treesitter/nvim-treesitter",
 })
 
 -- Add indentation guides even on blank lines
@@ -133,33 +133,33 @@ use("sheerun/vim-polyglot")
 -- better html tag operation
 -- NOTE: need to understand more about it
 use({
-    'whatyouhide/vim-textobj-xmlattr',
-    requires = 'kana/vim-textobj-user',
+    "whatyouhide/vim-textobj-xmlattr",
+    requires = "kana/vim-textobj-user",
 })
 
 -- smooth scrolling while doing c-d and c-u
 use({
-    'karb94/neoscroll.nvim',
+    "karb94/neoscroll.nvim",
     config = function()
-        require('neoscroll').setup()
+        require("neoscroll").setup()
     end,
 })
 
 -- split arrays and objects with gJ gS
 use({
-    'AndrewRadev/splitjoin.vim',
+    "AndrewRadev/splitjoin.vim",
     config = function()
         vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
         vim.g.splitjoin_trailing_comma = 1
         vim.g.splitjoin_php_method_chain_full = 1
-    end
+    end,
 })
 
 -- paste items with correct indentation
 use({
-    'sickill/vim-pasta',
+    "sickill/vim-pasta",
     config = function()
-        vim.g.pasta_disabled_filetypes = { 'fugitive' }
+        vim.g.pasta_disabled_filetypes = { "fugitive" }
     end,
 })
 
