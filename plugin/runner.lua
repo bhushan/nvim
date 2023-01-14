@@ -17,14 +17,14 @@ local run_command_table = {
 }
 
 function Run_code()
+    vim.cmd("w") -- save file
+
     if vim.bo.filetype == "lua" then
-        vim.cmd("w") -- save file
         vim.cmd(run_command_table[vim.bo.filetype]) -- execute luafile
         return
     end
 
     if run_command_table[vim.bo.filetype] then
-        vim.cmd("w") -- save file
         vim.cmd("!" .. run_command_table[vim.bo.filetype]) -- execute file
     else
         print("\nFileType not supported\n")
