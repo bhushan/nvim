@@ -280,7 +280,14 @@ use("vim-test/vim-test")
 
 -- theme
 -- use("bhushan/github-nvim-theme")
-use("dracula/vim")
+use({
+    "dracula/vim",
+    config = function()
+        -- set theme based on zsh env variable
+        vim.cmd.colorscheme(os.getenv("SET_THEME"))
+        vim.api.nvim_set_hl(0, "DraculaWinSeparator", { fg = NONE, bg = NONE })
+    end,
+})
 
 -- kitty config highlighting
 -- use("fladson/vim-kitty")
@@ -293,7 +300,3 @@ use("dracula/vim")
 if PACKER_BOOTSTRAP then
     require("packer").sync()
 end
-
--- set theme based on zsh env variable
-vim.cmd.colorscheme(os.getenv("SET_THEME"))
-vim.api.nvim_set_hl(0, "DraculaWinSeparator", { fg = NONE, bg = NONE })
