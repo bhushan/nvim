@@ -1,9 +1,11 @@
 local fn = vim.fn
 local standard_path = fn.stdpath("data")
 local install_path = standard_path .. "/site/pack/packer/start/packer.nvim"
+local is_bootstrap = false
 
 if fn.empty(fn.glob(install_path)) > 0 then
-    PACKER_BOOTSTRAP = fn.system({
+    is_bootstrap = true
+    fn.system({
         "git",
         "clone",
         "--depth",
@@ -191,6 +193,12 @@ use({
                 "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
                 "williamboman/mason.nvim", -- lsp installer to install lsp servers
                 "williamboman/mason-lspconfig.nvim",
+                {
+                    'j-hui/fidget.nvim',
+                    config = function()
+                        require('fidget').setup()
+                    end,
+                }, -- Useful status updates for LSP
             },
         },
         {
@@ -277,14 +285,24 @@ use({
 
 -- Automatically set up your configuration after cloning packer.nvim
 -- Put this at the end after all plugins
-if PACKER_BOOTSTRAP then
+if is_bootstrap then
     require("packer").sync()
 end
 
 -- Autocommand that reloads neovim whenever you save the init.lua file
 local packer_group = vim.api.nvim_create_augroup("packer_group", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-    command = "source <afile>",
+    command = 'source <afile> | silent! LspStop | silent! LspStart | PackerCompile',
     group = packer_group,
-    pattern = "init.lua",
+    pattern = vim.fn.expand '$MYVIMRC',
+})
+
+-- highlight text when yanked, dont need this but lets try for few days
+local highlight_group = vim.api.nvim_create_augroup('highlight_group', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = '*',
 })
