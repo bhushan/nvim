@@ -53,6 +53,12 @@ use({
     end,
 })
 
+-- Additional text objects via treesitter
+use({
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    requires = "nvim-treesitter/nvim-treesitter",
+})
+
 -- colorise matching brackets
 -- use({
 --     "p00f/nvim-ts-rainbow",
@@ -81,12 +87,6 @@ use({
         })
     end,
 })
-
--- Additional text objects via treesitter
--- use({
---     "nvim-treesitter/nvim-treesitter-textobjects",
---     after = "nvim-treesitter",
--- })
 
 -- get nice looking explorer for exploring files
 -- use({
