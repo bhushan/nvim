@@ -53,12 +53,6 @@ use({
     end,
 })
 
--- Additional text objects via treesitter
-use({
-    "nvim-treesitter/nvim-treesitter-textobjects",
-    requires = "nvim-treesitter/nvim-treesitter",
-})
-
 -- colorise matching brackets
 -- use({
 --     "p00f/nvim-ts-rainbow",
@@ -185,16 +179,23 @@ use("christoomey/vim-tmux-navigator")
 -- use("knubie/vim-kitty-navigator")
 
 use({
+    "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
+    requires = {
+        "williamboman/mason.nvim", -- lsp installer to install lsp servers
+        "williamboman/mason-lspconfig.nvim",
+    },
+})
+
+use({
     "hrsh7th/nvim-cmp", -- cmp is needed to show dropdown
     requires = {
-        {
-            "hrsh7th/cmp-nvim-lsp", -- cmp source to hook into lsp
-            requires = {
-                "neovim/nvim-lspconfig", -- lspconfigs for setting up lsp
-                "williamboman/mason.nvim", -- lsp installer to install lsp servers
-                "williamboman/mason-lspconfig.nvim",
-            },
-        },
+        "hrsh7th/cmp-nvim-lsp", -- cmp source to hook into lsp
+        "hrsh7th/cmp-nvim-lua", -- cmp source for nvim lua api
+        "saadparwaiz1/cmp_luasnip", -- needed for auto completion and auto imports in combination with LuaSnip
+        -- "hrsh7th/cmp-path" , -- cmp source path
+        "hrsh7th/cmp-buffer", -- cmp source buffer
+        -- "hrsh7th/cmp-cmdline" , -- cmp source cmdline
+        "octaltree/cmp-look", -- cmp source dictionary lookup
         {
             "L3MON4D3/LuaSnip", -- create cool new snippets
             config = function()
@@ -205,12 +206,6 @@ use({
                 })
             end,
         },
-        { "hrsh7th/cmp-nvim-lua" }, -- cmp source for nvim lua api
-        { "saadparwaiz1/cmp_luasnip" }, -- needed for auto completion and auto imports in combination with LuaSnip
-        -- { "hrsh7th/cmp-path" }, -- cmp source path
-        -- { "hrsh7th/cmp-buffer" }, -- cmp source buffer
-        -- { "hrsh7th/cmp-cmdline" }, -- cmp source cmdline
-        { "octaltree/cmp-look" }, -- cmp source dictionary lookup
     },
 })
 
