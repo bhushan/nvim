@@ -6,7 +6,7 @@ end
 
 treesitter_config.setup({
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = "all",
+    ensure_installed = { "java", "php", "lua", "typescript", "help", "vim" },
 
     highlight = {
         -- `false` will disable the whole extension
@@ -71,6 +71,7 @@ treesitter_config.setup({
             },
         },
     },
+
     rainbow = {
         enable = true,
         extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
