@@ -6,7 +6,28 @@ end
 
 treesitter_config.setup({
     -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-    ensure_installed = { "java", "php", "lua", "typescript", "help", "vim" },
+    ensure_installed = {
+        "html",
+        "css",
+        "scss",
+        "javascript",
+        "jsdoc",
+        "typescript",
+        "json",
+        "graphql",
+        "bash",
+        "dockerfile",
+        "markdown",
+        "java",
+        "php",
+        "lua",
+        "help",
+        "vim",
+        "git_rebase",
+        "gitcommit",
+        "gitignore",
+        "gitattributes",
+    },
 
     highlight = {
         -- `false` will disable the whole extension
