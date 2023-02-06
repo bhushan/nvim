@@ -83,12 +83,12 @@ use({
 })
 
 -- get nice looking explorer for exploring files
--- use({
---     "nvim-tree/nvim-tree.lua",
---     requires = {
---         "nvim-tree/nvim-web-devicons",
---     },
--- })
+use({
+    "nvim-tree/nvim-tree.lua",
+    requires = {
+        "nvim-tree/nvim-web-devicons",
+    },
+})
 
 -- file formatter same as prettier but with extra file types
 -- use("sbdchd/neoformat")
@@ -168,7 +168,7 @@ use({
             cond = vim.fn.executable("make") == 1,
             run = "make",
         },
-        { "nvim-telescope/telescope-file-browser.nvim" }, -- file browser
+        -- { "nvim-telescope/telescope-file-browser.nvim" }, -- file browser
     },
 })
 
