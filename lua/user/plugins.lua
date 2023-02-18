@@ -245,8 +245,7 @@ use({
 
 -- choice of theme
 use({
-  "jesseleite/nvim-noirbuddy",
-  requires = { "tjdevries/colorbuddy.nvim", branch = "dev" },
+  "projekt0n/github-nvim-theme",
   config = function()
     require("user/plugins/theme")
   end,
@@ -260,7 +259,7 @@ use({
   end,
 })
 
--- -- A Status line.
+-- A Status line.
 use({
   "nvim-lualine/lualine.nvim",
   requires = "kyazdani42/nvim-web-devicons",
@@ -273,7 +272,7 @@ use({
 use({
   "akinsho/bufferline.nvim",
   requires = "kyazdani42/nvim-web-devicons",
-  after = "nvim-noirbuddy",
+  after = "github-nvim-theme",
   config = function()
     require("user/plugins/bufferline")
   end,
