@@ -23,5 +23,5 @@ require("bufferline").setup({
         }
       end,
     },
-  }
+  },
 })

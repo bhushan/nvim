@@ -275,6 +275,14 @@ use({
   end,
 })
 
+-- show used colors in code
+use({
+  "norcalli/nvim-colorizer.lua",
+  config = function()
+    require("colorizer").setup()
+  end,
+})
+
 -- -- A Status line.
 use({
   "nvim-lualine/lualine.nvim",
