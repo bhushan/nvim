@@ -34,6 +34,9 @@ local Color, colors, Group, groups, styles = require("colorbuddy").setup({})
 -- remove forground and background from split divider
 Group.new("VertSplit", nil, nil)
 
+-- override autocomplete menu style background
+Group.new("PMenu", nil, colors.noir_9)
+
 -- Telescope colors
 Group.new("TelescopeNormal", colors.noir_0, colors.noir_9)
 Group.new("TelescopeBorder", colors.noir_9, colors.noir_9)
