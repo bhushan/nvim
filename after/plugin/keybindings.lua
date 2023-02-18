@@ -5,6 +5,7 @@ if not status_ok then
 end
 
 vim.g.mapleader = ","
+vim.g.maplocalleader = ","
 
 local normalModeMappings = {
     ["<leader>"] = {

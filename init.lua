@@ -105,9 +105,6 @@ use("tpope/vim-unimpaired")
 -- make tpope keybindings repeatable with . (dot)
 use("tpope/vim-repeat")
 
--- Indent autodetection with editorconfig support
-use("tpope/vim-sleuth")
-
 -- use Rename Move command like these
 use("tpope/vim-eunuch")
 
