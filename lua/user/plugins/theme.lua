@@ -23,8 +23,8 @@ require("noirbuddy").setup({
   },
   styles = {
     italic = true,
-    bold = false,
-    underline = false,
+    bold = true,
+    underline = true,
     undercurl = true,
   },
 })
@@ -35,7 +35,7 @@ local Color, colors, Group, groups, styles = require("colorbuddy").setup({})
 Group.new("VertSplit", nil, nil)
 
 -- override autocomplete menu style background
-Group.new("PMenu", nil, colors.noir_9)
+Group.new("PMenu", colors.noir_0, colors.noir_9)
 
 -- Telescope colors
 Group.new("TelescopeNormal", colors.noir_0, colors.noir_9)
@@ -46,3 +46,7 @@ Group.new("TelescopePromptCounter", colors.noir_7, nil)
 
 -- remove floaterm border
 Group.new("FloatermBorder", colors.noir_9, colors.noir_9)
+
+-- language specific styles testing on the way
+Group.new('@constant', colors.noir_2, nil, styles.bold)
+Group.new('@method', colors.noir_0, nil, styles.bold + styles.italic)
