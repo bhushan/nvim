@@ -44,13 +44,10 @@ require("lspconfig").lua_ls.setup({
   capabilities = capabilities,
 })
 
--- Vue, JavaScript, TypeScript, try for few days
-require("lspconfig").volar.setup({
-  on_attach = on_attach,
-  capabilities = capabilities,
-  -- Enable "Take Over Mode" where volar will provide all JS/TS LSP services
-  -- This drastically improves the responsiveness of diagnostic updates on change
-  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
+-- JavaScript, TypeScript
+require("lspconfig").tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
 })
 
 -- Tailwind CSS
