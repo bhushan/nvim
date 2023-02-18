@@ -9,11 +9,11 @@ require("bufferline").setup({
     offsets = {
       {
         filetype = "NvimTree",
-        text = "  Files",
+        text = "  Explorer",
         text_align = "left",
+        separator = true
       },
     },
-    separator_style = "slant",
     modified_icon = "",
     custom_areas = {
       left = function()
