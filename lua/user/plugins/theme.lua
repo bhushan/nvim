@@ -29,15 +29,17 @@ require("noirbuddy").setup({
   },
 })
 
-local Color, colors, Group, groups, styles = require('colorbuddy').setup {}
+local Color, colors, Group, groups, styles = require("colorbuddy").setup({})
 
 -- remove forground and background from split divider
-Group.new('VertSplit', nil, nil)
+Group.new("VertSplit", nil, nil)
 
--- makes telescope prompt better
-Group.new('TelescopeNormal',colors.noir_0, colors.noir_9)
-Group.new('TelescopeBorder',colors.noir_9, colors.noir_9)
+-- Telescope colors
+Group.new("TelescopeNormal", colors.noir_0, colors.noir_9)
+Group.new("TelescopeBorder", colors.noir_9, colors.noir_9)
+Group.new("TelescopeResultsNormal", colors.noir_5, colors.noir_9)
+Group.new("TelescopeMatching", colors.primary)
+Group.new("TelescopePromptCounter", colors.noir_7, nil)
 
 -- remove floaterm border
-Group.new('FloatermBorder',colors.noir_9, colors.noir_9)
-
+Group.new("FloatermBorder", colors.noir_9, colors.noir_9)
