@@ -117,25 +117,6 @@ use({
   end,
 })
 
--- -- A Status line.
-use({
-  "nvim-lualine/lualine.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  config = function()
-    require("user/plugins/lualine")
-  end,
-})
-
--- Display buffers as tabs.
-use({
-  "akinsho/bufferline.nvim",
-  requires = "kyazdani42/nvim-web-devicons",
-  after = "onedark.nvim",
-  config = function()
-    require("user/plugins/bufferline")
-  end,
-})
-
 -- Display indentation lines.
 use({
   "lukas-reineke/indent-blankline.nvim",
@@ -236,22 +217,22 @@ use({
 
 -- PHP Refactoring Tools
 use({
-    "phpactor/phpactor",
-    ft = "php",
-    run = "composer install --no-dev --optimize-autoloader",
-    config = function()
-        vim.keymap.set("n", "<Leader>pm", ":PhpactorContextMenu<CR>")
-        vim.keymap.set("n", "<Leader>pn", ":PhpactorClassNew<CR>")
-    end,
+  "phpactor/phpactor",
+  ft = "php",
+  run = "composer install --no-dev --optimize-autoloader",
+  config = function()
+    vim.keymap.set("n", "<Leader>pm", ":PhpactorContextMenu<CR>")
+    vim.keymap.set("n", "<Leader>pn", ":PhpactorClassNew<CR>")
+  end,
 })
 
 -- Project Configuration.
 use({
-    "tpope/vim-projectionist",
-    requires = "tpope/vim-dispatch",
-    config = function()
-        require("user/plugins/projectionist")
-    end,
+  "tpope/vim-projectionist",
+  requires = "tpope/vim-dispatch",
+  config = function()
+    require("user/plugins/projectionist")
+  end,
 })
 
 -- Testing helper
@@ -264,30 +245,52 @@ use({
 
 -- choice of theme
 use({
-  "jessarcher/onedark.nvim",
+  "jesseleite/nvim-noirbuddy",
+  requires = { "tjdevries/colorbuddy.nvim", branch = "dev" },
   config = function()
-    vim.cmd("colorscheme onedark")
-
-    -- Hide the characters in FloatBorder
-    vim.api.nvim_set_hl(0, "FloatBorder", {
-      fg = vim.api.nvim_get_hl_by_name("NormalFloat", true).background,
-      bg = vim.api.nvim_get_hl_by_name("NormalFloat", true).background,
+    require("noirbuddy").setup({
+      colors = {
+        background = "#ffffff",
+        primary = "#EC0034",
+        secondary = "#008E0E",
+        noir_0 = "#0C3011",
+        noir_1 = "#113616",
+        noir_2 = "#184B1E",
+        noir_3 = "#206428",
+        noir_4 = "#34743B",
+        noir_5 = "#44834B",
+        noir_6 = "#4E8F55",
+        noir_7 = "#89B38E",
+        noir_8 = "#C8DCCB",
+        noir_9 = "#E8F2E9",
+        diagnostic_error = "#EC0034",
+        diagnostic_warning = "#EEB913",
+        diagnostic_info = "#89B38E",
+        diagnostic_hint = "#89B38E",
+        diff_add = "#008E0E",
+        diff_change = "#89B38E",
+        diff_delete = "#EC0034",
+      },
     })
+  end,
+})
 
-    -- Make the StatusLineNonText background the same as StatusLine
-    vim.api.nvim_set_hl(0, "StatusLineNonText", {
-      fg = vim.api.nvim_get_hl_by_name("NonText", true).foreground,
-      bg = vim.api.nvim_get_hl_by_name("StatusLine", true).background,
-    })
+-- -- A Status line.
+use({
+  "nvim-lualine/lualine.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("user/plugins/lualine")
+  end,
+})
 
-    -- Hide the characters in CursorLineBg
-    vim.api.nvim_set_hl(0, "CursorLineBg", {
-      fg = vim.api.nvim_get_hl_by_name("CursorLine", true).background,
-      bg = vim.api.nvim_get_hl_by_name("CursorLine", true).background,
-    })
-
-    vim.api.nvim_set_hl(0, "NvimTreeIndentMarker", { fg = "#30323E" })
-    vim.api.nvim_set_hl(0, "IndentBlanklineChar", { fg = "#2F313C" })
+-- Display buffers as tabs.
+use({
+  "akinsho/bufferline.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  after = "nvim-noirbuddy",
+  config = function()
+    require("user/plugins/bufferline")
   end,
 })
 
