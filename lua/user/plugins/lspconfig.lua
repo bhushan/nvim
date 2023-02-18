@@ -32,13 +32,13 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
--- PHP
+-- PHP LSP
 require("lspconfig").intelephense.setup({
   on_attach = on_attach,
   capabilities = capabilities,
 })
 
--- Lua
+-- Lua LSP
 require("lspconfig").lua_ls.setup({
   on_attach = on_attach,
   capabilities = capabilities,
