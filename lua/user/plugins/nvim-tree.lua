@@ -16,7 +16,7 @@ require("nvim-tree").setup({
   },
 })
 
-vim.keymap.set("n", "<Leader>1", ":NvimTreeFindFileToggle<CR>")
+vim.keymap.set("n", ",1", ":NvimTreeFindFileToggle<CR>")
 
 -- auto command to close nvim tree automatically if its the last buffer
 vim.api.nvim_create_autocmd("BufEnter", {
