@@ -6,7 +6,7 @@ local ensure_packer = function()
   if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
 
-    print("Installing packer close and reopen Neovim...")
+    print("Installing plugins... close and reopen Neovim after plugins installed...")
 
     vim.api.nvim_command("packadd packer.nvim")
 
