@@ -136,9 +136,9 @@ use({
 -- Floating terminal.
 use({
   "voldikss/vim-floaterm",
-  after = "github-nvim-theme",
+  after = "dracula",
   config = function()
-    vim.g.floaterm_gitcommit = 'floaterm'
+    vim.g.floaterm_gitcommit = "floaterm"
     vim.g.floaterm_autoinsert = 1
     vim.g.floaterm_width = 0.8
     vim.g.floaterm_height = 0.8
@@ -246,7 +246,8 @@ use({
 
 -- choice of theme
 use({
-  "projekt0n/github-nvim-theme",
+  "Mofiqul/dracula.nvim",
+  as = "dracula",
   config = function()
     require("user/plugins/theme")
   end,
@@ -273,7 +274,7 @@ use({
 use({
   "akinsho/bufferline.nvim",
   requires = "kyazdani42/nvim-web-devicons",
-  after = "github-nvim-theme",
+  after = "dracula",
   config = function()
     require("user/plugins/bufferline")
   end,
