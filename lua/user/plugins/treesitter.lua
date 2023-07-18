@@ -14,7 +14,7 @@ require("nvim-treesitter.configs").setup({
     "java",
     "php",
     "lua",
-    "help",
+    -- "help",
     "vim",
     "git_rebase",
     "gitcommit",
