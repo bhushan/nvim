@@ -11,14 +11,14 @@ require("bufferline").setup({
         filetype = "NvimTree",
         text = "  Explorer",
         text_align = "left",
-        separator = true
+        separator = true,
       },
     },
     modified_icon = "",
     custom_areas = {
       left = function()
         return {
-          { text = "    ", fg = "#8fff6d",  bg = "#282A36" },
+          { text = "    ", fg = "#8fff6d", bg = "#282A36" },
         }
       end,
     },

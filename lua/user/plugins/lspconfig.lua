@@ -46,8 +46,8 @@ require("lspconfig").lua_ls.setup({
 
 -- JavaScript, TypeScript
 require("lspconfig").tsserver.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
+  on_attach = on_attach,
+  capabilities = capabilities,
 })
 
 -- Tailwind CSS
