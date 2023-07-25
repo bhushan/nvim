@@ -11,3 +11,10 @@ vim.api.nvim_set_hl(0, "Floaterm", {
   bg = vim.api.nvim_get_hl_by_name("CursorLine", true).background,
   fg = vim.api.nvim_get_hl_by_name("CursorLine", true).foreground,
 })
+
+vim.api.nvim_set_hl(0, "BufferLineSeparator", {
+  fg = "#282A36"
+})
+vim.api.nvim_set_hl(0, "BufferLineFill", {
+  bg = "#282A36"
+})
