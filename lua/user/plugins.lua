@@ -163,6 +163,14 @@ require('lazy').setup({
       vim.cmd.colorscheme 'dracula'
     end,
   },
+  -- Status line
+  {
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    config = function()
+      require 'user/plugins/lualine'
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
