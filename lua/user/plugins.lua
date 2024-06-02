@@ -107,6 +107,13 @@ require('lazy').setup({
       require 'user/plugins/cmp'
     end,
   },
+  -- dracula theme
+  {
+    'Mofiqul/dracula.nvim',
+    init = function()
+      vim.cmd.colorscheme 'dracula'
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
