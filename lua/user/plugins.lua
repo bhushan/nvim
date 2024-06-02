@@ -43,6 +43,27 @@ require('lazy').setup({
   -- Automatically create parent dirs when saving.
   { 'jessarcher/vim-heritage' },
 
+  -- Add smooth scrolling to avoid jarring jumps
+  {
+    'karb94/neoscroll.nvim',
+    config = function()
+      require('neoscroll').setup()
+    end,
+  },
+
+  -- split arrays and objects with gJ gS
+  {
+    'AndrewRadev/splitjoin.vim',
+    config = function()
+      vim.g.splitjoin_html_attributes_bracket_on_new_line = 1
+      vim.g.splitjoin_trailing_comma = 1
+      vim.g.splitjoin_php_method_chain_full = 1
+    end,
+  },
+
+  -- paste items with correct indentation
+  { 'sickill/vim-pasta' },
+
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
@@ -51,6 +72,7 @@ require('lazy').setup({
       require 'user/plugins/treesitter'
     end,
   },
+
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
