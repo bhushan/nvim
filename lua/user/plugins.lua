@@ -19,6 +19,8 @@ vim.opt.rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 
+-- TIP: `opts = {}` is the same as calling `require('fidget').setup({})`
+
 require('lazy').setup({
   -- Highlight, edit, and navigate code
   {
@@ -59,7 +61,6 @@ require('lazy').setup({
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
       -- Useful status updates for LSP.
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
       { 'j-hui/fidget.nvim', opts = {} },
 
       -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -107,6 +108,18 @@ require('lazy').setup({
       require 'user/plugins/cmp'
     end,
   },
+
+  -- "gc" to comment visual regions/lines
+  { 'numToStr/Comment.nvim', opts = {} },
+
+  -- Git integration.
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require 'user/plugins/gitsigns'
+    end,
+  },
+
   -- dracula theme
   {
     'Mofiqul/dracula.nvim',
