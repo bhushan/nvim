@@ -22,6 +22,27 @@ vim.opt.rtp:prepend(lazypath)
 -- TIP: `opts = {}` is the same as calling `require('fidget').setup({})`
 
 require('lazy').setup({
+  -- Add, change, and delete surrounding text.
+  { 'tpope/vim-surround' },
+
+  -- Pairs of handy bracket mappings, like [b and ]b.
+  { 'tpope/vim-unimpaired' },
+
+  -- Automatically set the working directory to the project root.
+  {
+    'airblade/vim-rooter',
+    init = function()
+      -- Instead of this running every time we open a file, we'll just run it once when neovim starts.
+      vim.g.rooter_manual_only = 1
+    end,
+    config = function()
+      vim.cmd 'Rooter'
+    end,
+  },
+
+  -- Automatically create parent dirs when saving.
+  { 'jessarcher/vim-heritage' },
+
   -- Highlight, edit, and navigate code
   {
     'nvim-treesitter/nvim-treesitter',
