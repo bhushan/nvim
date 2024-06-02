@@ -120,6 +120,9 @@ require('lazy').setup({
     end,
   },
 
+  -- Navigate seamlessly between Vim windows and Tmux panes.
+  { 'christoomey/vim-tmux-navigator' },
+
   -- dracula theme
   {
     'Mofiqul/dracula.nvim',
