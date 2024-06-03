@@ -136,6 +136,15 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
+  -- Project Configuration
+
+  {
+    'tpope/vim-projectionist',
+    requires = 'tpope/vim-dispatch',
+    config = function()
+      require 'user/plugins/projectionist'
+    end,
+  },
 
   -- Git integration.
   {
