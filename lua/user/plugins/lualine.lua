@@ -28,11 +28,11 @@ require('lualine').setup {
 
       {
         'diff',
-        symbols = { added = ' ', modified = ' ', removed = ' ' },
+        symbols = { added = '  ', modified = '  ', removed = '  ' },
       },
       {
         'diagnostics',
-        symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+        symbols = { error = '  ', warn = '  ', info = '  ', hint = '  ' },
       },
     },
     lualine_c = {
