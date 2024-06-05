@@ -52,7 +52,7 @@ vim.keymap.set('n', '<C-p>', function()
   }
 end, { desc = 'Search Files' })
 
-vim.keymap.set('n', '<C-S-p>', function()
+vim.keymap.set('n', '<C-p><C-p>', function()
   builtin.find_files {
     prompt_title = 'All Files',
     find_command = { 'rg', '--files', '--no-ignore', '--hidden' },
