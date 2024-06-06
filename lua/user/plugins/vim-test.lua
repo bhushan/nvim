@@ -5,6 +5,9 @@ vim.keymap.set('n', '<Leader>tl', ':TestLast<CR>')
 vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>')
 
 vim.cmd [[
+  let test#php#phpunit#options = '--colors=always'
+  let test#php#pest#options = '--colors=always'
+
   function! FloatermStrategy(cmd)
     execute 'silent FloatermKill'
     execute 'FloatermNew! '.a:cmd.' |less -X'
