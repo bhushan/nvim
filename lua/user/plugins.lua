@@ -190,6 +190,14 @@ require('lazy').setup({
     end,
   },
 
+  -- test helpers
+  {
+    'vim-test/vim-test',
+    config = function()
+      require 'user/plugins/vim-test'
+    end,
+  },
+
   -- dracula theme
   {
     'Mofiqul/dracula.nvim',
