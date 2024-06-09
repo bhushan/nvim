@@ -84,7 +84,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- This may be unwanted, since they displace some of your code
     if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
       map('<leader>th', function()
-        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
       end, '[T]oggle Inlay [H]ints')
     end
   end,
@@ -94,6 +94,20 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 local servers = {
+  tsserver = {
+    init_options = {
+      preferences = {
+        includeInlayParameterNameHints = 'all',
+        includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+        importModuleSpecifierPreference = 'non-relative',
+      },
+    },
+  },
   lua_ls = {
     settings = {
       Lua = {
@@ -119,7 +133,6 @@ vim.list_extend(ensure_installed, {
   'stylua', -- Used to format Lua code
   'intelephense',
   'jsonls',
-  'tsserver',
 })
 
 require('mason-tool-installer').setup { ensure_installed = ensure_installed }

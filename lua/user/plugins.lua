@@ -84,6 +84,7 @@ require('lazy').setup({
       require 'user/plugins/telescope'
     end,
   },
+
   -- LSP Configuration & Plugins
   {
     'neovim/nvim-lspconfig',
@@ -104,6 +105,7 @@ require('lazy').setup({
       require 'user/plugins/lspconfig'
     end,
   },
+
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
@@ -136,8 +138,8 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-  -- Project Configuration
 
+  -- Project Configuration
   {
     'tpope/vim-projectionist',
     requires = 'tpope/vim-dispatch',
