@@ -4,6 +4,9 @@
 require('nvim-treesitter.install').prefer_git = true
 
 require('nvim-treesitter.configs').setup {
+  modules = {},
+  sync_install = false,
+  ignore_install = {},
   ensure_installed = {
     'bash',
     'c',
@@ -28,6 +31,7 @@ require('nvim-treesitter.configs').setup {
     'gitcommit',
     'gitignore',
     'gitattributes',
+    'python',
   },
   -- Autoinstall languages that are not installed
   auto_install = true,
