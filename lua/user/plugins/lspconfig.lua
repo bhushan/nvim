@@ -94,7 +94,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 local servers = {
-  tsserver = {
+  ts_ls = {
     init_options = {
       preferences = {
         includeInlayParameterNameHints = 'all',
@@ -130,15 +130,15 @@ require('mason').setup()
 local ensure_installed = vim.tbl_keys(servers or {})
 
 vim.list_extend(ensure_installed, {
-  'stylua', -- Used to format Lua code
+  'lua_ls',
   'intelephense',
   'jsonls',
-  'pyright',
+  'ts_ls',
 })
 
-require('mason-tool-installer').setup { ensure_installed = ensure_installed }
-
 require('mason-lspconfig').setup {
+  automatic_installation = true,
+  ensure_installed = ensure_installed,
   handlers = {
     function(server_name)
       local server = servers[server_name] or {}
