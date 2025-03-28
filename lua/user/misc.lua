@@ -1,21 +1,15 @@
--- run pint on save in php files
-vim.api.nvim_exec(
-  [[
-  augroup PintOnSave
-    autocmd!
-    autocmd BufWritePost *.php silent !./vendor/bin/pint %
-  augroup END
-]],
-  false
-)
+-- Run Pint on save in PHP files
+local pint_group = vim.api.nvim_create_augroup('PintOnSave', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.php',
+  command = 'silent !./vendor/bin/pint %',
+  group = pint_group,
+})
 
--- run stylua on save in lua files
-vim.api.nvim_exec(
-  [[
-  augroup StyluaOnSave
-    autocmd!
-    autocmd BufWritePost *.lua silent !stylua %
-  augroup END
-]],
-  false
-)
+-- Run Stylua on save in Lua files
+local stylua_group = vim.api.nvim_create_augroup('StyluaOnSave', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePost', {
+  pattern = '*.lua',
+  command = 'silent !stylua %',
+  group = stylua_group,
+})
