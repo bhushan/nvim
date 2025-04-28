@@ -23,7 +23,7 @@ require('lualine').setup {
     lualine_b = {
       'branch',
       function()
-        return '🛠 ' .. vim.pesc(tostring(#vim.tbl_keys(vim.lsp.get_active_clients())) or '')
+        return '🛠 ' .. vim.pesc(tostring(#vim.tbl_keys(vim.lsp.get_clients())) or '')
       end,
 
       {
