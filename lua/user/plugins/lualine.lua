@@ -1,20 +1,42 @@
+local custom_theme = {
+  normal = {
+    a = { bg = '#282a36', gui = 'bold' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+  insert = {
+    a = { bg = '#282a36', gui = 'bold' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+  visual = {
+    a = { bg = '#282a36', gui = 'bold' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+  replace = {
+    a = { bg = '#282a36', gui = 'bold' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+  command = {
+    a = { bg = '#282a36', gui = 'bold' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+  inactive = {
+    a = { bg = '#282a36' },
+    b = { bg = '#282a36' },
+    c = { bg = '#282a36' },
+  },
+}
+
 require('lualine').setup {
   options = {
     section_separators = '',
     component_separators = '',
     globalstatus = true,
-    theme = {
-      normal = {
-        a = '',
-        b = '',
-        c = '',
-      },
-      terminal = {
-        a = '',
-        b = '',
-        c = '',
-      },
-    },
+    theme = custom_theme,
   },
   sections = {
     lualine_a = {
