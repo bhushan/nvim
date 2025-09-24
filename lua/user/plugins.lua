@@ -146,7 +146,13 @@ require('lazy').setup({
     cmd = 'Spectre',
     opts = { open_cmd = 'noswapfile vnew' },
     keys = {
-      { '<leader>sr', function() require('spectre').open() end, desc = 'Replace in files (Spectre)' },
+      {
+        '<leader>sr',
+        function()
+          require('spectre').open()
+        end,
+        desc = 'Replace in files (Spectre)',
+      },
     },
   },
 
@@ -244,7 +250,7 @@ require('lazy').setup({
         end)(),
         config = function()
           require('luasnip.loaders.from_snipmate').lazy_load()
-          require('luasnip.loaders.from_snipmate').lazy_load({ paths = { vim.fn.stdpath('config') .. '/snippets' } })
+          require('luasnip.loaders.from_snipmate').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
         end,
       },
       'saadparwaiz1/cmp_luasnip',

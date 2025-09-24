@@ -128,8 +128,8 @@ vim.keymap.set('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close Split' })
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.php', '*.js', '*.ts', '*.jsx', '*.tsx', '*.vue', '*.css', '*.scss', '*.html', '*.json', '*.yaml', '*.md' },
   callback = function()
-    if vim.fn.exists(':ConformInfo') == 2 then
-      require('conform').format({ async = false })
+    if vim.fn.exists ':ConformInfo' == 2 then
+      require('conform').format { async = false }
     else
       vim.lsp.buf.format()
     end

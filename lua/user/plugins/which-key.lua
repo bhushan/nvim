@@ -1,6 +1,6 @@
-local wk = require('which-key')
+local wk = require 'which-key'
 
-wk.setup({
+wk.setup {
   preset = 'modern',
   delay = function(ctx)
     return ctx.plugin and 0 or 200
@@ -12,10 +12,10 @@ wk.setup({
   layout = {
     spacing = 3,
   },
-})
+}
 
 -- Register key groups and descriptions
-wk.add({
+wk.add {
   -- File operations
   { '<leader>f', group = 'File' },
   { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
@@ -109,27 +109,27 @@ wk.add({
   { '<leader>w', '<cmd>w<cr>', desc = 'Save File' },
   { '<leader>q', '<cmd>q<cr>', desc = 'Quit' },
   { '<leader>x', '<cmd>x<cr>', desc = 'Save & Quit' },
-})
+}
 
 -- Add language-specific keybindings
 vim.api.nvim_create_autocmd('FileType', {
   pattern = 'php',
   callback = function()
-    wk.add({
+    wk.add {
       { '<leader>P', group = 'PHP', buffer = true },
       { '<leader>Pa', '<cmd>!php artisan<cr>', desc = 'Artisan', buffer = true },
       { '<leader>Pc', '<cmd>!composer<cr>', desc = 'Composer', buffer = true },
       { '<leader>Pu', '<cmd>!./vendor/bin/phpunit<cr>', desc = 'PHPUnit', buffer = true },
       { '<leader>Ps', '<cmd>!php artisan serve<cr>', desc = 'Laravel Serve', buffer = true },
       { '<leader>Pt', '<cmd>lua artisan_toggle()<CR>', desc = 'Artisan Terminal', buffer = true },
-    })
+    }
   end,
 })
 
 vim.api.nvim_create_autocmd('FileType', {
   pattern = { 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' },
   callback = function()
-    wk.add({
+    wk.add {
       { '<leader>N', group = 'Node/NPM', buffer = true },
       { '<leader>Nr', '<cmd>!npm run<cr>', desc = 'NPM Run', buffer = true },
       { '<leader>Ni', '<cmd>!npm install<cr>', desc = 'NPM Install', buffer = true },
@@ -138,6 +138,6 @@ vim.api.nvim_create_autocmd('FileType', {
       { '<leader>Nb', '<cmd>!npm run build<cr>', desc = 'NPM Build', buffer = true },
       { '<leader>Nl', '<cmd>!npm run lint<cr>', desc = 'NPM Lint', buffer = true },
       { '<leader>Nn', '<cmd>lua node_toggle()<CR>', desc = 'Node Terminal', buffer = true },
-    })
+    }
   end,
 })

@@ -1,6 +1,6 @@
-local toggleterm = require('toggleterm')
+local toggleterm = require 'toggleterm'
 
-toggleterm.setup({
+toggleterm.setup {
   size = function(term)
     if term.direction == 'horizontal' then
       return 15
@@ -27,41 +27,41 @@ toggleterm.setup({
       background = 'Normal',
     },
   },
-})
+}
 
 -- Custom terminal configurations
 local Terminal = require('toggleterm.terminal').Terminal
 
 -- Claude Code terminal in side panel
-local claude_code = Terminal:new({
+local claude_code = Terminal:new {
   cmd = 'claude-code',
   dir = 'git_dir',
   direction = 'vertical',
   size = vim.o.columns * 0.4,
   close_on_exit = false,
   on_open = function(term)
-    vim.cmd('startinsert!')
+    vim.cmd 'startinsert!'
     vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>close<CR>', { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-j>', '<C-\\><C-n><C-w>j', { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-k>', '<C-\\><C-n><C-w>k', { noremap = true, silent = true })
     vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
   end,
-})
+}
 
 -- Horizontal terminal for quick commands
-local horizontal_term = Terminal:new({
+local horizontal_term = Terminal:new {
   direction = 'horizontal',
   size = 15,
-})
+}
 
 -- Floating terminal for quick tasks
-local floating_term = Terminal:new({
+local floating_term = Terminal:new {
   direction = 'float',
-})
+}
 
 -- PHP Artisan terminal
-local artisan_term = Terminal:new({
+local artisan_term = Terminal:new {
   cmd = 'php artisan tinker',
   dir = 'git_dir',
   direction = 'float',
@@ -69,12 +69,12 @@ local artisan_term = Terminal:new({
     border = 'double',
   },
   on_open = function(term)
-    vim.cmd('startinsert!')
+    vim.cmd 'startinsert!'
   end,
-})
+}
 
 -- Node REPL terminal
-local node_term = Terminal:new({
+local node_term = Terminal:new {
   cmd = 'node',
   dir = 'git_dir',
   direction = 'float',
@@ -82,9 +82,9 @@ local node_term = Terminal:new({
     border = 'double',
   },
   on_open = function(term)
-    vim.cmd('startinsert!')
+    vim.cmd 'startinsert!'
   end,
-})
+}
 
 -- Functions to toggle terminals
 function _G.claude_code_toggle()
@@ -139,6 +139,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
 -- Auto-resize terminals when window is resized
 vim.api.nvim_create_autocmd('VimResized', {
   callback = function()
-    vim.cmd('ToggleTermSetAll')
+    vim.cmd 'ToggleTermSetAll'
   end,
 })

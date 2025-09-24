@@ -149,7 +149,7 @@ local servers = {
       workingDirectory = { mode = 'auto' },
       codeActionOnSave = {
         enable = true,
-        mode = 'all'
+        mode = 'all',
       },
       format = true,
     },

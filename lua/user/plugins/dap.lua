@@ -1,6 +1,6 @@
-local dap = require('dap')
-local dapui = require('dapui')
-local virtual_text = require('nvim-dap-virtual-text')
+local dap = require 'dap'
+local dapui = require 'dapui'
+local virtual_text = require 'nvim-dap-virtual-text'
 
 dapui.setup()
 virtual_text.setup()
@@ -9,7 +9,7 @@ virtual_text.setup()
 dap.adapters.php = {
   type = 'executable',
   command = 'node',
-  args = { vim.fn.stdpath('data') .. '/mason/packages/php-debug-adapter/extension/out/phpDebug.js' }
+  args = { vim.fn.stdpath 'data' .. '/mason/packages/php-debug-adapter/extension/out/phpDebug.js' },
 }
 
 dap.configurations.php = {
@@ -29,7 +29,7 @@ dap.configurations.php = {
 dap.adapters.node2 = {
   type = 'executable',
   command = 'node',
-  args = { vim.fn.stdpath('data') .. '/mason/packages/node-debug2-adapter/out/src/nodeDebug.js' },
+  args = { vim.fn.stdpath 'data' .. '/mason/packages/node-debug2-adapter/out/src/nodeDebug.js' },
 }
 
 dap.configurations.javascript = {
@@ -48,7 +48,7 @@ dap.configurations.javascript = {
     type = 'node2',
     request = 'attach',
     processId = function()
-      return vim.fn.input('Process ID: ')
+      return vim.fn.input 'Process ID: '
     end,
   },
 }

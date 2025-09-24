@@ -17,7 +17,7 @@ function M.get_current_context()
     cursor_line = cursor_pos[1],
     cursor_col = cursor_pos[2],
     total_lines = line_count,
-    relative_path = vim.fn.fnamemodify(filename, ':.')
+    relative_path = vim.fn.fnamemodify(filename, ':.'),
   }
 end
 
@@ -30,20 +30,20 @@ function M.send_current_file()
   end
 
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code "' .. context.relative_path .. '"',
     dir = 'git_dir',
     direction = 'vertical',
     size = vim.o.columns * 0.4,
     close_on_exit = false,
-  })
+  }
   claude_term:toggle()
 end
 
 -- Send selected text to Claude Code
 function M.send_selection()
-  local start_pos = vim.fn.getpos("'<")
-  local end_pos = vim.fn.getpos("'>")
+  local start_pos = vim.fn.getpos "'<"
+  local end_pos = vim.fn.getpos "'>"
   local lines = vim.fn.getline(start_pos[2], end_pos[2])
 
   if #lines == 0 then
@@ -56,7 +56,7 @@ function M.send_selection()
   vim.fn.writefile(lines, temp_file)
 
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code "' .. temp_file .. '"',
     direction = 'vertical',
     size = vim.o.columns * 0.4,
@@ -64,7 +64,7 @@ function M.send_selection()
     on_close = function()
       vim.fn.delete(temp_file)
     end,
-  })
+  }
   claude_term:toggle()
 end
 
@@ -104,13 +104,13 @@ function M.send_current_file_with_prompt(prompt)
   end
 
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code --prompt "' .. prompt .. '" "' .. context.relative_path .. '"',
     dir = 'git_dir',
     direction = 'vertical',
     size = vim.o.columns * 0.4,
     close_on_exit = false,
-  })
+  }
   claude_term:toggle()
 end
 
@@ -118,20 +118,20 @@ end
 function M.send_project_context()
   local cwd = vim.fn.getcwd()
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code --context',
     dir = cwd,
     direction = 'vertical',
     size = vim.o.columns * 0.4,
     close_on_exit = false,
-  })
+  }
   claude_term:toggle()
 end
 
 -- Ask Claude Code about error under cursor
 function M.explain_error()
   local line = vim.api.nvim_get_current_line()
-  local diagnostics = vim.diagnostic.get(0, {lnum = vim.fn.line('.') - 1})
+  local diagnostics = vim.diagnostic.get(0, { lnum = vim.fn.line '.' - 1 })
 
   if #diagnostics == 0 then
     vim.notify('No diagnostic found under cursor', vim.log.levels.INFO)
@@ -142,7 +142,7 @@ function M.explain_error()
   local prompt = 'Explain this error and suggest a fix: ' .. error_msg .. ' in line: ' .. line
 
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code --prompt "' .. prompt .. '"',
     direction = 'float',
     float_opts = {
@@ -150,14 +150,14 @@ function M.explain_error()
       width = math.floor(vim.o.columns * 0.8),
       height = math.floor(vim.o.lines * 0.6),
     },
-  })
+  }
   claude_term:toggle()
 end
 
 -- Toggle Claude Code side panel with smart sizing
 function M.toggle_claude_panel()
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_term = Terminal:new({
+  local claude_term = Terminal:new {
     cmd = 'claude-code',
     dir = 'git_dir',
     direction = 'vertical',
@@ -174,20 +174,20 @@ function M.toggle_claude_panel()
     end,
     close_on_exit = false,
     on_open = function(term)
-      vim.cmd('startinsert!')
+      vim.cmd 'startinsert!'
       -- Set up buffer-local keymaps for better integration
       vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-h>', '<C-\\><C-n><C-w>h', { noremap = true, silent = true })
       vim.api.nvim_buf_set_keymap(term.bufnr, 't', '<C-l>', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
       vim.api.nvim_buf_set_keymap(term.bufnr, 'n', 'q', '<cmd>close<CR>', { noremap = true, silent = true })
     end,
-  })
+  }
   claude_term:toggle()
 end
 
 -- Create a floating Claude Code terminal for quick questions
 function M.quick_claude()
   local Terminal = require('toggleterm.terminal').Terminal
-  local claude_floating = Terminal:new({
+  local claude_floating = Terminal:new {
     cmd = 'claude-code',
     direction = 'float',
     float_opts = {
@@ -197,9 +197,9 @@ function M.quick_claude()
       winblend = 3,
     },
     on_open = function(term)
-      vim.cmd('startinsert!')
+      vim.cmd 'startinsert!'
     end,
-  })
+  }
   claude_floating:toggle()
 end
 
