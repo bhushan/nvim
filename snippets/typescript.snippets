@@ -1,0 +1,204 @@
+# TypeScript Productivity Snippets
+
+# TypeScript specific types and interfaces
+snippet interface "TypeScript interface"
+	interface ${1:InterfaceName} {
+		${0}
+	}
+
+snippet type "TypeScript type alias"
+	type ${1:TypeName} = ${0};
+
+snippet enum "TypeScript enum"
+	enum ${1:EnumName} {
+		${0}
+	}
+
+snippet class "TypeScript class"
+	class ${1:ClassName} {
+		constructor(${2}) {
+			${0}
+		}
+	}
+
+snippet method "TypeScript class method"
+	${1:methodName}(${2}): ${3:void} {
+		${0}
+	}
+
+snippet prop "TypeScript property"
+	${1:public} ${2:propertyName}: ${3:type};
+
+snippet generic "TypeScript generic"
+	<${1:T}>${0}
+
+snippet typed "TypeScript typed variable"
+	const ${1:name}: ${2:type} = ${0};
+
+snippet func "TypeScript function"
+	function ${1:functionName}(${2}): ${3:void} {
+		${0}
+	}
+
+snippet arrow "TypeScript arrow function"
+	const ${1:functionName} = (${2}): ${3:void} => {
+		${0}
+	};
+
+snippet async "TypeScript async function"
+	async function ${1:functionName}(${2}): Promise<${3:void}> {
+		${0}
+	}
+
+snippet promise "TypeScript Promise"
+	Promise<${1:type}>
+
+snippet union "TypeScript union type"
+	${1:type1} | ${0:type2}
+
+snippet intersection "TypeScript intersection type"
+	${1:type1} & ${0:type2}
+
+snippet optional "TypeScript optional property"
+	${1:property}?: ${0:type};
+
+snippet readonly "TypeScript readonly property"
+	readonly ${1:property}: ${0:type};
+
+snippet namespace "TypeScript namespace"
+	namespace ${1:NamespaceName} {
+		${0}
+	}
+
+snippet module "TypeScript module declaration"
+	declare module '${1:moduleName}' {
+		${0}
+	}
+
+snippet export "TypeScript export"
+	export { ${1} };
+
+snippet exportd "TypeScript default export"
+	export default ${0};
+
+snippet exportt "TypeScript export type"
+	export type { ${1} };
+
+snippet import "TypeScript import"
+	import { ${1} } from '${2}';
+
+snippet importt "TypeScript import type"
+	import type { ${1} } from '${2}';
+
+snippet as "TypeScript type assertion"
+	${1:value} as ${0:type}
+
+snippet satisfies "TypeScript satisfies"
+	${1:value} satisfies ${0:type}
+
+snippet keyof "TypeScript keyof"
+	keyof ${0:type}
+
+snippet typeof "TypeScript typeof"
+	typeof ${0:value}
+
+snippet partial "TypeScript Partial utility type"
+	Partial<${0:type}>
+
+snippet required "TypeScript Required utility type"
+	Required<${0:type}>
+
+snippet record "TypeScript Record utility type"
+	Record<${1:key}, ${0:value}>
+
+snippet pick "TypeScript Pick utility type"
+	Pick<${1:type}, ${0:keys}>
+
+snippet omit "TypeScript Omit utility type"
+	Omit<${1:type}, ${0:keys}>
+
+snippet exclude "TypeScript Exclude utility type"
+	Exclude<${1:type}, ${0:excludedTypes}>
+
+snippet extract "TypeScript Extract utility type"
+	Extract<${1:type}, ${0:extractedTypes}>
+
+snippet nonnullable "TypeScript NonNullable utility type"
+	NonNullable<${0:type}>
+
+snippet returntype "TypeScript ReturnType utility type"
+	ReturnType<${0:functionType}>
+
+snippet parameters "TypeScript Parameters utility type"
+	Parameters<${0:functionType}>
+
+# React TypeScript specific
+snippet rfcts "React FC TypeScript"
+	import React from 'react';
+
+	interface ${1:ComponentName}Props {
+		${2}
+	}
+
+	const ${1:ComponentName}: React.FC<${1:ComponentName}Props> = ({ ${3} }) => {
+		return (
+			<div>
+				${0}
+			</div>
+		);
+	};
+
+	export default ${1:ComponentName};
+
+snippet useStatets "React useState TypeScript"
+	const [${1:state}, set${1/\w+\s*/\u$0/}] = useState<${2:type}>(${3:initialState});
+
+snippet useEffectts "React useEffect TypeScript"
+	useEffect(() => {
+		${0}
+	}, [${1:dependencies}]);
+
+snippet useRefts "React useRef TypeScript"
+	const ${1:ref} = useRef<${2:type}>(${3:initialValue});
+
+snippet propstype "TypeScript component props type"
+	type ${1:ComponentName}Props = {
+		${0}
+	};
+
+snippet childrentype "TypeScript children prop"
+	children: React.ReactNode;
+
+snippet eventtype "TypeScript event handler type"
+	${1:handler}: (event: React.${2:MouseEvent}<HTML${3:Button}Element>) => void;
+
+snippet stateinterface "TypeScript state interface"
+	interface ${1:ComponentName}State {
+		${0}
+	}
+
+# Node.js TypeScript specific
+snippet express "TypeScript Express handler"
+	import { Request, Response } from 'express';
+
+	const ${1:handlerName} = (req: Request, res: Response) => {
+		${0}
+	};
+
+snippet middleware "TypeScript Express middleware"
+	import { Request, Response, NextFunction } from 'express';
+
+	const ${1:middlewareName} = (req: Request, res: Response, next: NextFunction) => {
+		${0}
+		next();
+	};
+
+snippet reqtype "TypeScript Request type extension"
+	interface ${1:CustomRequest} extends Request {
+		${0}
+	}
+
+snippet restype "TypeScript Response type extension"
+	interface ${1:CustomResponse} extends Response {
+		${0}
+	}

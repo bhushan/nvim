@@ -105,8 +105,60 @@ local servers = {
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
         importModuleSpecifierPreference = 'non-relative',
+        includePackageJsonAutoImports = 'auto',
+        includeCompletionsForModuleExports = true,
+        includeAutomaticOptionalChainCompletions = true,
       },
     },
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+        },
+        preferences = {
+          importModuleSpecifier = 'non-relative',
+        },
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+        },
+      },
+    },
+  },
+
+  eslint = {
+    settings = {
+      workingDirectory = { mode = 'auto' },
+      codeActionOnSave = {
+        enable = true,
+        mode = 'all'
+      },
+      format = true,
+    },
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        command = 'EslintFixAll',
+      })
+    end,
   },
   lua_ls = {
     settings = {
@@ -224,6 +276,12 @@ vim.list_extend(ensure_installed, {
   'intelephense',
   'jsonls',
   'ts_ls',
+  'eslint',
+  'prettierd',
+  'php-cs-fixer',
+  'phpstan',
+  'node-debug2-adapter',
+  'php-debug-adapter',
 })
 
 require('mason-lspconfig').setup {

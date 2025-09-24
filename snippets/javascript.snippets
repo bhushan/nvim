@@ -1,0 +1,270 @@
+# JavaScript/TypeScript Productivity Snippets
+
+# Modern JavaScript
+snippet func "Function declaration"
+	function ${1:functionName}(${2}) {
+		${0}
+	}
+
+snippet arrow "Arrow function"
+	const ${1:functionName} = (${2}) => {
+		${0}
+	};
+
+snippet arrowl "Arrow function (lambda)"
+	(${1}) => ${0}
+
+snippet const "Const declaration"
+	const ${1:name} = ${0};
+
+snippet let "Let declaration"
+	let ${1:name} = ${0};
+
+snippet import "ES6 import"
+	import { ${1} } from '${2}';
+
+snippet importd "ES6 default import"
+	import ${1} from '${2}';
+
+snippet export "ES6 export"
+	export { ${1} };
+
+snippet exportd "ES6 default export"
+	export default ${0};
+
+snippet class "ES6 class"
+	class ${1:ClassName} {
+		constructor(${2}) {
+			${0}
+		}
+	}
+
+snippet method "Class method"
+	${1:methodName}(${2}) {
+		${0}
+	}
+
+snippet async "Async function"
+	async function ${1:functionName}(${2}) {
+		${0}
+	}
+
+snippet await "Await expression"
+	const ${1:result} = await ${0};
+
+snippet promise "Promise"
+	new Promise((resolve, reject) => {
+		${0}
+	});
+
+snippet then "Promise then"
+	.then(${1:result} => {
+		${0}
+	});
+
+snippet catch "Promise catch"
+	.catch(${1:error} => {
+		${0}
+	});
+
+snippet try "Try catch"
+	try {
+		${1}
+	} catch (${2:error}) {
+		${0}
+	}
+
+snippet for "For loop"
+	for (let ${1:i} = 0; ${1:i} < ${2:length}; ${1:i}++) {
+		${0}
+	}
+
+snippet forin "For in loop"
+	for (const ${1:key} in ${2:object}) {
+		${0}
+	}
+
+snippet forof "For of loop"
+	for (const ${1:item} of ${2:array}) {
+		${0}
+	}
+
+snippet forEach "forEach"
+	${1:array}.forEach(${2:item} => {
+		${0}
+	});
+
+snippet map "Array map"
+	${1:array}.map(${2:item} => ${0});
+
+snippet filter "Array filter"
+	${1:array}.filter(${2:item} => ${0});
+
+snippet reduce "Array reduce"
+	${1:array}.reduce((${2:acc}, ${3:item}) => {
+		${0}
+	}, ${4:initial});
+
+snippet find "Array find"
+	${1:array}.find(${2:item} => ${0});
+
+snippet some "Array some"
+	${1:array}.some(${2:item} => ${0});
+
+snippet every "Array every"
+	${1:array}.every(${2:item} => ${0});
+
+snippet log "Console log"
+	console.log(${0});
+
+snippet error "Console error"
+	console.error(${0});
+
+snippet warn "Console warn"
+	console.warn(${0});
+
+snippet table "Console table"
+	console.table(${0});
+
+snippet time "Console time"
+	console.time('${1}');
+	${0}
+	console.timeEnd('${1}');
+
+# React specific
+snippet rfc "React Functional Component"
+	import React from 'react';
+
+	const ${1:ComponentName} = () => {
+		return (
+			<div>
+				${0}
+			</div>
+		);
+	};
+
+	export default ${1:ComponentName};
+
+snippet rfce "React Functional Component with export"
+	import React from 'react';
+
+	const ${1:ComponentName} = () => {
+		return (
+			<div>
+				${0}
+			</div>
+		);
+	};
+
+	export default ${1:ComponentName};
+
+snippet useState "React useState hook"
+	const [${1:state}, set${1/\w+\s*/\u$0/}] = useState(${2:initialState});
+
+snippet useEffect "React useEffect hook"
+	useEffect(() => {
+		${0}
+	}, [${1:dependencies}]);
+
+snippet useContext "React useContext hook"
+	const ${1:context} = useContext(${2:Context});
+
+snippet useReducer "React useReducer hook"
+	const [${1:state}, ${2:dispatch}] = useReducer(${3:reducer}, ${4:initialState});
+
+snippet useCallback "React useCallback hook"
+	const ${1:memoizedCallback} = useCallback(() => {
+		${0}
+	}, [${2:dependencies}]);
+
+snippet useMemo "React useMemo hook"
+	const ${1:memoizedValue} = useMemo(() => {
+		return ${0};
+	}, [${2:dependencies}]);
+
+snippet jsx "JSX element"
+	<${1:div}>
+		${0}
+	</${1:div}>
+
+# Node.js specific
+snippet require "Node.js require"
+	const ${1:name} = require('${2:module}');
+
+snippet module "Node.js module exports"
+	module.exports = {
+		${0}
+	};
+
+snippet router "Express router"
+	const express = require('express');
+	const router = express.Router();
+
+	${0}
+
+	module.exports = router;
+
+snippet middleware "Express middleware"
+	const ${1:middlewareName} = (req, res, next) => {
+		${0}
+		next();
+	};
+
+snippet route "Express route"
+	router.${1:get}('${2:path}', (req, res) => {
+		${0}
+	});
+
+snippet json "JSON response"
+	res.json({
+		${0}
+	});
+
+snippet status "Status response"
+	res.status(${1:200}).json({
+		${0}
+	});
+
+# Testing
+snippet test "Jest test"
+	test('${1:description}', () => {
+		${0}
+	});
+
+snippet describe "Jest describe block"
+	describe('${1:description}', () => {
+		${0}
+	});
+
+snippet expect "Jest expect"
+	expect(${1}).${2:toBe}(${0});
+
+snippet beforeEach "Jest beforeEach"
+	beforeEach(() => {
+		${0}
+	});
+
+snippet afterEach "Jest afterEach"
+	afterEach(() => {
+		${0}
+	});
+
+# TypeScript specific
+snippet interface "TypeScript interface"
+	interface ${1:InterfaceName} {
+		${0}
+	}
+
+snippet type "TypeScript type alias"
+	type ${1:TypeName} = ${0};
+
+snippet enum "TypeScript enum"
+	enum ${1:EnumName} {
+		${0}
+	}
+
+snippet generic "TypeScript generic"
+	<${1:T}>${0}
+
+snippet typed "TypeScript typed variable"
+	const ${1:name}: ${2:type} = ${0};

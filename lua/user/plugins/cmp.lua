@@ -64,8 +64,48 @@ cmp.setup {
     --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
+    {
+      name = 'nvim_lsp',
+      priority = 1000,
+    },
+    {
+      name = 'luasnip',
+      priority = 750,
+    },
+    {
+      name = 'path',
+      priority = 250,
+    },
+    {
+      name = 'buffer',
+      priority = 500,
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end
+      },
+    },
+  },
+
+  performance = {
+    debounce = 60,
+    throttle = 30,
+    fetching_timeout = 500,
+    confirm_resolve_timeout = 80,
+    async_budget = 1,
+    max_view_entries = 200,
+  },
+
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = string.format('%s %s', vim_item.kind, vim_item.kind)
+      vim_item.menu = ({
+        nvim_lsp = '[LSP]',
+        luasnip = '[Snippet]',
+        buffer = '[Buffer]',
+        path = '[Path]',
+      })[entry.source.name]
+      return vim_item
+    end,
   },
 }
