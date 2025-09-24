@@ -107,34 +107,6 @@ require('lazy').setup({
     },
   },
 
-  -- Fast incremental search and replace
-  {
-    'nvim-pack/nvim-spectre',
-    build = false,
-    cmd = 'Spectre',
-    opts = { open_cmd = 'noswapfile vnew' },
-    keys = {
-      {
-        '<leader>sr',
-        function()
-          require('spectre').open()
-        end,
-        desc = 'Replace in files (Spectre)',
-      },
-    },
-  },
-
-  -- Claude Code integration
-  {
-    'coder/claudecode.nvim',
-    dependencies = { 'folke/snacks.nvim' },
-    config = true,
-    keys = {
-      { '<leader>cc', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude Code' },
-      { '<leader>cs', '<cmd>ClaudeCodeSend<cr>', mode = 'v', desc = 'Send to Claude Code' },
-    },
-  },
-
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
