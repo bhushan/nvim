@@ -62,7 +62,11 @@ end, { desc = 'Search All Files' })
 
 vim.keymap.set('n', '<leader>ts', builtin.builtin, { desc = '[T]elescope [S]elect' })
 vim.keymap.set('n', '<leader>tw', builtin.grep_string, { desc = '[T]elescope current [W]ord' })
-vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = '[T]elescope by [G]rep' })
+vim.keymap.set('n', '<leader>tg', function()
+  builtin.live_grep {
+    glob_pattern = '!_*',
+  }
+end, { desc = '[T]elescope by [G]rep' })
 vim.keymap.set('n', '<leader>td', builtin.diagnostics, { desc = '[T]elescope [D]iagnostics' })
 vim.keymap.set('n', '<leader>tr', builtin.resume, { desc = '[T]elescope [R]esume' })
 vim.keymap.set('n', '<leader>t.', builtin.oldfiles, { desc = '[T]elescope Recent Files ("." for repeat)' })
