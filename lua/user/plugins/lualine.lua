@@ -45,7 +45,7 @@ require('lualine').setup {
     lualine_b = {
       'branch',
       function()
-        return '🛠 ' .. vim.pesc(tostring(#vim.tbl_keys(vim.lsp.get_clients())) or '')
+        return '🛠 ' .. tostring(#vim.lsp.get_clients())
       end,
 
       {
@@ -71,7 +71,9 @@ require('lualine').setup {
       'filetype',
       'encoding',
       'fileformat',
-      '(vim.bo.expandtab and "␠ " or "⇥ ") .. vim.bo.shiftwidth',
+      function()
+        return (vim.bo.expandtab and '␠ ' or '⇥ ') .. vim.bo.shiftwidth
+      end,
     },
     lualine_z = {
       'searchcount',

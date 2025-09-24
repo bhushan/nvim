@@ -41,22 +41,25 @@ cmp.setup {
     --  completions whenever it has completion options available.
     ['<C-Space>'] = cmp.mapping.complete {},
 
-    -- Think of <c-l> as moving to the right of your snippet expansion.
-    --  So if you have a snippet that's like:
-    --  function $name($args)
-    --    $body
-    --  end
-    --
-    -- <c-l> will move you to the right of each of the expansion locations.
-    -- <c-h> is similar, except moving you backwards.
-    ['<C-l>'] = cmp.mapping(function()
-      if luasnip.expand_or_locally_jumpable() then
+    -- Use Tab to move to next snippet tabstop or complete
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_locally_jumpable() then
         luasnip.expand_or_jump()
+      else
+        fallback()
       end
     end, { 'i', 's' }),
-    ['<C-h>'] = cmp.mapping(function()
-      if luasnip.locally_jumpable(-1) then
+
+    -- Use Shift-Tab to move to previous snippet tabstop or complete
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.locally_jumpable(-1) then
         luasnip.jump(-1)
+      else
+        fallback()
       end
     end, { 'i', 's' }),
 
@@ -64,8 +67,48 @@ cmp.setup {
     --    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
   },
   sources = {
-    { name = 'nvim_lsp' },
-    { name = 'luasnip' },
-    { name = 'path' },
+    {
+      name = 'nvim_lsp',
+      priority = 1000,
+    },
+    {
+      name = 'luasnip',
+      priority = 750,
+    },
+    {
+      name = 'path',
+      priority = 250,
+    },
+    {
+      name = 'buffer',
+      priority = 500,
+      option = {
+        get_bufnrs = function()
+          return vim.api.nvim_list_bufs()
+        end,
+      },
+    },
+  },
+
+  performance = {
+    debounce = 60,
+    throttle = 30,
+    fetching_timeout = 500,
+    confirm_resolve_timeout = 80,
+    async_budget = 1,
+    max_view_entries = 200,
+  },
+
+  formatting = {
+    format = function(entry, vim_item)
+      vim_item.kind = string.format('%s %s', vim_item.kind, vim_item.kind)
+      vim_item.menu = ({
+        nvim_lsp = '[LSP]',
+        luasnip = '[Snippet]',
+        buffer = '[Buffer]',
+        path = '[Path]',
+      })[entry.source.name]
+      return vim_item
+    end,
   },
 }

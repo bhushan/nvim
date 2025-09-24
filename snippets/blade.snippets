@@ -1,0 +1,170 @@
+# Blade Template Snippets
+
+snippet blade "Blade template"
+	@extends('${1:layout}')
+
+	@section('${2:content}')
+		${0}
+	@endsection
+
+snippet component "Blade component"
+	@component('${1:component}')
+		${0}
+	@endcomponent
+
+snippet foreach "Blade foreach"
+	@foreach($${1:items} as $${2:item})
+		${0}
+	@endforeach
+
+snippet if "Blade if"
+	@if(${1:condition})
+		${0}
+	@endif
+
+snippet auth "Blade auth check"
+	@auth
+		${0}
+	@endauth
+
+snippet guest "Blade guest check"
+	@guest
+		${0}
+	@endguest
+
+snippet section "Blade section"
+	@section('${1:name}')
+		${0}
+	@endsection
+
+snippet yield "Blade yield"
+	@yield('${1:section}', '${0:default}')
+
+snippet include "Blade include"
+	@include('${1:view}', ${0:['key' => 'value']})
+
+snippet extends "Blade extends"
+	@extends('${1:layout}')
+
+snippet push "Blade push"
+	@push('${1:stack}')
+		${0}
+	@endpush
+
+snippet stack "Blade stack"
+	@stack('${1:name}')
+
+snippet slot "Blade slot"
+	@slot('${1:name}')
+		${0}
+	@endslot
+
+snippet unless "Blade unless"
+	@unless(${1:condition})
+		${0}
+	@endunless
+
+snippet empty "Blade empty"
+	@empty($${1:variable})
+		${0}
+	@endempty
+
+snippet isset "Blade isset"
+	@isset($${1:variable})
+		${0}
+	@endisset
+
+snippet switch "Blade switch"
+	@switch($${1:variable})
+		@case(${2:value})
+			${3}
+			@break
+		@default
+			${0}
+	@endswitch
+
+snippet case "Blade case"
+	@case(${1:value})
+		${2}
+		@break
+
+snippet forelse "Blade forelse"
+	@forelse($${1:items} as $${2:item})
+		${3}
+	@empty
+		${0}
+	@endforelse
+
+snippet while "Blade while"
+	@while(${1:condition})
+		${0}
+	@endwhile
+
+snippet for "Blade for"
+	@for($${1:i} = ${2:0}; $${1:i} < ${3:10}; $${1:i}++)
+		${0}
+	@endfor
+
+snippet csrf "CSRF token"
+	@csrf
+
+snippet method "Method field"
+	@method('${1:PUT}')
+
+snippet error "Blade error"
+	@error('${1:field}')
+		${0}
+	@enderror
+
+snippet can "Blade can"
+	@can('${1:permission}')
+		${0}
+	@endcan
+
+snippet cannot "Blade cannot"
+	@cannot('${1:permission}')
+		${0}
+	@endcannot
+
+snippet canany "Blade canany"
+	@canany(['${1:permission1}', '${2:permission2}'])
+		${0}
+	@endcanany
+
+snippet hasSection "Blade hasSection"
+	@hasSection('${1:section}')
+		${0}
+	@endif
+
+snippet sectionMissing "Blade sectionMissing"
+	@sectionMissing('${1:section}')
+		${0}
+	@endif
+
+snippet json "Blade JSON"
+	@json($${1:variable})
+
+snippet verbatim "Blade verbatim"
+	@verbatim
+		${0}
+	@endverbatim
+
+snippet php "Blade PHP"
+	@php
+		${0}
+	@endphp
+
+snippet once "Blade once"
+	@once
+		${0}
+	@endonce
+
+snippet production "Blade production"
+	@production
+		${0}
+	@endproduction
+
+snippet env "Blade env"
+	@env('${1:local}')
+		${0}
+	@endenv

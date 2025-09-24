@@ -20,23 +20,23 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Jump to the type of the word under your cursor.
     --  Useful when you're not sure what type a variable is and you want to see
     --  the definition of its *type*, not where it was *defined*.
-    map('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+    map('<leader>lD', require('telescope.builtin').lsp_type_definitions, '[L]SP Type [D]efinition')
 
     -- Fuzzy find all the symbols in your current document.
     --  Symbols are things like variables, functions, types, etc.
-    map('<C-r>', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+    map('<C-r>', require('telescope.builtin').lsp_document_symbols, '[L]SP [d]ocument symbols')
 
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
-    map('<C-S-r>', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    map('<C-S-r>', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[L]SP [w]orkspace symbols')
 
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
-    map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    map('<leader>lr', vim.lsp.buf.rename, '[L]SP [r]ename')
 
     -- Execute a code action, usually your cursor needs to be on top of an error
     -- or a suggestion from your LSP for this to activate.
-    map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+    map('<leader>la', vim.lsp.buf.code_action, '[L]SP code [a]ction')
 
     -- Opens a popup that displays documentation about the word under your cursor
     --  See `:help K` for why this keymap.
@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --  For example, in C this would take you to the header.
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-    map('<leader>f', vim.lsp.buf.format, '[F]ormat Current Buffer')
+    map('<leader>lf', vim.lsp.buf.format, '[L]SP [f]ormat buffer')
 
     -- The following two autocommands are used to highlight references of the
     -- word under your cursor when your cursor rests there for a little while.
@@ -83,9 +83,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --
     -- This may be unwanted, since they displace some of your code
     if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
-      map('<leader>th', function()
+      map('<leader>lh', function()
         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {})
-      end, '[T]oggle Inlay [H]ints')
+      end, '[L]SP toggle inlay [h]ints')
     end
   end,
 })
@@ -93,8 +93,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+-- Set position encoding to utf-16 to avoid warning
+capabilities.general = capabilities.general or {}
+capabilities.general.positionEncodings = { 'utf-16' }
+
 local servers = {
-  ts_ls = {
+  vtsls = {
     init_options = {
       preferences = {
         includeInlayParameterNameHints = 'all',
@@ -105,8 +109,60 @@ local servers = {
         includeInlayFunctionLikeReturnTypeHints = true,
         includeInlayEnumMemberValueHints = true,
         importModuleSpecifierPreference = 'non-relative',
+        includePackageJsonAutoImports = 'auto',
+        includeCompletionsForModuleExports = true,
+        includeAutomaticOptionalChainCompletions = true,
       },
     },
+    settings = {
+      typescript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayPropertyDeclarationTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+        },
+        preferences = {
+          importModuleSpecifier = 'non-relative',
+        },
+      },
+      javascript = {
+        inlayHints = {
+          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+          includeInlayFunctionParameterTypeHints = true,
+          includeInlayVariableTypeHints = true,
+          includeInlayFunctionLikeReturnTypeHints = true,
+          includeInlayEnumMemberValueHints = true,
+        },
+        suggest = {
+          includeCompletionsForModuleExports = true,
+        },
+      },
+    },
+  },
+
+  eslint = {
+    settings = {
+      workingDirectory = { mode = 'auto' },
+      codeActionOnSave = {
+        enable = true,
+        mode = 'all',
+      },
+      format = true,
+    },
+    on_attach = function(client, bufnr)
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        command = 'EslintFixAll',
+      })
+    end,
   },
   lua_ls = {
     settings = {
@@ -121,31 +177,21 @@ local servers = {
   intelephense = {
     settings = {
       intelephense = {
-        files = {
-          maxSize = 5000000,
-        },
         stubs = {
-          'apache',
           'bcmath',
           'bz2',
           'calendar',
-          'com_dotnet',
           'Core',
-          'ctype',
           'curl',
           'date',
           'dba',
           'dom',
           'enchant',
-          'exif',
-          'FFI',
           'fileinfo',
           'filter',
-          'fpm',
           'ftp',
           'gd',
           'gettext',
-          'gmp',
           'hash',
           'iconv',
           'imap',
@@ -154,55 +200,54 @@ local servers = {
           'ldap',
           'libxml',
           'mbstring',
-          'meta',
+          'mcrypt',
+          'mysql',
           'mysqli',
-          'oci8',
-          'odbc',
-          'openssl',
+          'password',
           'pcntl',
           'pcre',
           'PDO',
-          'pdo_ibm',
           'pdo_mysql',
-          'pdo_pgsql',
-          'pdo_sqlite',
-          'pgsql',
           'Phar',
-          'posix',
-          'pspell',
           'readline',
+          'recode',
           'Reflection',
+          'regex',
           'session',
-          'shmop',
           'SimpleXML',
-          'snmp',
           'soap',
           'sockets',
           'sodium',
           'SPL',
-          'sqlite3',
           'standard',
           'superglobals',
-          'sysvmsg',
           'sysvsem',
           'sysvshm',
-          'tidy',
           'tokenizer',
           'xml',
+          'xdebug',
           'xmlreader',
-          'xmlrpc',
           'xmlwriter',
-          'xsl',
-          'Zend OPcache',
+          'yaml',
           'zip',
           'zlib',
-          'mysql',
-          'redis',
-          -- Laravel-specific stubs
-          '_ide_helper',
+          -- Laravel stubs
+          'laravel',
         },
-        diagnostics = {
-          undefinedTypes = true,
+        files = {
+          maxSize = 5000000,
+        },
+        completion = {
+          insertUseDeclaration = true,
+          fullyQualifyGlobalConstantsAndFunctions = false,
+          suggestObjectOperatorStaticMethods = true,
+          maxItems = 100,
+        },
+        format = {
+          enable = true,
+        },
+        environment = {
+          includePaths = { 'vendor/' },
         },
       },
     },
@@ -217,13 +262,24 @@ local servers = {
 --  You can press `g?` for help in this menu.
 require('mason').setup()
 
+-- Configure mason-tool-installer for formatters, linters, and debug adapters
+require('mason-tool-installer').setup {
+  ensure_installed = {
+    'prettierd', -- Formatter for JS/TS/HTML/CSS/JSON/Markdown
+    'js-debug-adapter', -- Debug adapter for JavaScript/TypeScript
+  },
+  auto_update = false,
+  run_on_start = true,
+}
+
 local ensure_installed = vim.tbl_keys(servers or {})
 
 vim.list_extend(ensure_installed, {
   'lua_ls',
-  'intelephense',
   'jsonls',
-  'ts_ls',
+  'vtsls',
+  'eslint',
+  'intelephense',
 })
 
 require('mason-lspconfig').setup {

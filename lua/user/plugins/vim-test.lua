@@ -1,8 +1,8 @@
-vim.keymap.set('n', '<Leader>tn', ':TestNearest<CR>')
-vim.keymap.set('n', '<Leader>tf', ':TestFile<CR>')
-vim.keymap.set('n', '<Leader>ts', ':TestSuite<CR>')
-vim.keymap.set('n', '<Leader>tl', ':TestLast<CR>')
-vim.keymap.set('n', '<Leader>tv', ':TestVisit<CR>')
+vim.keymap.set('n', '<Leader>rn', ':TestNearest<CR>', { desc = '[R]un [n]earest test' })
+vim.keymap.set('n', '<Leader>rf', ':TestFile<CR>', { desc = '[R]un test [f]ile' })
+vim.keymap.set('n', '<Leader>rs', ':TestSuite<CR>', { desc = '[R]un test [s]uite' })
+vim.keymap.set('n', '<Leader>rl', ':TestLast<CR>', { desc = '[R]un [l]ast test' })
+vim.keymap.set('n', '<Leader>rv', ':TestVisit<CR>', { desc = '[R]un [v]isit test' })
 
 vim.cmd [[
   let test#php#phpunit#options = '--colors=always'

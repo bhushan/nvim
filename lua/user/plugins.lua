@@ -2,7 +2,7 @@
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end
@@ -46,8 +46,72 @@ require('lazy').setup({
   -- Add smooth scrolling to avoid jarring jumps
   {
     'karb94/neoscroll.nvim',
+    event = 'VeryLazy',
     config = function()
       require('neoscroll').setup()
+    end,
+  },
+
+  -- Package.json script runner
+  {
+    'vuki656/package-info.nvim',
+    ft = 'json',
+    dependencies = 'MunifTanjim/nui.nvim',
+    config = function()
+      require('package-info').setup()
+    end,
+  },
+
+  -- Better auto-pairs for faster typing
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = function()
+      require('nvim-autopairs').setup()
+    end,
+  },
+
+  -- Enhanced text objects for faster navigation
+  {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    event = 'VeryLazy',
+    dependencies = 'nvim-treesitter/nvim-treesitter',
+  },
+
+  -- Auto-formatting and linting
+  {
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    opts = {
+      formatters_by_ft = {
+        php = { 'pint' },
+        lua = { 'stylua' },
+        python = { 'isort', 'black' },
+        javascript = { { 'prettierd', 'prettier' } },
+        typescript = { { 'prettierd', 'prettier' } },
+        javascriptreact = { { 'prettierd', 'prettier' } },
+        typescriptreact = { { 'prettierd', 'prettier' } },
+        vue = { { 'prettierd', 'prettier' } },
+        css = { { 'prettierd', 'prettier' } },
+        scss = { { 'prettierd', 'prettier' } },
+        html = { { 'prettierd', 'prettier' } },
+        json = { { 'prettierd', 'prettier' } },
+        yaml = { { 'prettierd', 'prettier' } },
+        markdown = { { 'prettierd', 'prettier' } },
+      },
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
+    },
+  },
+
+  {
+    'folke/which-key.nvim',
+    event = 'VimEnter',
+    config = function()
+      require 'user/plugins/which-key'
     end,
   },
 
@@ -58,6 +122,7 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require 'user/plugins/treesitter'
     end,
@@ -88,6 +153,7 @@ require('lazy').setup({
   -- LSP Configuration & Plugins
   {
     'neovim/nvim-lspconfig',
+    event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
@@ -97,9 +163,18 @@ require('lazy').setup({
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+      -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = {
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true },
     },
     config = function()
       require 'user/plugins/lspconfig'
@@ -125,11 +200,13 @@ require('lazy').setup({
         end)(),
         config = function()
           require('luasnip.loaders.from_snipmate').lazy_load()
+          require('luasnip.loaders.from_snipmate').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
         end,
       },
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'hrsh7th/cmp-buffer',
     },
     config = function()
       require 'user/plugins/cmp'
@@ -142,7 +219,7 @@ require('lazy').setup({
   -- Project Configuration
   {
     'tpope/vim-projectionist',
-    requires = 'tpope/vim-dispatch',
+    dependencies = { 'tpope/vim-dispatch' },
     config = function()
       require 'user/plugins/projectionist'
     end,
@@ -151,6 +228,7 @@ require('lazy').setup({
   -- Git integration.
   {
     'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
       require 'user/plugins/gitsigns'
     end,

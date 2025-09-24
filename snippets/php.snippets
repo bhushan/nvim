@@ -28,3 +28,177 @@ snippet testa "test method (annotation)"
 	{
 		${0}
 	}
+
+# Laravel specific productivity snippets
+snippet route "Laravel route definition"
+	Route::${1:get}('${2:path}', [${3:Controller}::class, '${4:method}'])->name('${5:name}');
+
+snippet controller "Laravel controller method"
+	public function ${1:method}(${2:Request \$request})
+	{
+		${0:// Implementation}
+	}
+
+snippet model "Laravel Eloquent model"
+	<?php
+
+	namespace App\Models;
+
+	use Illuminate\Database\Eloquent\Factories\HasFactory;
+	use Illuminate\Database\Eloquent\Model;
+
+	class ${1:ModelName} extends Model
+	{
+		use HasFactory;
+
+		protected \$fillable = [
+			${0:''}
+		];
+	}
+
+snippet service "Service class"
+	<?php
+
+	namespace App\Services;
+
+	class ${1:ServiceName}
+	{
+		public function __construct()
+		{
+			${0}
+		}
+	}
+
+snippet request "Form Request validation"
+	<?php
+
+	namespace App\Http\Requests;
+
+	use Illuminate\Foundation\Http\FormRequest;
+
+	class ${1:RequestName} extends FormRequest
+	{
+		public function authorize()
+		{
+			return ${2:true};
+		}
+
+		public function rules()
+		{
+			return [
+				${0}
+			];
+		}
+	}
+
+snippet resource "API Resource"
+	<?php
+
+	namespace App\Http\Resources;
+
+	use Illuminate\Http\Resources\Json\JsonResource;
+
+	class ${1:ResourceName} extends JsonResource
+	{
+		public function toArray(\$request)
+		{
+			return [
+				${0}
+			];
+		}
+	}
+
+snippet migration "Laravel migration"
+	<?php
+
+	use Illuminate\Database\Migrations\Migration;
+	use Illuminate\Database\Schema\Blueprint;
+	use Illuminate\Support\Facades\Schema;
+
+	class ${1:CreateTableName} extends Migration
+	{
+		public function up()
+		{
+			Schema::create('${2:table_name}', function (Blueprint \$table) {
+				\$table->id();
+				${0}
+				\$table->timestamps();
+			});
+		}
+
+		public function down()
+		{
+			Schema::dropIfExists('${2:table_name}');
+		}
+	}
+
+snippet factory "Model factory definition"
+	<?php
+
+	namespace Database\Factories;
+
+	use Illuminate\Database\Eloquent\Factories\Factory;
+
+	class ${1:Model}Factory extends Factory
+	{
+		public function definition()
+		{
+			return [
+				${0}
+			];
+		}
+	}
+
+snippet seeder "Database seeder"
+	<?php
+
+	namespace Database\Seeders;
+
+	use Illuminate\Database\Seeder;
+
+	class ${1:SeederName} extends Seeder
+	{
+		public function run()
+		{
+			${0}
+		}
+	}
+
+# General PHP productivity
+snippet class "PHP Class"
+	<?php
+
+	class ${1:ClassName}
+	{
+		${0}
+	}
+
+snippet construct "Constructor method"
+	public function __construct(${1})
+	{
+		${0}
+	}
+
+snippet try "Try catch block"
+	try {
+		${1}
+	} catch (${2:Exception} \$${3:e}) {
+		${0}
+	}
+
+snippet dump "Dump and die"
+	dd(${0});
+
+snippet log "Log debug"
+	Log::info('${1:message}', [${0}]);
+
+snippet array "Array map"
+	array_map(function (\$${1:item}) {
+		${0}
+	}, \$${2:array});
+
+snippet collect "Collection"
+	collect(${1})->map(function (\$${2:item}) {
+		${0}
+	});
+
