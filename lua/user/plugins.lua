@@ -52,14 +52,10 @@ require('lazy').setup({
     end,
   },
 
-  -- PHP/Laravel productivity enhancements
-  -- NOTE: jwalton512/vim-blade is archived. Using tree-sitter instead.
-  -- Configure blade parser in treesitter config below.
-
-  -- Enhanced PHP debugging with Xdebug
+  -- Enhanced JavaScript/TypeScript debugging
   {
     'mfussenegger/nvim-dap',
-    ft = { 'php', 'javascript', 'typescript' },
+    ft = { 'javascript', 'typescript' },
     dependencies = {
       'rcarriga/nvim-dap-ui',
       'theHamsta/nvim-dap-virtual-text',
@@ -120,7 +116,6 @@ require('lazy').setup({
         json = { { 'prettierd', 'prettier' } },
         yaml = { { 'prettierd', 'prettier' } },
         markdown = { { 'prettierd', 'prettier' } },
-        php = { 'php_cs_fixer' },
       },
       format_on_save = {
         timeout_ms = 500,
@@ -156,6 +151,16 @@ require('lazy').setup({
   },
 
   -- Claude Code integration
+  {
+    'coder/claudecode.nvim',
+    dependencies = { 'folke/snacks.nvim' },
+    config = true,
+    keys = {
+      { '<leader>cc', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude Code' },
+      { '<leader>cs', '<cmd>ClaudeCodeSend<cr>', mode = 'v', desc = 'Send to Claude Code' },
+    },
+  },
+
   {
     'folke/which-key.nvim',
     event = 'VimEnter',

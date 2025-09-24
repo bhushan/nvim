@@ -5,26 +5,6 @@ local virtual_text = require 'nvim-dap-virtual-text'
 dapui.setup()
 virtual_text.setup()
 
--- PHP Xdebug configuration
-dap.adapters.php = {
-  type = 'executable',
-  command = 'node',
-  args = { vim.fn.stdpath 'data' .. '/mason/packages/php-debug-adapter/extension/out/phpDebug.js' },
-}
-
-dap.configurations.php = {
-  {
-    type = 'php',
-    request = 'launch',
-    name = 'Listen for Xdebug',
-    port = 9003,
-    log = false,
-    pathMappings = {
-      ['/var/www/html'] = vim.fn.getcwd(),
-    },
-  },
-}
-
 -- Node.js debugging configuration
 dap.adapters.node2 = {
   type = 'executable',
