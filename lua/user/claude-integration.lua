@@ -7,7 +7,7 @@ local M = {}
 function M.get_current_context()
   local buf = vim.api.nvim_get_current_buf()
   local filename = vim.api.nvim_buf_get_name(buf)
-  local filetype = vim.api.nvim_buf_get_option(buf, 'filetype')
+  local filetype = vim.bo[buf].filetype
   local cursor_pos = vim.api.nvim_win_get_cursor(0)
   local line_count = vim.api.nvim_buf_line_count(buf)
 
@@ -62,6 +62,9 @@ function M.send_selection()
     size = vim.o.columns * 0.4,
     close_on_exit = false,
     on_close = function()
+      vim.fn.delete(temp_file)
+    end,
+    on_exit = function()
       vim.fn.delete(temp_file)
     end,
   }

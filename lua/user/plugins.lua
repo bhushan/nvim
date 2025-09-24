@@ -2,7 +2,7 @@
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end
@@ -53,14 +53,8 @@ require('lazy').setup({
   },
 
   -- PHP/Laravel productivity enhancements
-  {
-    'adalepple/blade.vim',
-    ft = 'blade',
-  },
-  {
-    'jwalton512/vim-blade',
-    ft = 'blade',
-  },
+  -- NOTE: jwalton512/vim-blade is archived. Using tree-sitter instead.
+  -- Configure blade parser in treesitter config below.
 
   -- Enhanced PHP debugging with Xdebug
   {
@@ -77,12 +71,8 @@ require('lazy').setup({
   },
 
   -- JavaScript/TypeScript enhancements
-  {
-    'pmizio/typescript-tools.nvim',
-    ft = { 'typescript', 'typescriptreact' },
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
-  },
+  -- NOTE: Replaced typescript-tools.nvim with vtsls for better maintenance
+  -- TypeScript language server is configured in lspconfig.lua
 
   -- Package.json script runner
   {
@@ -222,9 +212,18 @@ require('lazy').setup({
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },
 
-      -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
+      -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
-      { 'folke/neodev.nvim', opts = {} },
+      {
+        'folke/lazydev.nvim',
+        ft = 'lua',
+        opts = {
+          library = {
+            { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+          },
+        },
+      },
+      { 'Bilal2453/luvit-meta', lazy = true },
     },
     config = function()
       require 'user/plugins/lspconfig'
@@ -269,7 +268,7 @@ require('lazy').setup({
   -- Project Configuration
   {
     'tpope/vim-projectionist',
-    requires = 'tpope/vim-dispatch',
+    dependencies = { 'tpope/vim-dispatch' },
     config = function()
       require 'user/plugins/projectionist'
     end,

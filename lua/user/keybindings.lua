@@ -32,8 +32,8 @@ vim.keymap.set('i', 'jj', '<Esc>')
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show [D]iagnostic messages' })
+vim.keymap.set('n', '<leader>dq', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -96,7 +96,7 @@ vim.keymap.set('n', '<leader>lr', vim.lsp.buf.rename, { desc = 'LSP Rename' })
 vim.keymap.set('n', '<leader>la', vim.lsp.buf.code_action, { desc = 'LSP Code Action' })
 vim.keymap.set('n', '<leader>lf', vim.lsp.buf.format, { desc = 'LSP Format' })
 vim.keymap.set('n', '<leader>li', '<cmd>LspInfo<cr>', { desc = 'LSP Info' })
-vim.keymap.set('n', '<leader>lr', '<cmd>LspRestart<cr>', { desc = 'LSP Restart' })
+vim.keymap.set('n', '<leader>lR', '<cmd>LspRestart<cr>', { desc = 'LSP Restart' })
 
 -- Testing shortcuts (works with vim-test)
 vim.keymap.set('n', '<leader>tn', '<cmd>TestNearest<cr>', { desc = 'Test Nearest' })
@@ -124,17 +124,8 @@ vim.keymap.set('n', '<leader>sh', '<cmd>split<cr>', { desc = 'Horizontal Split' 
 vim.keymap.set('n', '<leader>se', '<C-w>=', { desc = 'Equal Splits' })
 vim.keymap.set('n', '<leader>sx', '<cmd>close<cr>', { desc = 'Close Split' })
 
--- Format on save for specific filetypes (productivity boost)
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.php', '*.js', '*.ts', '*.jsx', '*.tsx', '*.vue', '*.css', '*.scss', '*.html', '*.json', '*.yaml', '*.md' },
-  callback = function()
-    if vim.fn.exists ':ConformInfo' == 2 then
-      require('conform').format { async = false }
-    else
-      vim.lsp.buf.format()
-    end
-  end,
-})
+-- Note: Format on save is handled by conform.nvim plugin configuration
+-- No need for manual autocommand as conform.nvim has format_on_save = true
 
 -- PHP-specific shortcuts
 vim.api.nvim_create_autocmd('FileType', {

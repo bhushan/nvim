@@ -94,7 +94,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
 local servers = {
-  ts_ls = {
+  vtsls = {
     init_options = {
       preferences = {
         includeInlayParameterNameHints = 'all',
@@ -275,7 +275,7 @@ vim.list_extend(ensure_installed, {
   'lua_ls',
   'intelephense',
   'jsonls',
-  'ts_ls',
+  'vtsls',
   'eslint',
   'prettierd',
   'php-cs-fixer',
