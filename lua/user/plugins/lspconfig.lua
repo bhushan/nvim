@@ -24,11 +24,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Fuzzy find all the symbols in your current document.
     --  Symbols are things like variables, functions, types, etc.
-    map('<leader>ld', require('telescope.builtin').lsp_document_symbols, '[L]SP [d]ocument symbols')
+    map('<C-r>', require('telescope.builtin').lsp_document_symbols, '[L]SP [d]ocument symbols')
 
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
-    map('<leader>lw', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[L]SP [w]orkspace symbols')
+    map('<C-S-r>', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[L]SP [w]orkspace symbols')
 
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
