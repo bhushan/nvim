@@ -17,4 +17,7 @@ require('neo-tree').setup {
   },
 }
 
-vim.keymap.set('n', '\\', ':Neotree reveal<CR>', { desc = 'Open Neotree' })
+vim.keymap.set('n', '<leader>ne', ':Neotree reveal<CR>', { desc = '[N]eotree [e]xplore' })
+vim.keymap.set('n', '<leader>nf', ':Neotree focus<CR>', { desc = '[N]eotree [f]ocus' })
+vim.keymap.set('n', '<leader>nc', ':Neotree close<CR>', { desc = '[N]eotree [c]lose' })
+vim.keymap.set('n', '\\', ':Neotree reveal<CR>', { desc = 'Open Neotree (legacy)' })
