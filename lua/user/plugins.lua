@@ -52,24 +52,6 @@ require('lazy').setup({
     end,
   },
 
-  -- Enhanced JavaScript/TypeScript debugging
-  {
-    'mfussenegger/nvim-dap',
-    ft = { 'javascript', 'typescript' },
-    dependencies = {
-      'rcarriga/nvim-dap-ui',
-      'theHamsta/nvim-dap-virtual-text',
-      'nvim-neotest/nvim-nio',
-    },
-    config = function()
-      require 'user/plugins/dap'
-    end,
-  },
-
-  -- JavaScript/TypeScript enhancements
-  -- NOTE: Replaced typescript-tools.nvim with vtsls for better maintenance
-  -- TypeScript language server is configured in lspconfig.lua
-
   -- Package.json script runner
   {
     'vuki656/package-info.nvim',
@@ -103,6 +85,7 @@ require('lazy').setup({
     cmd = { 'ConformInfo' },
     opts = {
       formatters_by_ft = {
+        php = { 'pint' },
         lua = { 'stylua' },
         python = { 'isort', 'black' },
         javascript = { { 'prettierd', 'prettier' } },
@@ -139,15 +122,6 @@ require('lazy').setup({
         desc = 'Replace in files (Spectre)',
       },
     },
-  },
-
-  -- Better terminal management for Claude Code integration
-  {
-    'akinsho/toggleterm.nvim',
-    version = '*',
-    config = function()
-      require 'user/plugins/toggleterm'
-    end,
   },
 
   -- Claude Code integration

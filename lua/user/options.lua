@@ -87,15 +87,3 @@ vim.opt.sidescrolloff = 8
 
 -- ask for confirmation instead of erroring while saving file
 vim.opt.confirm = true
-
--- Diagnostic sign configuration
-vim.diagnostic.config {
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.INFO] = '',
-      [vim.diagnostic.severity.HINT] = '',
-    },
-  },
-}
