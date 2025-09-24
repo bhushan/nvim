@@ -93,6 +93,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+-- Set position encoding to utf-16 to avoid warning
+capabilities.general = capabilities.general or {}
+capabilities.general.positionEncodings = { 'utf-16' }
+
 local servers = {
   vtsls = {
     init_options = {
@@ -186,8 +190,6 @@ vim.list_extend(ensure_installed, {
   'jsonls',
   'vtsls',
   'eslint',
-  'prettierd',
-  'node-debug2-adapter',
 })
 
 require('mason-lspconfig').setup {
