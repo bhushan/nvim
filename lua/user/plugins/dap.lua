@@ -6,16 +6,20 @@ dapui.setup()
 virtual_text.setup()
 
 -- Node.js debugging configuration
-dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = { vim.fn.stdpath 'data' .. '/mason/packages/node-debug2-adapter/out/src/nodeDebug.js' },
+dap.adapters['pwa-node'] = {
+  type = 'server',
+  host = 'localhost',
+  port = '${port}',
+  executable = {
+    command = 'node',
+    args = { vim.fn.stdpath 'data' .. '/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js', '${port}' },
+  }
 }
 
 dap.configurations.javascript = {
   {
     name = 'Launch',
-    type = 'node2',
+    type = 'pwa-node',
     request = 'launch',
     program = '${file}',
     cwd = vim.fn.getcwd(),
@@ -25,18 +29,16 @@ dap.configurations.javascript = {
   },
   {
     name = 'Attach to process',
-    type = 'node2',
+    type = 'pwa-node',
     request = 'attach',
-    processId = function()
-      return vim.fn.input 'Process ID: '
-    end,
+    processId = require('dap.utils').pick_process,
   },
 }
 
 dap.configurations.typescript = {
   {
-    name = 'ts-node (Node2 with ts-node)',
-    type = 'node2',
+    name = 'ts-node (PWA Node with ts-node)',
+    type = 'pwa-node',
     request = 'launch',
     cwd = vim.fn.getcwd(),
     runtimeArgs = { '-r', 'ts-node/register' },

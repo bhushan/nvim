@@ -183,6 +183,16 @@ local servers = {
 --  You can press `g?` for help in this menu.
 require('mason').setup()
 
+-- Configure mason-tool-installer for formatters, linters, and debug adapters
+require('mason-tool-installer').setup {
+  ensure_installed = {
+    'prettierd', -- Formatter for JS/TS/HTML/CSS/JSON/Markdown
+    'js-debug-adapter', -- Debug adapter for JavaScript/TypeScript
+  },
+  auto_update = false,
+  run_on_start = true,
+}
+
 local ensure_installed = vim.tbl_keys(servers or {})
 
 vim.list_extend(ensure_installed, {
