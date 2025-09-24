@@ -202,29 +202,3 @@ snippet collect "Collection"
 		${0}
 	});
 
-snippet blade "Blade template"
-	@extends('${1:layout}')
-
-	@section('${2:content}')
-		${0}
-	@endsection
-
-snippet component "Blade component"
-	@component('${1:component}')
-		${0}
-	@endcomponent
-
-snippet foreach "Blade foreach"
-	@foreach(\$${1:items} as \$${2:item})
-		${0}
-	@endforeach
-
-snippet if "Blade if"
-	@if(${1:condition})
-		${0}
-	@endif
-
-snippet auth "Blade auth check"
-	@auth
-		${0}
-	@endauth

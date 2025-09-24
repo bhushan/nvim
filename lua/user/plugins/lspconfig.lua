@@ -173,6 +173,85 @@ local servers = {
       },
     },
   },
+
+  intelephense = {
+    settings = {
+      intelephense = {
+        stubs = {
+          'bcmath',
+          'bz2',
+          'calendar',
+          'Core',
+          'curl',
+          'date',
+          'dba',
+          'dom',
+          'enchant',
+          'fileinfo',
+          'filter',
+          'ftp',
+          'gd',
+          'gettext',
+          'hash',
+          'iconv',
+          'imap',
+          'intl',
+          'json',
+          'ldap',
+          'libxml',
+          'mbstring',
+          'mcrypt',
+          'mysql',
+          'mysqli',
+          'password',
+          'pcntl',
+          'pcre',
+          'PDO',
+          'pdo_mysql',
+          'Phar',
+          'readline',
+          'recode',
+          'Reflection',
+          'regex',
+          'session',
+          'SimpleXML',
+          'soap',
+          'sockets',
+          'sodium',
+          'SPL',
+          'standard',
+          'superglobals',
+          'sysvsem',
+          'sysvshm',
+          'tokenizer',
+          'xml',
+          'xdebug',
+          'xmlreader',
+          'xmlwriter',
+          'yaml',
+          'zip',
+          'zlib',
+          -- Laravel stubs
+          'laravel',
+        },
+        files = {
+          maxSize = 5000000,
+        },
+        completion = {
+          insertUseDeclaration = true,
+          fullyQualifyGlobalConstantsAndFunctions = false,
+          suggestObjectOperatorStaticMethods = true,
+          maxItems = 100,
+        },
+        format = {
+          enable = true,
+        },
+        environment = {
+          includePaths = { 'vendor/' },
+        },
+      },
+    },
+  },
 }
 
 -- Ensure the servers and tools above are installed
@@ -200,6 +279,7 @@ vim.list_extend(ensure_installed, {
   'jsonls',
   'vtsls',
   'eslint',
+  'intelephense',
 })
 
 require('mason-lspconfig').setup {
