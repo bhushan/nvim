@@ -28,18 +28,6 @@ require('lazy').setup({
   -- Pairs of handy bracket mappings, like [b and ]b.
   { 'tpope/vim-unimpaired' },
 
-  -- Automatically set the working directory to the project root.
-  {
-    'airblade/vim-rooter',
-    init = function()
-      -- Instead of this running every time we open a file, we'll just run it once when neovim starts.
-      vim.g.rooter_manual_only = 1
-    end,
-    config = function()
-      vim.cmd 'Rooter'
-    end,
-  },
-
   -- Automatically create parent dirs when saving.
   { 'jessarcher/vim-heritage' },
 
@@ -139,9 +127,6 @@ require('lazy').setup({
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- Useful status updates for LSP.
-      { 'j-hui/fidget.nvim', opts = {} },
-
       -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
       -- used for completion, annotations and signatures of Neovim apis
       {
@@ -179,7 +164,9 @@ require('lazy').setup({
         end)(),
         config = function()
           require('luasnip.loaders.from_snipmate').lazy_load()
-          require('luasnip.loaders.from_snipmate').lazy_load { paths = { vim.fn.stdpath 'config' .. '/snippets' } }
+          require('luasnip.loaders.from_snipmate').lazy_load {
+            paths = { vim.fn.stdpath 'config' .. '/snippets' },
+          }
         end,
       },
       'saadparwaiz1/cmp_luasnip',
@@ -288,7 +275,6 @@ require('lazy').setup({
   -- Status line
   {
     'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require 'user/plugins/lualine'
     end,

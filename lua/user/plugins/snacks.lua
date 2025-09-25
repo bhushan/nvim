@@ -1,6 +1,7 @@
 require('snacks').setup {
   bigfile = { enabled = true }, -- Disable features on big files for performance
   quickfile = { enabled = true }, -- Fast file opening
+  git = { enabled = true }, -- Git integration for root detection
   picker = {
     matcher = {
       frecency = true, -- Use frequency + recency for better results
@@ -135,5 +136,38 @@ vim.api.nvim_create_autocmd('VimEnter', {
     if package.loaded['snacks'] and require('snacks').words then
       require('snacks').words.enable()
     end
+
+    -- Auto-detect and change to project root (replaces vim-rooter)
+    local function find_root()
+      local patterns = { '.git', 'package.json', 'composer.json', 'Makefile', 'README.md' }
+      local current_dir = vim.fn.expand '%:p:h'
+
+      local function find_pattern_upward(dir, patterns)
+        for _, pattern in ipairs(patterns) do
+          local path = dir .. '/' .. pattern
+          if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
+            return dir
+          end
+        end
+        local parent = vim.fn.fnamemodify(dir, ':h')
+        if parent == dir then
+          return nil
+        end
+        return find_pattern_upward(parent, patterns)
+      end
+
+      local root = find_pattern_upward(current_dir, patterns)
+      if root and root ~= vim.fn.getcwd() then
+        vim.cmd('cd ' .. root)
+      end
+    end
+
+    -- Change to root when opening files
+    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
+      callback = find_root,
+    })
+
+    -- Run once on startup
+    find_root()
   end,
 })
