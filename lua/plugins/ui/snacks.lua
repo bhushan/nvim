@@ -18,6 +18,13 @@ require('snacks').setup {
       },
     },
     sources = {
+      explorer = {
+        layout = {
+          layout = {
+            position = 'right', -- Note: layout twice
+          },
+        },
+      },
       files = {
         hidden = false,
         follow_symlinks = false, -- Better performance
