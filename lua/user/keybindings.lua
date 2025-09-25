@@ -54,19 +54,3 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 
 -- Close current buffer
 vim.keymap.set('n', '<C-w>', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-local group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true })
-
-vim.api.nvim_create_autocmd('TextYankPost', {
-  group = group,
-  pattern = '*',
-  callback = function()
-    vim.highlight.on_yank { timeout = 200 }
-  end,
-})
