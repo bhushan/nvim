@@ -158,11 +158,15 @@ return {
     end,
   },
 
+  -- File icons for explorer and other plugins
+  { 'nvim-tree/nvim-web-devicons' },
+
   -- Snacks.nvim - Collection of useful plugins
   {
     'folke/snacks.nvim',
     priority = 1000,
     lazy = false,
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require 'plugins/ui/snacks'
     end,

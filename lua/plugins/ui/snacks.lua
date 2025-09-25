@@ -8,7 +8,9 @@ require('snacks').setup {
       max_results = 50, -- Limit results for performance
     },
     win = {
+      border = 'none',
       input = {
+        border = 'none',
         keys = {
           ['<C-c>'] = { 'close', mode = { 'n', 'i' } },
           ['<esc>'] = { 'close', mode = { 'n', 'i' } },
@@ -26,7 +28,7 @@ require('snacks').setup {
     win = {
       width = 0.8,
       height = 0.8,
-      border = 'rounded',
+      border = 'none',
     },
   },
   scroll = {
@@ -39,6 +41,9 @@ require('snacks').setup {
   explorer = {
     enabled = true,
     replace_netrw = true,
+    win = {
+      border = 'none',
+    },
   },
   notifier = {
     enabled = true,
@@ -49,6 +54,7 @@ require('snacks').setup {
     padding = { top = 0, right = 1, bottom = 0, left = 1 },
     sort = { 'level', 'added' }, -- Show errors first
     level = vim.log.levels.INFO, -- Don't show debug messages
+    border = 'none',
     icons = {
       error = ' ',
       warn = ' ',
