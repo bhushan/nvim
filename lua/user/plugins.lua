@@ -294,6 +294,28 @@ require('lazy').setup({
     end,
   },
 
+  -- Show key press while streaming
+  {
+    'nvchad/showkeys',
+    cmd = 'ShowkeysToggle',
+    opts = {
+      timeout = 1,
+      maxkeys = 6,
+      -- bottom-left, bottom-right, bottom-center, top-left, top-right, top-center
+      position = 'bottom-right',
+    },
+
+    keys = {
+      {
+        '<leader>ut',
+        function()
+          vim.cmd 'ShowkeysToggle'
+        end,
+        desc = 'Show key presses',
+      },
+    },
+  },
+
   -- dracula theme
   {
     'Mofiqul/dracula.nvim',
