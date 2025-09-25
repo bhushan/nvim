@@ -1,5 +1,5 @@
-require 'user/options'
-require 'user/keybindings'
+require 'config/options'
+require 'config/keybindings'
 require 'config/autocmds'
 require 'user/plugins'
 require 'user/runner'
