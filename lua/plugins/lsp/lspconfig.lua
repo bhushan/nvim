@@ -28,7 +28,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
-    map('<C-S-r>', require('snacks').picker.lsp_workspace_symbols, '[L]SP [w]orkspace symbols')
+    -- NOTE: Kitty terminal not able to send this to nvim properly even though i have disabled ctrl+shift+r in kitty config
+    -- map('<C-S-r>', require('snacks').picker.lsp_workspace_symbols, '[L]SP [w]orkspace symbols')
 
     -- Rename the variable under your cursor.
     --  Most Language Servers support renaming across files, etc.
