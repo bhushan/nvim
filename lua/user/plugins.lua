@@ -43,15 +43,6 @@ require('lazy').setup({
   -- Automatically create parent dirs when saving.
   { 'jessarcher/vim-heritage' },
 
-  -- Add smooth scrolling to avoid jarring jumps
-  {
-    'karb94/neoscroll.nvim',
-    event = 'VeryLazy',
-    config = function()
-      require('neoscroll').setup()
-    end,
-  },
-
   -- Package.json script runner
   {
     'vuki656/package-info.nvim',
@@ -128,25 +119,13 @@ require('lazy').setup({
     end,
   },
 
-  -- Fuzzy Finder (files, lsp, etc)
+  -- Snacks.nvim - Collection of useful plugins
   {
-    'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      {
-        'nvim-telescope/telescope-fzf-native.nvim', -- use fzf for faster searches
-        build = 'make',
-        cond = vim.fn.executable 'make' == 1,
-      },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
-    },
+    'folke/snacks.nvim',
+    priority = 1000,
+    lazy = false,
     config = function()
-      require 'user/plugins/telescope'
+      require 'user/plugins/snacks'
     end,
   },
 
@@ -237,55 +216,6 @@ require('lazy').setup({
   -- Navigate seamlessly between Vim windows and Tmux panes.
   { 'christoomey/vim-tmux-navigator' },
 
-  -- Explorer
-  {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = '*',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
-      {
-        's1n7ax/nvim-window-picker',
-        version = '2.*',
-        config = function()
-          require('window-picker').setup {
-            filter_rules = {
-              include_current_win = false,
-              autoselect_one = true,
-              -- filter using buffer options
-              bo = {
-                -- if the file type is one of following, the window will be ignored
-                filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
-                -- if the buffer type is one of following, the window will be ignored
-                buftype = { 'terminal', 'quickfix' },
-              },
-            },
-          }
-        end,
-      },
-    },
-    config = function()
-      require 'user/plugins/neotree'
-    end,
-  },
-
-  -- floating terminal
-  {
-    'voldikss/vim-floaterm',
-    config = function()
-      vim.g.floaterm_gitcommit = 'floaterm'
-      vim.g.floaterm_autoinsert = 1
-      vim.g.floaterm_width = 0.8
-      vim.g.floaterm_height = 0.8
-      vim.g.floaterm_wintitle = 0
-      vim.g.floaterm_title = 0
-
-      vim.keymap.set('n', '`', ':FloatermToggle<CR>', { desc = 'Toggle Floaterm in normal mode', silent = true })
-      vim.keymap.set('t', '`', '<C-\\><C-n>:FloatermToggle<CR>', { desc = 'Toggle Floaterm in terminal mode', silent = true })
-    end,
-  },
-
   -- test helpers
   {
     'vim-test/vim-test',
@@ -361,39 +291,6 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
       require 'user/plugins/lualine'
-    end,
-  },
-
-  -- nice UI
-  {
-    'folke/noice.nvim',
-    event = 'VeryLazy',
-    enabled = true,
-    opts = {},
-    dependencies = {
-      'MunifTanjim/nui.nvim',
-      -- "rcarriga/nvim-notify",
-    },
-    config = function()
-      require('noice').setup {
-        lsp = {
-          override = {
-            ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
-            ['vim.lsp.util.stylize_markdown'] = true,
-            ['cmp.entry.get_documentation'] = true,
-          },
-          hover = {
-            silent = true,
-          },
-        },
-        presets = {
-          bottom_search = true, -- use a classic bottom cmdline for search
-          command_palette = true, -- position the cmdline and popupmenu together
-          long_message_to_split = true, -- long messages will be sent to a split
-          inc_rename = false, -- enables an input dialog for inc-rename.nvim
-          lsp_doc_border = true, -- add a border to hover docs and signature help
-        },
-      }
     end,
   },
 }, {
