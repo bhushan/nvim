@@ -31,32 +31,117 @@ return {
     end,
   },
 
-  --- PHP refactoring tools for code transformation
-  --- Provides automated refactoring operations for cleaner code
+  --- Advanced PHP refactoring toolkit with PHPStorm-like capabilities
+  --- Provides comprehensive code transformation and restructuring operations
   ---
-  --- Refactoring operations:
-  --- - Extract method/variable from selection
-  --- - Rename class/method/variable with scope awareness
-  --- - Convert array to collection/vice versa
-  --- - Generate getters/setters/constructors
-  --- - Optimize imports and namespace declarations
-  --- - Extract interface from class
+  --- Key Features:
+  --- - Extract Variable/Method/Class/Interface operations
+  --- - Introduce Constant/Field/Parameter transformations
+  --- - Change Method Signature with parameter management
+  --- - Pull Members Up for inheritance refactoring
+  --- - Rename Variable/Method/Class with scope awareness
+  --- - Context-aware parsing using TreeSitter and regex fallback
+  --- - Floating UI dialogs for interactive refactoring
+  --- - Automatic code formatting after refactoring operations
+  ---
+  --- Keymaps:
+  --- - <C-e> : Open refactoring menu (PHP files only)
   ---
   --- Usage examples:
-  --- - Visual select code → :PhpExtractMethod → name it
-  --- - :PhpRename on variable to rename across scope
-  --- - :PhpGenerateGetter on property to create getter
-  --- - :PhpOptimizeImports to clean unused imports
+  --- - Extract variable: Select expression and choose "Extract Variable"
+  --- - Extract method: Select code block and choose "Extract Method"
+  --- - Rename class: Place cursor on class name and choose "Rename Class"
+  --- - Change signature: Place cursor on method and choose "Change Signature"
+  ---
+  --- Dependencies: TreeSitter PHP parser (optional but recommended)
+  --- @see https://github.com/bhushan/phprefactoring.nvim
   {
     'bhushan/phprefactoring.nvim',
     branch = 'main',
     enabled = true,
     dependencies = {
-      'MunifTanjim/nui.nvim', -- UI components for refactoring dialogs
+      'MunifTanjim/nui.nvim', -- Essential UI library for floating dialogs and menus
+      'folke/snacks.nvim', -- Enhanced UI for filterable selection
     },
     ft = 'php',
     config = function()
-      require('phprefactoring').setup()
+      -- Initialize phprefactoring with enhanced UI configuration
+      require('phprefactoring').setup {
+        ui = {
+          use_floating_menu = true, -- Enable floating menu interface
+          border = 'rounded', -- Aesthetic border style for dialogs
+          width = 50, -- Optimal width for refactoring options
+        },
+        refactor = {
+          auto_format = true, -- Automatically format code after refactoring
+        },
+      }
+
+      -- Keymap: Ctrl+E to open refactoring menu
+      -- Only active in PHP files for context-appropriate functionality
+      vim.keymap.set('n', '<C-e>', function()
+        -- Define comprehensive refactoring menu options
+        local menu_options = {
+          { label = 'Extract Variable', action = 'extract_variable' },
+          { label = 'Extract Method', action = 'extract_method' },
+          { label = 'Extract Class', action = 'extract_class' },
+          { label = 'Extract Interface', action = 'extract_interface' },
+          { label = 'Introduce Constant', action = 'introduce_constant' },
+          { label = 'Introduce Field', action = 'introduce_field' },
+          { label = 'Introduce Parameter', action = 'introduce_parameter' },
+          { label = 'Change Signature', action = 'change_signature' },
+          { label = 'Pull Members Up', action = 'pull_members_up' },
+          { label = 'Rename Variable', action = 'rename_variable' },
+          { label = 'Rename Method', action = 'rename_method' },
+          { label = 'Rename Class', action = 'rename_class' },
+        }
+
+        -- Use vim.ui.select with telescope for filtering
+        vim.ui.select(menu_options, {
+          prompt = 'PHP Refactoring:',
+          format_item = function(item)
+            return item.label
+          end,
+        }, function(choice)
+          if not choice then
+            return
+          end
+
+          -- Execute the selected refactoring operation
+          local phprefactoring = require 'phprefactoring'
+          local action = choice.action
+
+          -- Map menu actions to phprefactoring methods
+          if action == 'extract_variable' then
+            phprefactoring.extract_variable()
+          elseif action == 'extract_method' then
+            phprefactoring.extract_method()
+          elseif action == 'extract_class' then
+            phprefactoring.extract_class()
+          elseif action == 'extract_interface' then
+            phprefactoring.extract_interface()
+          elseif action == 'introduce_constant' then
+            phprefactoring.introduce_constant()
+          elseif action == 'introduce_field' then
+            phprefactoring.introduce_field()
+          elseif action == 'introduce_parameter' then
+            phprefactoring.introduce_parameter()
+          elseif action == 'change_signature' then
+            phprefactoring.change_signature()
+          elseif action == 'pull_members_up' then
+            phprefactoring.pull_members_up()
+          elseif action == 'rename_variable' then
+            phprefactoring.rename_variable()
+          elseif action == 'rename_method' then
+            phprefactoring.rename_method()
+          elseif action == 'rename_class' then
+            phprefactoring.rename_class()
+          end
+        end)
+      end, {
+        desc = 'Open PHP refactoring menu',
+        buffer = true, -- Only apply to current buffer
+      })
     end,
   },
 }
