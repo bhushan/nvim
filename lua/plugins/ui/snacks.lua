@@ -94,7 +94,7 @@ require('snacks').setup {
       hl = 'SnacksIndentScope',
     },
     chunk = {
-      enabled = false,
+      enabled = true,
     },
   },
 
