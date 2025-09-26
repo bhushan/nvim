@@ -1,28 +1,37 @@
 -- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+-- See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
+
+--- Lazy.nvim installation path
+--- Uses Neovim's standard data directory for plugin manager storage
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 
+--- Bootstrap lazy.nvim if not installed
+--- Automatically clones lazy.nvim from GitHub on first run
+--- Uses shallow clone with stable branch for optimal performance
 if not vim.uv.fs_stat(lazypath) then
   local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
   vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end
 
+--- Add lazy.nvim to runtime path
+--- Prepends lazy.nvim to runtimepath for immediate availability
 vim.opt.rtp:prepend(lazypath)
 
 -- [[ Configure and install plugins ]]
 --
---  To check the current status of your plugins, run
---    :Lazy
---
---  You can press `?` in this menu for help. Use `:q` to close the window
---
---  To update plugins you can run
---    :Lazy update
+-- Plugin management commands:
+--   :Lazy        - Check plugin status and manage plugins
+--   :Lazy update - Update all plugins to latest versions
+--   Press `?` in Lazy menu for help, `:q` to close
 
+--- Initialize lazy.nvim plugin manager
+--- Loads plugins from 'lua/plugins/' directory
+--- Configures UI icons based on Nerd Font availability
 require('lazy').setup('plugins', {
   ui = {
-    -- If you are using a Nerd Font: set icons to an empty table which will use the
-    -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
+    --- Icon configuration for plugin manager UI
+    --- Uses Nerd Font icons if available, falls back to Unicode symbols
+    --- Empty table triggers default Nerd Font icon set when have_nerd_font is true
     icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',

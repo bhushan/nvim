@@ -1,23 +1,50 @@
--- Main plugin specifications
--- This file loads all plugin configurations from organized subdirectories
+--- Main plugin specifications
+--- Centralized plugin configuration using lazy.nvim
+--- Organizes plugins by category: editor, UI, LSP, language-specific, tools
+--- @module plugins
 
 return {
   -- Simple plugins that don't need configuration files
+
+  --- Surround text objects with quotes, brackets, tags
+  --- Provides mappings like ys, cs, ds for quick text wrapping
+  --- Examples: ysiw" (wrap word in quotes), cs"' (change " to ')
   { 'tpope/vim-surround' },
+
+  --- Bracket mappings for common operations
+  --- Adds pairs of handy bracket mappings like ]b, [b for buffer navigation
+  --- [q/]q for quickfix, [a/]a for args, and many more
   { 'tpope/vim-unimpaired' },
+
+  --- Automatically create parent directories when saving files
+  --- Prevents "directory does not exist" errors during file save
   { 'jessarcher/vim-heritage' },
+
+  --- Context-aware paste with auto-indentation
+  --- Intelligently adjusts indentation when pasting code blocks
   { 'sickill/vim-pasta' },
+
+  --- Fast and extensible commenting
+  --- Toggle comments with gcc (line) or gc (visual mode)
+  --- Language-aware comment styles via Tree-sitter
   { 'numToStr/Comment.nvim', opts = {} },
+
+  --- Seamless tmux and Neovim split navigation
+  --- Use Ctrl+hjkl to navigate between vim splits and tmux panes
   { 'christoomey/vim-tmux-navigator' },
 
-  -- Enhanced text objects for faster navigation
+  --- Enhanced text objects for code navigation
+  --- Provides text objects like functions, classes, parameters
+  --- Works with Tree-sitter for precise code structure understanding
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
     event = 'VeryLazy',
     dependencies = 'nvim-treesitter/nvim-treesitter',
   },
 
-  -- Auto-formatting and linting
+  --- Auto-formatting engine with multiple formatter support
+  --- Format on save with fallback chain (e.g., prettierd → prettier)
+  --- Configured for PHP (Pint), Lua (Stylua), JS/TS (Prettier), Python (Black)
   {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -46,12 +73,16 @@ return {
     },
   },
 
-  -- Autocompletion
+  --- Completion engine with snippet support
+  --- Provides intelligent autocomplete from LSP, buffer, path, and snippets
+  --- Integrates with LuaSnip for snippet expansion
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
     dependencies = {
-      -- Snippet Engine & its associated nvim-cmp source
+      --- Snippet engine with regex support
+      --- Loads snippets from snipmate format
+      --- Custom snippets directory: ~/.config/nvim/snippets
       {
         'L3MON4D3/LuaSnip',
         build = (function()
@@ -70,28 +101,32 @@ return {
           }
         end,
       },
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-buffer',
+      'saadparwaiz1/cmp_luasnip', --- LuaSnip completion source
+      'hrsh7th/cmp-nvim-lsp', --- LSP completion source
+      'hrsh7th/cmp-path', --- File path completion
+      'hrsh7th/cmp-buffer', --- Buffer text completion
     },
     config = function()
       require 'plugins/editor/cmp'
     end,
   },
 
-  -- LSP Configuration & Plugins
+  --- Language Server Protocol configuration
+  --- Provides code intelligence: diagnostics, completion, hover, go-to-definition
+  --- Auto-installs language servers via Mason
   {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      -- Automatically install LSPs and related tools to stdpath for Neovim
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      --- LSP and tool installer with UI
+      --- Manages language servers, formatters, and linters
+      { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
-      -- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
-      -- used for completion, annotations and signatures of Neovim apis
+      --- Lua language server enhancement for Neovim config
+      --- Provides completion and docs for vim.* APIs
+      --- Includes type definitions for Neovim runtime
       {
         'folke/lazydev.nvim',
         ft = 'lua',
@@ -101,6 +136,7 @@ return {
           },
         },
       },
+      --- Luv (libuv) type definitions for async operations
       { 'Bilal2453/luvit-meta', lazy = true },
     },
     config = function()
@@ -108,7 +144,9 @@ return {
     end,
   },
 
-  -- Highlight, edit, and navigate code
+  --- Syntax highlighting and code parsing engine
+  --- Provides fast, accurate syntax highlighting and code structure
+  --- Enables advanced features like text objects and refactoring
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
@@ -118,10 +156,13 @@ return {
     end,
   },
 
-  -- File icons for explorer and other plugins
+  --- Icon set for file types and UI elements
+  --- Required by file explorers, statusline, and other UI plugins
   { 'nvim-tree/nvim-web-devicons' },
 
-  -- Snacks.nvim - Collection of useful plugins
+  --- Collection of useful UI and utility plugins
+  --- Includes: terminal, notifications, bufferline, dashboard, and more
+  --- Modern floating terminal with custom commands
   {
     'folke/snacks.nvim',
     priority = 1000,
@@ -132,7 +173,9 @@ return {
     end,
   },
 
-  -- Git integration.
+  --- Git integration with inline blame and hunk operations
+  --- Shows git status in sign column, provides staging/unstaging hunks
+  --- Inline blame, diff view, and navigation between changes
   {
     'lewis6991/gitsigns.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -141,7 +184,9 @@ return {
     end,
   },
 
-  -- test helpers
+  --- Test runner integration
+  --- Run tests from within Neovim for multiple frameworks
+  --- Supports PHPUnit, Jest, pytest, RSpec, and more
   {
     'vim-test/vim-test',
     config = function()
@@ -149,7 +194,8 @@ return {
     end,
   },
 
-  -- Status line
+  --- Fast and customizable statusline
+  --- Displays mode, file info, git status, LSP diagnostics, location
   {
     'nvim-lualine/lualine.nvim',
     config = function()
@@ -157,6 +203,9 @@ return {
     end,
   },
 
+  --- Keybinding popup and documentation
+  --- Shows available keybindings in a popup when you start typing
+  --- Leader key guide with descriptions for all mappings
   {
     'folke/which-key.nvim',
     event = 'VimEnter',
@@ -165,8 +214,12 @@ return {
     end,
   },
 
-  -- Load plugin groups
+  --- Auto-close and auto-pair brackets, quotes, tags
   { import = 'plugins.editor.autopairs' },
+
+  --- Colorscheme configuration
   { import = 'plugins.ui.theme' },
+
+  --- PHP-specific tooling and enhancements
   { import = 'plugins.lang.php' },
 }

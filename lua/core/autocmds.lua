@@ -1,16 +1,16 @@
 -- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
+-- See `:help lua-guide-autocommands`
 local api = vim.api
 
--- don't auto comment new line
+--- Disable automatic comment continuation on new lines
+--- Removes 'c', 'r', 'o' from formatoptions to prevent auto-commenting
+--- when pressing Enter or 'o'/'O' in normal mode
 api.nvim_create_autocmd('BufEnter', { command = [[set formatoptions-=cro]] })
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-local group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true })
-
+--- Briefly highlight yanked text for visual feedback
+--- Triggered after any yank operation (y, d, c, etc.)
+--- @usage Try with `yap` in normal mode to yank a paragraph
+local group = vim.api.nvim_create_augroup('highlight-yank', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
   pattern = '*',
@@ -19,8 +19,9 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
--- go to last loc when opening a buffer
--- this mean that when you open a file, you will be at the last position
+--- Restore cursor to last known position when opening a buffer
+--- Uses the '"' mark which stores the last cursor position before exit
+--- Skips if the saved position is invalid or beyond buffer end
 api.nvim_create_autocmd('BufReadPost', {
   callback = function()
     local mark = vim.api.nvim_buf_get_mark(0, '"')
@@ -31,33 +32,33 @@ api.nvim_create_autocmd('BufReadPost', {
   end,
 })
 
--- auto close brackets
--- this
-api.nvim_create_autocmd('FileType', { pattern = 'man', command = [[nnoremap <buffer><silent> q :quit<CR>]] })
-
--- show cursor line only in active window
+--- Display cursor line only in the active window
+--- Improves focus by hiding cursorline in inactive windows and insert mode
 local cursorGrp = api.nvim_create_augroup('CursorLine', { clear = true })
 api.nvim_create_autocmd({ 'InsertLeave', 'WinEnter' }, {
   pattern = '*',
   command = 'set cursorline',
   group = cursorGrp,
 })
-api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { pattern = '*', command = 'set nocursorline', group = cursorGrp })
+api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, {
+  pattern = '*',
+  command = 'set nocursorline',
+  group = cursorGrp,
+})
 
--- Enable spell checking for certain file types
-api.nvim_create_autocmd(
-  { 'BufRead', 'BufNewFile' },
-  -- { pattern = { "*.txt", "*.md", "*.tex" }, command = [[setlocal spell<cr> setlocal spelllang=en,de<cr>]] }
-  {
-    pattern = { '*.txt', '*.md', '*.tex' },
-    callback = function()
-      vim.opt.spell = true
-      vim.opt.spelllang = 'en'
-    end,
-  }
-)
+--- Enable spell checking for text-based file types
+--- Activates for .txt, .md, and .tex files with English dictionary
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = { '*.txt', '*.md', '*.tex' },
+  callback = function()
+    vim.opt.spell = true
+    vim.opt.spelllang = 'en'
+  end,
+})
 
--- close some filetypes with <q>
+--- Map 'q' to close specific utility/informational buffers
+--- Applies to help, quickfix, LSP info, and other temporary windows
+--- Removes these buffers from the buffer list to keep it clean
 vim.api.nvim_create_autocmd('FileType', {
   group = vim.api.nvim_create_augroup('close_with_q', { clear = true }),
   pattern = {
@@ -81,9 +82,12 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- resize neovim split when terminal is resized
+--- Auto-resize splits proportionally when terminal window is resized
+--- Maintains balanced split layout across window dimension changes
 vim.api.nvim_command 'autocmd VimResized * wincmd ='
 
+--- Enable Tree-sitter highlighting automatically for all file types
+--- Provides superior syntax highlighting and code understanding
 vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     pcall(vim.treesitter.start)
