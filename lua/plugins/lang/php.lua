@@ -48,7 +48,8 @@ return {
   --- - :PhpGenerateGetter on property to create getter
   --- - :PhpOptimizeImports to clean unused imports
   {
-    'adibhanna/phprefactoring.nvim',
+    'bhushan/phprefactoring.nvim',
+    branch = 'main',
     enabled = true,
     dependencies = {
       'MunifTanjim/nui.nvim', -- UI components for refactoring dialogs
