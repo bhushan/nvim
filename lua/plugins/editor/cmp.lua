@@ -72,6 +72,10 @@ cmp.setup {
       priority = 1000,
     },
     {
+      name = 'laravel',
+      priority = 1000,
+    },
+    {
       name = 'luasnip',
       priority = 750,
     },
@@ -104,6 +108,7 @@ cmp.setup {
       vim_item.kind = string.format('%s %s', vim_item.kind, vim_item.kind)
       vim_item.menu = ({
         nvim_lsp = '[LSP]',
+        laravel = '[Laravel]',
         luasnip = '[Snippet]',
         buffer = '[Buffer]',
         path = '[Path]',
