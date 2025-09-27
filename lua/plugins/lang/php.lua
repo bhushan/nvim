@@ -19,14 +19,14 @@ return {
   --- - :Laravel routes (list all routes)
   --- - gd on route name to jump to controller action
   --- - Auto-completion for config('app.name') and __('messages.welcome')
-  {
-    'bhushan/laravel.nvim',
-    enabled = true,
-    ft = { 'php', 'blade' },
-    config = function()
-      require('laravel').setup()
-    end,
-  },
+  -- {
+  --   'bhushan/laravel.nvim',
+  --   enabled = true,
+  --   ft = { 'php', 'blade' },
+  --   config = function()
+  --     require('laravel').setup()
+  --   end,
+  -- },
 
   --- Advanced PHP refactoring toolkit with PHPStorm-like capabilities
   --- Provides comprehensive code transformation and restructuring operations
