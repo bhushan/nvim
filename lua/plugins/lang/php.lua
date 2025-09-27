@@ -23,9 +23,6 @@ return {
     'adibhanna/laravel.nvim',
     enabled = true,
     ft = { 'php', 'blade' },
-    dependencies = {
-      'folke/snacks.nvim', -- Enhanced UI for command palette
-    },
     config = function()
       require('laravel').setup()
     end,
@@ -60,8 +57,7 @@ return {
     branch = 'main',
     enabled = true,
     dependencies = {
-      'MunifTanjim/nui.nvim', -- Essential UI library for floating dialogs and menus
-      'folke/snacks.nvim', -- Enhanced UI for filterable selection
+      'MunifTanjim/nui.nvim',
     },
     ft = 'php',
     config = function()

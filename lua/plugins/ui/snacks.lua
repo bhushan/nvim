@@ -34,6 +34,13 @@ require('snacks').setup {
     },
   },
 
+  notifier = {
+    enabled = true,
+    timeout = 3000,
+  },
+  input = {
+    enabled = true,
+  },
   picker = {
     matcher = {
       frecency = true, -- Use frequency + recency for better results
