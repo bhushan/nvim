@@ -214,6 +214,24 @@ return {
     end,
   },
 
+  -- execute code fastly
+  {
+    'bhushan/coderunner.nvim',
+    dependencies = {
+      'folke/snacks.nvim', -- Optional
+    },
+    config = function()
+      require('coderunner').setup {
+        -- Configuration options
+      }
+    end,
+    keys = {
+      { '<leader>x', '<cmd>CodeRun<cr>', desc = 'Run Code' },
+      { '<leader>X', '<cmd>CodeRunCustom<cr>', desc = 'Run Code (Custom)' },
+      { '<leader>xl', '<cmd>CodeRunList<cr>', desc = 'List Languages' },
+    },
+  },
+
   --- Auto-close and auto-pair brackets, quotes, tags
   { import = 'plugins.editor.autopairs' },
 
