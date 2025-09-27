@@ -8,23 +8,29 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- Jump to the definition of the word under your cursor.
     --  This is where a variable was first declared, or where a function is defined, etc.
     --  To jump back, press <C-t>.
-    map('gd', require('snacks').picker.lsp_definitions, '[G]oto [D]efinition')
-
-    -- Find references for the word under your cursor.
-    map('gr', require('snacks').picker.lsp_references, '[G]oto [R]eferences')
-
-    -- Jump to the implementation of the word under your cursor.
-    --  Useful when your language has ways of declaring types without an actual implementation.
-    map('gI', require('snacks').picker.lsp_implementations, '[G]oto [I]mplementation')
-
-    -- Jump to the type of the word under your cursor.
-    --  Useful when you're not sure what type a variable is and you want to see
-    --  the definition of its *type*, not where it was *defined*.
-    map('<leader>lD', require('snacks').picker.lsp_type_definitions, '[L]SP Type [D]efinition')
-
-    -- Fuzzy find all the symbols in your current document.
-    --  Symbols are things like variables, functions, types, etc.
-    map('<C-r>', require('snacks').picker.lsp_symbols, '[L]SP [d]ocument symbols')
+    local ok, snacks = pcall(require, 'snacks')
+    if ok and snacks.picker then
+      map('gd', snacks.picker.lsp_definitions, '[G]oto [D]efinition')
+      -- Find references for the word under your cursor.
+      map('gr', snacks.picker.lsp_references, '[G]oto [R]eferences')
+      -- Jump to the implementation of the word under your cursor.
+      --  Useful when your language has ways of declaring types without an actual implementation.
+      map('gI', snacks.picker.lsp_implementations, '[G]oto [I]mplementation')
+      -- Jump to the type of the word under your cursor.
+      --  Useful when you're not sure what type a variable is and you want to see
+      --  the definition of its *type*, not where it was *defined*.
+      map('<leader>lD', snacks.picker.lsp_type_definitions, '[L]SP Type [D]efinition')
+      -- Fuzzy find all the symbols in your current document.
+      --  Symbols are things like variables, functions, types, etc.
+      map('<C-r>', snacks.picker.lsp_symbols, '[L]SP [d]ocument symbols')
+    else
+      -- Fallback to built-in LSP functions if snacks is not available
+      map('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+      map('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+      map('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+      map('<leader>lD', vim.lsp.buf.type_definition, '[L]SP Type [D]efinition')
+      map('<C-r>', vim.lsp.buf.document_symbol, '[L]SP [d]ocument symbols')
+    end
 
     -- Fuzzy find all the symbols in your current workspace.
     --  Similar to document symbols, except searches over your entire project.
