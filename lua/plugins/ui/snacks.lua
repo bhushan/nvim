@@ -28,7 +28,6 @@ require('snacks').setup {
       keys = {
         { icon = ' ', key = 'f', desc = 'Find File', action = ':lua Snacks.picker.files()' },
         { icon = ' ', key = 'g', desc = 'Find Text', action = ':lua Snacks.picker.grep()' },
-
         { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
       },
     },
@@ -42,29 +41,12 @@ require('snacks').setup {
     enabled = true,
   },
   picker = {
-    matcher = {
-      frecency = true, -- Use frequency + recency for better results
-      max_results = 50, -- Limit results for performance
-    },
-
-    win = {
-      border = 'none',
-      input = {
-        border = 'none',
-        keys = {
-          ['<C-c>'] = { 'close', mode = { 'n', 'i' } },
-          ['<esc>'] = { 'close', mode = { 'n', 'i' } },
-        },
-      },
-    },
-
     sources = {
       explorer = {
         layout = {
           layout = {
             width = 0.4,
             position = 'right', -- Note: layout twice
-            border = 'none',
           },
         },
       },
@@ -75,16 +57,11 @@ require('snacks').setup {
     win = {
       width = 0.8,
       height = 0.8,
-      border = 'none',
     },
   },
 
   scroll = {
     enabled = true,
-    animate = {
-      duration = { step = 15, total = 250 }, -- Fast smooth scrolling
-      easing = 'linear',
-    },
   },
 
   explorer = {
