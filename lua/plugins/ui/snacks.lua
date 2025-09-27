@@ -1,68 +1,45 @@
 require('snacks').setup {
-  -- Enhanced development features
-  animate = {
-    enabled = true,
-    duration = 20,
-    fps = 60,
-    easing = 'linear',
-  },
-
   dashboard = {
     enabled = true,
     sections = {
       { section = 'header' },
       { section = 'keys', gap = 1 },
-      { icon = ' ', title = 'Recent Files', section = 'recent_files', indent = 2, limit = 8 },
       { icon = ' ', title = 'Projects', section = 'projects', indent = 2, limit = 8 },
       { section = 'startup' },
     },
     preset = {
       header = [[
-    ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-    ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-    ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-    ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-    ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-    ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
+    ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ 
+    ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ 
+    █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗  █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗
+    ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝  ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║
+    ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗███████╗██║  ██║██║██║ ╚████║╚██████╔╝
+    ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
+                                                                                            
+    ██╗███████╗    ██████╗ ███████╗ █████╗ ██╗   ██╗████████╗██╗███████╗██╗   ██╗██╗      
+    ██║██╔════╝    ██╔══██╗██╔════╝██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██║   ██║██║      
+    ██║███████╗    ██████╔╝█████╗  ███████║██║   ██║   ██║   ██║█████╗  ██║   ██║██║      
+    ██║╚════██║    ██╔══██╗██╔══╝  ██╔══██║██║   ██║   ██║   ██║██╔══╝  ██║   ██║██║      
+    ██║███████║    ██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ██║██║     ╚██████╔╝███████╗ 
+    ╚═╝╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚═╝      ╚═════╝ ╚══════╝ 
+                                                                                            
+                                        ~ rb
       ]],
       keys = {
         { icon = ' ', key = 'f', desc = 'Find File', action = ':lua Snacks.picker.files()' },
-        { icon = ' ', key = 'r', desc = 'Recent Files', action = ':lua Snacks.picker.recent()' },
         { icon = ' ', key = 'g', desc = 'Find Text', action = ':lua Snacks.picker.grep()' },
-        { icon = ' ', key = 'c', desc = 'Config', action = ':e $MYVIMRC' },
-        { icon = ' ', key = 's', desc = 'Restore Session', action = ':SessionRestore' },
+
         { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
       },
     },
   },
-
-  zen = {
-    enabled = true,
-    toggles = {
-      dim = true,
-      git_signs = false,
-      mini_diff_signs = false,
-      diagnostics = false,
-      inlay_hints = false,
-    },
-    show = {
-      statusline = false,
-      tabline = false,
-    },
-    win = {
-      width = 0.8,
-    },
-  },
-
-  gitbrowse = { enabled = true },
-
-  rename = { enabled = true },
 
   picker = {
     matcher = {
       frecency = true, -- Use frequency + recency for better results
       max_results = 50, -- Limit results for performance
     },
+
     win = {
       border = 'none',
       input = {
@@ -73,6 +50,7 @@ require('snacks').setup {
         },
       },
     },
+
     sources = {
       explorer = {
         layout = {
@@ -83,12 +61,9 @@ require('snacks').setup {
           },
         },
       },
-      files = {
-        hidden = false,
-        follow_symlinks = false, -- Better performance
-      },
     },
   },
+
   terminal = {
     win = {
       width = 0.8,
@@ -96,6 +71,7 @@ require('snacks').setup {
       border = 'none',
     },
   },
+
   scroll = {
     enabled = true,
     animate = {
@@ -103,44 +79,10 @@ require('snacks').setup {
       easing = 'linear',
     },
   },
+
   explorer = {
     enabled = true,
     replace_netrw = true,
-  },
-  notifier = {
-    enabled = true,
-    timeout = 3000, -- Auto-dismiss after 3s
-    width = { min = 40, max = 0.4 },
-    height = { min = 1, max = 0.6 },
-    margin = { top = 0, right = 1, bottom = 0 },
-    padding = { top = 0, right = 1, bottom = 0, left = 1 },
-    sort = { 'level', 'added' }, -- Show errors first
-    level = vim.log.levels.INFO, -- Don't show debug messages
-    border = 'none',
-    icons = {
-      error = ' ',
-      warn = ' ',
-      info = ' ',
-      debug = ' ',
-      trace = ' ',
-    },
-  },
-  statuscolumn = { enabled = true }, -- Better gutter performance
-  words = { enabled = true }, -- Fast LSP reference highlighting
-
-  -- Toggle configurations with keybindings
-  toggle = {
-    map = vim.keymap.set,
-    which_key = true,
-    notify = true,
-    icon = {
-      enabled = ' ',
-      disabled = ' ',
-    },
-    color = {
-      enabled = 'green',
-      disabled = 'red',
-    },
   },
 }
 

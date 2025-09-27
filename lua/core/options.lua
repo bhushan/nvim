@@ -115,6 +115,12 @@ vim.opt.sidescrolloff = 8
 --- Prevents accidental data loss by asking before discarding changes
 vim.opt.confirm = true
 
+--- Fold configuration
+--- Keep all folds open by default and disable automatic folding
+vim.opt.foldenable = false
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
 --- Diagnostic sign configuration
 --- Custom icons for error, warning, info, and hint diagnostics
 --- Uses Nerd Font icons for visual clarity
