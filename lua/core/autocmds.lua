@@ -93,3 +93,19 @@ vim.api.nvim_create_autocmd('FileType', {
     pcall(vim.treesitter.start)
   end,
 })
+
+--- Automatically insert PHP opening tag for new PHP files
+--- Adds '<?php' as the first line when creating a new PHP file
+--- Only triggers if the file is empty (new file)
+api.nvim_create_autocmd({ 'BufNewFile' }, {
+  pattern = '*.php',
+  callback = function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    if #lines == 1 and lines[1] == '' then
+      vim.api.nvim_buf_set_lines(0, 0, 1, false, { '<?php', '' })
+      vim.api.nvim_win_set_cursor(0, { 2, 0 })
+      -- Ensure filetype is set immediately for new PHP files
+      vim.bo.filetype = 'php'
+    end
+  end,
+})
