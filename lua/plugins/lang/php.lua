@@ -20,7 +20,7 @@ return {
   --- - gd on route name to jump to controller action
   --- - Auto-completion for config('app.name') and __('messages.welcome')
   {
-    'adibhanna/laravel.nvim',
+    'bhushan/laravel.nvim',
     enabled = true,
     ft = { 'php', 'blade' },
     config = function()
