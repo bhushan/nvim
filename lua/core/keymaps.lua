@@ -26,9 +26,13 @@ vim.keymap.set('v', '>', '>gv')
 --- @see http://ddrscott.github.io/blog/2016/yank-without-jank/
 vim.keymap.set('v', 'y', 'myy`y')
 
---- Fix common command-line typo
+--- Fix common command-line typos
 --- Maps q: to :q to prevent opening command history window accidentally
 vim.keymap.set('n', 'q:', ':q')
+
+--- Command alias for common save typo
+--- Maps :W to :w for convenient saving
+vim.api.nvim_create_user_command('W', 'w', {})
 
 --- Paste over visual selection without yanking deleted text
 --- Uses black hole register to avoid polluting default register
