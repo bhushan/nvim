@@ -238,3 +238,17 @@ vim.api.nvim_create_autocmd('User', {
     end
   end,
 })
+
+-- Customize explorer highlight for hidden/ignored files
+-- Make them less dimmed for better visibility
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    -- Lighter dim color for hidden/ignored files in explorer
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#8b92ab' })
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#8b92ab' })
+  end,
+})
+
+-- Set initial highlight
+vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#8b92ab' })
+vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#8b92ab' })
