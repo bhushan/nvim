@@ -65,3 +65,17 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --- Close current buffer with Ctrl-w
 --- Deletes buffer without closing window
 vim.keymap.set('n', '<C-w>', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
+
+--- Diagnostic keybindings
+--- View and navigate LSP diagnostics (errors, warnings, etc.)
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show [d]iagnostic message' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnostic' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
+
+--- Terraform commands
+--- Run common Terraform operations directly from Neovim
+vim.keymap.set('n', '<leader>ti', '<cmd>!terraform init<CR>', { desc = 'Terraform init' })
+vim.keymap.set('n', '<leader>tv', '<cmd>!terraform validate<CR>', { desc = 'Terraform validate' })
+vim.keymap.set('n', '<leader>tp', '<cmd>!terraform plan<CR>', { desc = 'Terraform plan' })
+vim.keymap.set('n', '<leader>ta', '<cmd>!terraform apply<CR>', { desc = 'Terraform apply' })
+vim.keymap.set('n', '<leader>tA', '<cmd>!terraform apply -auto-approve<CR>', { desc = 'Terraform apply auto-approve' })

@@ -287,6 +287,8 @@ vim.list_extend(ensure_installed, {
   'vtsls',
   'eslint',
   'intelephense',
+  'terraformls',
+  'tflint',
 })
 
 require('mason-lspconfig').setup {

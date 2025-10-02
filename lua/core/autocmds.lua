@@ -109,3 +109,49 @@ api.nvim_create_autocmd({ 'BufNewFile' }, {
     end
   end,
 })
+
+--- Terraform filetype detection and formatting
+--- Sets proper filetype for various Terraform and HCL files
+--- Enables auto-formatting on save and alignment
+local terraform_group = api.nvim_create_augroup('terraform', { clear = true })
+
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = terraform_group,
+  pattern = '*.hcl',
+  callback = function()
+    vim.bo.filetype = 'hcl'
+  end,
+})
+
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = terraform_group,
+  pattern = { '.terraformrc', 'terraform.rc' },
+  callback = function()
+    vim.bo.filetype = 'hcl'
+  end,
+})
+
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = terraform_group,
+  pattern = { '*.tf', '*.tfvars' },
+  callback = function()
+    vim.bo.filetype = 'terraform'
+  end,
+})
+
+api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = terraform_group,
+  pattern = { '*.tfstate', '*.tfstate.backup' },
+  callback = function()
+    vim.bo.filetype = 'json'
+  end,
+})
+
+api.nvim_create_autocmd('FileType', {
+  group = terraform_group,
+  pattern = 'terraform',
+  callback = function()
+    vim.g.terraform_fmt_on_save = 1
+    vim.g.terraform_align = 1
+  end,
+})

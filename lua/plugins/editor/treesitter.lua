@@ -40,6 +40,8 @@ require('nvim-treesitter.configs').setup {
     'gitattributes',
     'python',
     'blade', -- Laravel Blade templates
+    'hcl', -- HashiCorp Configuration Language
+    'terraform', -- Terraform files
   },
   -- Autoinstall languages that are not installed
   auto_install = true,
