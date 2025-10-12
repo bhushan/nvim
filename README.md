@@ -34,12 +34,14 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
 ## Installation
 
 1. **Backup existing configuration**:
+
    ```bash
    mv ~/.config/nvim ~/.config/nvim.backup
    mv ~/.local/share/nvim ~/.local/share/nvim.backup
    ```
 
 2. **Clone this repository**:
+
    ```bash
    git clone <repository-url> ~/.config/nvim
    # Or if using dotfiles structure:
@@ -47,6 +49,7 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
    ```
 
 3. **Launch Neovim**:
+
    ```bash
    nvim
    ```
@@ -103,104 +106,104 @@ nvim/
 
 ### General
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `,` | Normal | Leader key |
-| `;` | Normal/Visual | Enter command mode (`:`) |
-| `<Esc>` | Normal | Clear search highlight |
-| `jj` | Insert | Exit insert mode |
-| `<C-h/j/k/l>` | Normal | Navigate between splits |
-| `<C-w>` | Normal | Close current buffer |
+| Key           | Mode          | Action                   |
+| ------------- | ------------- | ------------------------ |
+| `,`           | Normal        | Leader key               |
+| `;`           | Normal/Visual | Enter command mode (`:`) |
+| `<Esc>`       | Normal        | Clear search highlight   |
+| `jj`          | Insert        | Exit insert mode         |
+| `<C-h/j/k/l>` | Normal        | Navigate between splits  |
+| `<C-w>`       | Normal        | Close current buffer     |
 
 ### File Navigation
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `<C-p>` | Normal | Smart file search (git-aware) |
+| Key          | Mode   | Action                              |
+| ------------ | ------ | ----------------------------------- |
+| `<C-p>`      | Normal | Smart file search (git-aware)       |
 | `<C-p><C-p>` | Normal | Search all files (including hidden) |
-| `<C-f>` | Normal | Live grep (search in files) |
-| `\` | Normal | Toggle file explorer |
-| `<leader>fk` | Normal | Find keymaps |
-| `<leader>pp` | Normal | Switch projects |
-| `<leader>tS` | Normal | Show all pickers |
+| `<C-f>`      | Normal | Live grep (search in files)         |
+| `\`          | Normal | Toggle file explorer                |
+| `<leader>fk` | Normal | Find keymaps                        |
+| `<leader>pp` | Normal | Switch projects                     |
+| `<leader>tS` | Normal | Show all pickers                    |
 
 ### LSP
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `gd` | Normal | Go to definition |
-| `gr` | Normal | Go to references |
-| `gI` | Normal | Go to implementation |
-| `<leader>rn` | Normal | Rename file |
-| `<leader>d` | Normal | Show diagnostic message |
-| `[d` / `]d` | Normal | Previous/next diagnostic |
-| `<leader>ls` | Normal | LSP document symbols |
-| `<leader>lS` | Normal | LSP workspace symbols |
-| `K` | Normal | Hover documentation |
+| Key          | Mode   | Action                   |
+| ------------ | ------ | ------------------------ |
+| `gd`         | Normal | Go to definition         |
+| `gr`         | Normal | Go to references         |
+| `gI`         | Normal | Go to implementation     |
+| `<leader>rn` | Normal | Rename file              |
+| `<leader>d`  | Normal | Show diagnostic message  |
+| `[d` / `]d`  | Normal | Previous/next diagnostic |
+| `<leader>ls` | Normal | LSP document symbols     |
+| `<leader>lS` | Normal | LSP workspace symbols    |
+| `K`          | Normal | Hover documentation      |
 
 ### Code Actions
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `gcc` | Normal | Toggle line comment |
-| `gc` | Visual | Toggle comment |
-| `<leader>x` | Normal | Run code |
-| `<leader>X` | Normal | Run code (custom) |
-| `<C-e>` | Normal (PHP) | PHP refactoring menu |
+| Key         | Mode         | Action               |
+| ----------- | ------------ | -------------------- |
+| `gcc`       | Normal       | Toggle line comment  |
+| `gc`        | Visual       | Toggle comment       |
+| `<leader>x` | Normal       | Run code             |
+| `<leader>X` | Normal       | Run code (custom)    |
+| `<C-e>`     | Normal (PHP) | PHP refactoring menu |
 
 ### Git
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `[h` / `]h` | Normal | Previous/next git hunk |
-| `<leader>hs` | Normal | Stage hunk |
-| `<leader>hr` | Normal | Reset hunk |
-| `<leader>hp` | Normal | Preview hunk |
-| `<leader>hb` | Normal | Blame line |
+| Key          | Mode   | Action                 |
+| ------------ | ------ | ---------------------- |
+| `[h` / `]h`  | Normal | Previous/next git hunk |
+| `<leader>hs` | Normal | Stage hunk             |
+| `<leader>hr` | Normal | Reset hunk             |
+| `<leader>hp` | Normal | Preview hunk           |
+| `<leader>hb` | Normal | Blame line             |
 
 ### Terminal
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `` ` `` | Normal/Terminal | Toggle floating terminal |
-| `<Esc><Esc>` | Terminal | Exit terminal mode |
+| Key          | Mode            | Action                   |
+| ------------ | --------------- | ------------------------ |
+| `` ` ``      | Normal/Terminal | Toggle floating terminal |
+| `<Esc><Esc>` | Terminal        | Exit terminal mode       |
 
 ### Testing
 
-| Key | Mode | Action |
-|-----|------|--------|
+| Key          | Mode   | Action           |
+| ------------ | ------ | ---------------- |
 | `<leader>tn` | Normal | Run nearest test |
-| `<leader>tf` | Normal | Run test file |
-| `<leader>ts` | Normal | Run test suite |
-| `<leader>tl` | Normal | Run last test |
+| `<leader>tf` | Normal | Run test file    |
+| `<leader>ts` | Normal | Run test suite   |
+| `<leader>tl` | Normal | Run last test    |
 
 ### Presentations
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `<leader>c` | Normal | Toggle presentation (start/pause/resume) |
-| `n` | Presentation | Next slide |
-| `p` | Presentation | Previous slide |
-| `<leader>c` | Presentation | Pause presentation (toggle to edit) |
-| `q` | Presentation | Close presentation |
+| Key         | Mode         | Action                                   |
+| ----------- | ------------ | ---------------------------------------- |
+| `<leader>c` | Normal       | Toggle presentation (start/pause/resume) |
+| `n`         | Presentation | Next slide                               |
+| `p`         | Presentation | Previous slide                           |
+| `<leader>c` | Presentation | Pause presentation (toggle to edit)      |
+| `q`         | Presentation | Close presentation                       |
 
 ### Terraform (if working with .tf files)
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `<leader>ti` | Normal | Terraform init |
-| `<leader>tv` | Normal | Terraform validate |
-| `<leader>tp` | Normal | Terraform plan |
-| `<leader>ta` | Normal | Terraform apply |
+| Key          | Mode   | Action                        |
+| ------------ | ------ | ----------------------------- |
+| `<leader>ti` | Normal | Terraform init                |
+| `<leader>tv` | Normal | Terraform validate            |
+| `<leader>tp` | Normal | Terraform plan                |
+| `<leader>ta` | Normal | Terraform apply               |
 | `<leader>tA` | Normal | Terraform apply -auto-approve |
 
 ### Visual Mode
 
-| Key | Mode | Action |
-|-----|------|--------|
-| `<` / `>` | Visual | Indent/dedent (keeps selection) |
-| `p` | Visual | Paste without yanking replaced text |
-| `y` | Visual | Yank without moving cursor |
+| Key       | Mode   | Action                              |
+| --------- | ------ | ----------------------------------- |
+| `<` / `>` | Visual | Indent/dedent (keeps selection)     |
+| `p`       | Visual | Paste without yanking replaced text |
+| `y`       | Visual | Yank without moving cursor          |
 
 ## Plugin Highlights
 
@@ -262,6 +265,7 @@ nvim/
 ### Auto-formatting
 
 Format-on-save is enabled for:
+
 - **PHP**: Pint (Laravel Pint)
 - **JavaScript/TypeScript**: Prettier/Prettierd
 - **Python**: Black + isort
@@ -284,6 +288,7 @@ Format-on-save is enabled for:
 ### Changing Theme
 
 Edit `lua/plugins/ui/theme.lua`:
+
 ```lua
 return {
   'your-theme/repo',
@@ -296,6 +301,7 @@ return {
 ### Adding Custom Keybindings
 
 Add to `lua/core/keymaps.lua`:
+
 ```lua
 vim.keymap.set('n', '<leader>custom', ':YourCommand<CR>', { desc = 'Description' })
 ```
@@ -314,27 +320,32 @@ Create snippet files in `~/.config/nvim/snippets/` directory using snipmate form
 ## Troubleshooting
 
 ### Plugins not loading
+
 ```vim
 :Lazy sync
 ```
 
 ### LSP not working
+
 ```vim
 :LspInfo          " Check LSP status
 :Mason            " Verify servers are installed
 ```
 
 ### Formatters not working
+
 ```vim
 :ConformInfo      " Check formatter status
 ```
 
 ### Update all plugins
+
 ```vim
 :Lazy update
 ```
 
 ### Clean and reinstall
+
 ```bash
 rm -rf ~/.local/share/nvim/lazy
 nvim  # Will reinstall all plugins
@@ -343,6 +354,7 @@ nvim  # Will reinstall all plugins
 ## Performance
 
 This configuration is optimized for performance:
+
 - Lazy loading of plugins
 - Event-based plugin initialization
 - Fast startup time (~50-100ms)
@@ -353,6 +365,7 @@ This configuration is optimized for performance:
 Configuration maintained by [@rb](https://github.com/rb)
 
 Inspired by:
+
 - [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 - [LazyVim](https://github.com/LazyVim/LazyVim)
 - Various community configurations
