@@ -235,6 +235,9 @@ return {
   --- Auto-close and auto-pair brackets, quotes, tags
   { import = 'plugins.editor.autopairs' },
 
+  --- Present markdown files as slides
+  { import = 'plugins.editor.present' },
+
   --- Colorscheme configuration
   { import = 'plugins.ui.theme' },
 
