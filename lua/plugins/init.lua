@@ -222,7 +222,9 @@ return {
     },
     config = function()
       require('coderunner').setup {
-        -- Configuration options
+        languages = {
+          markdown = { cmd = 'PresentStart', strategy = 'inline', description = 'Start markdown files in presentation mode' },
+        },
       }
     end,
     keys = {
