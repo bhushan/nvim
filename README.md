@@ -10,6 +10,7 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
 - **Git Integration**: Inline git blame, hunk operations, and git status in sign column
 - **Auto-formatting**: Format-on-save for PHP (Pint), JavaScript/TypeScript (Prettier), Python (Black), Lua (Stylua)
 - **Test Runner**: Run tests directly from Neovim for PHPUnit, Jest, pytest, and more
+- **Presentations**: Create and present markdown-based slideshows directly in Neovim
 - **Tmux Integration**: Seamless navigation between Neovim splits and tmux panes
 - **Beautiful UI**: Dracula theme with custom statusline and dashboard
 
@@ -173,6 +174,16 @@ nvim/
 | `<leader>ts` | Normal | Run test suite |
 | `<leader>tl` | Normal | Run last test |
 
+### Presentations
+
+| Key | Mode | Action |
+|-----|------|--------|
+| `<leader>c` | Normal | Toggle presentation (start/pause/resume) |
+| `n` | Presentation | Next slide |
+| `p` | Presentation | Previous slide |
+| `<leader>c` | Presentation | Pause presentation (toggle to edit) |
+| `q` | Presentation | Close presentation |
+
 ### Terraform (if working with .tf files)
 
 | Key | Mode | Action |
@@ -210,6 +221,7 @@ nvim/
 - **[Comment.nvim](https://github.com/numToStr/Comment.nvim)** - Smart commenting
 - **[conform.nvim](https://github.com/stevearc/conform.nvim)** - Auto-formatting
 - **[nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-close brackets
+- **[present.nvim](https://github.com/bhushan/present.nvim)** - Markdown-based presentations
 
 ### Git Integration
 
