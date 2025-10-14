@@ -19,6 +19,9 @@ vim.g.have_nerd_font = true
 --- Provides absolute line numbers for navigation and reference
 vim.opt.number = true
 
+--- Provides relative line numbers for navigation and reference
+vim.opt.relativenumber = true
+
 --- Enable search result highlighting
 --- Highlights all matches for the current search pattern
 vim.opt.hlsearch = true
