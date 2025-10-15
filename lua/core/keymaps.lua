@@ -42,6 +42,10 @@ vim.keymap.set('v', 'p', '"_dP')
 --- Double-tap 'j' to exit insert mode faster than reaching for Escape
 vim.keymap.set('i', 'jj', '<Esc>')
 
+-- auto center always
+vim.keymap.set('n', '<C-d>', '<C-d>zz')
+vim.keymap.set('n', '<C-u>', '<C-u>zz')
+
 --- Exit terminal mode with double Escape
 --- More discoverable alternative to <C-\><C-n>
 --- Note: May not work in all terminal emulators or tmux
