@@ -34,6 +34,10 @@ vim.keymap.set('n', 'q:', ':q')
 --- Maps :W to :w for convenient saving
 vim.api.nvim_create_user_command('W', 'w', {})
 
+--- Command abbreviation to quit all buffers
+--- Maps :q to :qa for quitting all at once
+vim.cmd('cnoreabbrev q qa')
+
 --- Paste over visual selection without yanking deleted text
 --- Uses black hole register to avoid polluting default register
 vim.keymap.set('v', 'p', '"_dP')
