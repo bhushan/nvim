@@ -191,6 +191,7 @@ Blade templates (Laravel) are detected via `ftdetect/blade.lua`, which sets file
 Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the new nvim-treesitter API (requires Neovim 0.11+).
 
 **Key Changes (2025 rewrite)**:
+
 - Plugin does NOT support lazy-loading (`lazy = false`)
 - Highlighting enabled via `vim.treesitter.start()` autocmd
 - Indentation via `vim.bo.indentexpr`
@@ -200,6 +201,7 @@ Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the new n
 **Installed Parsers**: bash, c, css, diff, dockerfile, gitattributes, gitcommit, gitignore, git_rebase, html, java, javascript, jsdoc, json, lua, luadoc, markdown, markdown_inline, php, phpdoc, python, query, regex, scss, toml, typescript, vim, vimdoc, xml, yaml
 
 **Commands**:
+
 - `:TSInstall <lang>` - Install a parser
 - `:TSUpdate` - Update all parsers
 - `:TSUninstall <lang>` - Remove a parser
@@ -232,6 +234,15 @@ Configuration is in `stylua.toml` (2 spaces, 120 column width).
 - **Update time**: 250ms (faster LSP diagnostics)
 - **Relative line numbers**: Enabled
 - **Auto-format on save**: Enabled with 500ms timeout
+- **Theme**: GitHub Dimmed (`github_dark_dimmed` via `projekt0n/github-nvim-theme`)
+
+## Theme Configuration
+
+The colorscheme uses **GitHub Dimmed** from `projekt0n/github-nvim-theme`. Configuration is in `lua/plugins/ui/theme.lua`.
+
+Lualine has a custom theme matching GitHub Dimmed colors in `lua/plugins/ui/lualine.lua`.
+
+See `../colors/github-dimmed.md` for the complete color palette used across all dotfiles.
 
 ## PHP/Laravel-Specific Features
 
