@@ -8,9 +8,14 @@ This is a modern Neovim configuration using lazy.nvim for plugin management. The
 
 ## Architecture
 
+## Code Style
+
+- always update claude.md
+
 ### Bootstrap Sequence
 
 The init system follows a strict load order:
+
 1. `init.lua` - Entry point that loads core modules in sequence
 2. `core/options.lua` - Editor settings (must load first)
 3. `core/keymaps.lua` - Global keybindings
@@ -22,11 +27,13 @@ The init system follows a strict load order:
 Plugins are organized in `lua/plugins/` with a modular import pattern:
 
 **Main Plugin Registry** (`lua/plugins/init.lua`):
+
 - Simple plugins with inline configuration
 - Import statements for complex plugins using `{ import = 'plugins.category.name' }`
 - All plugin specs are combined into a single table
 
 **Category Subdirectories**:
+
 - `editor/` - Editing enhancements (completion, treesitter, autopairs, presentations)
 - `ui/` - Visual components (theme, statusline, snacks utilities)
 - `lsp/` - Language Server Protocol configuration
@@ -35,6 +42,7 @@ Plugins are organized in `lua/plugins/` with a modular import pattern:
 - `lang/` - Language-specific plugins (PHP refactoring)
 
 **Key Architectural Pattern**:
+
 ```lua
 -- In plugins/init.lua
 { import = 'plugins.editor.cmp' }  -- Loads lua/plugins/editor/cmp.lua
@@ -46,6 +54,7 @@ return { ... plugin spec ... }  -- Must return a plugin spec table
 ### LSP Configuration Architecture
 
 LSP setup in `lua/plugins/lsp/lspconfig.lua` follows this flow:
+
 1. **LspAttach autocommand** - Sets up buffer-local keymaps when LSP attaches
 2. **Capabilities** - Enhanced with nvim-cmp for autocompletion
 3. **Server definitions** - Table of server-specific configurations
@@ -53,6 +62,7 @@ LSP setup in `lua/plugins/lsp/lspconfig.lua` follows this flow:
 5. **Mason handlers** - Applies server configs with capability merging
 
 **Server Configuration Pattern**:
+
 ```lua
 local servers = {
   server_name = {
@@ -65,6 +75,7 @@ local servers = {
 ### Snacks.nvim Integration
 
 Snacks provides multiple UI utilities configured in `lua/plugins/ui/snacks.lua`:
+
 - **Dashboard** - Startup screen with ASCII art
 - **Picker** - Fuzzy finder (replaces telescope)
 - **Terminal** - Floating terminal
@@ -79,12 +90,14 @@ Snacks has complex autocmd-based initialization to avoid performance issues.
 ### Adding a New Plugin
 
 1. **Simple plugins** (no config needed):
+
 ```lua
 -- Add to lua/plugins/init.lua
 { 'author/plugin-name' }
 ```
 
 2. **Plugins with inline config**:
+
 ```lua
 -- Add to lua/plugins/init.lua
 {
@@ -95,6 +108,7 @@ Snacks has complex autocmd-based initialization to avoid performance issues.
 ```
 
 3. **Complex plugins** (separate file):
+
 ```lua
 -- Add to lua/plugins/init.lua
 { import = 'plugins.category.pluginname' }
@@ -111,6 +125,7 @@ return {
 ### Configuring LSP Servers
 
 1. **Add server to configuration** in `lua/plugins/lsp/lspconfig.lua`:
+
 ```lua
 local servers = {
   server_name = {
@@ -122,6 +137,7 @@ local servers = {
 ```
 
 2. **Add to ensure_installed list**:
+
 ```lua
 vim.list_extend(ensure_installed, {
   'server_name',
@@ -153,11 +169,13 @@ Formatters must be installed via Mason or system package manager.
 ## Testing
 
 Tests are run via vim-test integration. The configuration automatically detects the test framework:
+
 - PHP: Uses PHPUnit (looks for phpunit.xml or vendor/bin/phpunit)
 - JavaScript: Uses Jest (looks for package.json with jest)
 - Python: Uses pytest (looks for pytest.ini or pyproject.toml)
 
 **Keybindings**:
+
 - `<C-t>` - Run nearest test (test under cursor)
 - `<C-S-t>` - Run last test
 - `<Leader>rf` - Run entire test file
@@ -178,6 +196,7 @@ Blade templates (Laravel) are detected via `ftdetect/blade.lua`, which sets file
 ## Formatting Code
 
 To format Lua code in this configuration:
+
 ```bash
 stylua .
 ```
@@ -205,6 +224,7 @@ Configuration is in `stylua.toml` (2 spaces, 120 column width).
 ## Custom Plugins
 
 This configuration uses several custom plugins by the author:
+
 - **coderunner.nvim** - Execute code snippets (`<leader>x`)
 - **present.nvim** - Markdown presentations (`<leader>c` to toggle)
 - **phprefactoring.nvim** - PHP refactoring toolkit
