@@ -33,15 +33,6 @@ return {
   --- Use Ctrl+hjkl to navigate between vim splits and tmux panes
   { 'christoomey/vim-tmux-navigator' },
 
-  --- Enhanced text objects for code navigation
-  --- Provides text objects like functions, classes, parameters
-  --- Works with Tree-sitter for precise code structure understanding
-  {
-    'nvim-treesitter/nvim-treesitter-textobjects',
-    event = 'VeryLazy',
-    dependencies = 'nvim-treesitter/nvim-treesitter',
-  },
-
   --- Auto-formatting engine with multiple formatter support
   --- Format on save with fallback chain (e.g., prettierd → prettier)
   --- Configured for PHP (Pint), Lua (Stylua), JS/TS (Prettier), Python (Black)
@@ -147,14 +138,7 @@ return {
   --- Syntax highlighting and code parsing engine
   --- Provides fast, accurate syntax highlighting and code structure
   --- Enables advanced features like text objects and refactoring
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      require 'plugins/editor/treesitter'
-    end,
-  },
+  { import = 'plugins.editor.treesitter' },
 
   --- Icon set for file types and UI elements
   --- Required by file explorers, statusline, and other UI plugins

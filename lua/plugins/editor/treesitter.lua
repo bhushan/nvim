@@ -1,69 +1,71 @@
--- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+-- [[ Configure Treesitter ]]
+-- New nvim-treesitter API (requires Neovim 0.11+)
+-- See: https://github.com/nvim-treesitter/nvim-treesitter
 
--- Prefer git instead of curl in order to improve connectivity in some environments
-require('nvim-treesitter.install').prefer_git = true
+return {
+  'nvim-treesitter/nvim-treesitter',
+  lazy = false, -- treesitter does not support lazy-loading
+  build = ':TSUpdate',
+  config = function()
+    -- List of parsers to install
+    local parsers = {
+      'bash',
+      'c',
+      'css',
+      'diff',
+      'dockerfile',
+      'gitattributes',
+      'gitcommit',
+      'gitignore',
+      'git_rebase',
+      'html',
+      'java',
+      'javascript',
+      'jsdoc',
+      'json',
+      'lua',
+      'luadoc',
+      'markdown',
+      'markdown_inline',
+      'php',
+      'phpdoc',
+      'python',
+      'query',
+      'regex',
+      'scss',
+      'toml',
+      'typescript',
+      'vim',
+      'vimdoc',
+      'xml',
+      'yaml',
+    }
 
--- Set up blade filetype detection for Laravel templates
-vim.filetype.add {
-  pattern = {
-    ['.*%.blade%.php'] = 'blade',
-  },
-}
+    -- Install parsers asynchronously
+    require('nvim-treesitter').install(parsers)
 
-require('nvim-treesitter.configs').setup {
-  modules = {},
-  sync_install = false,
-  ignore_install = {},
-  ensure_installed = {
-    'bash',
-    'c',
-    'diff',
-    'lua',
-    'luadoc',
-    'markdown',
-    'vim',
-    'vimdoc',
-    'html',
-    'css',
-    'scss',
-    'javascript',
-    'jsdoc',
-    'typescript',
-    'json',
-    'dockerfile',
-    'java',
-    'php',
-    -- "help",
-    'git_rebase',
-    'gitcommit',
-    'gitignore',
-    'gitattributes',
-    'python',
-    'blade', -- Laravel Blade templates
-    'hcl', -- HashiCorp Configuration Language
-    'terraform', -- Terraform files
-  },
-  -- Autoinstall languages that are not installed
-  auto_install = true,
-  highlight = {
-    enable = true,
-    disable = { 'neo-tree' },
-    -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-    --  If you are experiencing weird indenting issues, add the language to
-    --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-    additional_vim_regex_highlighting = { 'ruby' },
-  },
-  indent = { enable = true, disable = { 'ruby' } },
-}
+    -- Enable treesitter highlighting for all supported filetypes
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        -- Check if parser exists for this filetype
+        local ok = pcall(vim.treesitter.start, args.buf)
+        if ok then
+          -- Enable treesitter-based indentation
+          vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end
+      end,
+    })
 
--- Configure Blade parser for Laravel templates
-local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-
-parser_config.blade = {
-  install_info = {
-    url = 'https://github.com/EmranMR/tree-sitter-blade',
-    files = { 'src/parser.c' },
-    branch = 'main',
-  },
-  filetype = 'blade',
+    -- Enable treesitter-based folding
+    vim.api.nvim_create_autocmd('FileType', {
+      callback = function(args)
+        local ok = pcall(vim.treesitter.get_parser, args.buf)
+        if ok then
+          vim.wo[0][0].foldmethod = 'expr'
+          vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+          vim.wo[0][0].foldenable = false -- Start with folds open
+        end
+      end,
+    })
+  end,
 }

@@ -46,8 +46,9 @@ Plugins are organized in `lua/plugins/` with a modular import pattern:
 ```lua
 -- In plugins/init.lua
 { import = 'plugins.editor.cmp' }  -- Loads lua/plugins/editor/cmp.lua
+{ import = 'plugins.editor.treesitter' }  -- Loads treesitter config
 
--- In plugins/editor/cmp.lua
+-- In plugins/editor/cmp.lua or treesitter.lua
 return { ... plugin spec ... }  -- Must return a plugin spec table
 ```
 
@@ -185,12 +186,31 @@ Tests are run via vim-test integration. The configuration automatically detects 
 
 Blade templates (Laravel) are detected via `ftdetect/blade.lua`, which sets filetype to `blade` for `*.blade.php` files.
 
+## Tree-sitter Configuration
+
+Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the new nvim-treesitter API (requires Neovim 0.11+).
+
+**Key Changes (2025 rewrite)**:
+- Plugin does NOT support lazy-loading (`lazy = false`)
+- Highlighting enabled via `vim.treesitter.start()` autocmd
+- Indentation via `vim.bo.indentexpr`
+- Folding via `vim.treesitter.foldexpr()`
+- `nvim-treesitter-textobjects` is deprecated and removed
+
+**Installed Parsers**: bash, c, css, diff, dockerfile, gitattributes, gitcommit, gitignore, git_rebase, html, java, javascript, jsdoc, json, lua, luadoc, markdown, markdown_inline, php, phpdoc, python, query, regex, scss, toml, typescript, vim, vimdoc, xml, yaml
+
+**Commands**:
+- `:TSInstall <lang>` - Install a parser
+- `:TSUpdate` - Update all parsers
+- `:TSUninstall <lang>` - Remove a parser
+
 ## Performance Considerations
 
 - Plugins use lazy loading with `event`, `ft`, `cmd`, or `keys` triggers
 - Heavy plugins load on `VeryLazy` or specific file types
 - Snacks features are initialized in VimEnter autocmd to avoid blocking startup
-- Tree-sitter parsers build on first load (`:TSUpdate` to manually update)
+- Tree-sitter loads eagerly (does not support lazy-loading in new API)
+- Tree-sitter parsers are installed asynchronously on startup (`:TSUpdate` to manually update)
 - LSP servers only attach to relevant file types
 
 ## Formatting Code
