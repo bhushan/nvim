@@ -241,14 +241,14 @@ vim.api.nvim_create_autocmd('User', {
 
 -- Customize explorer highlight for hidden/ignored files
 -- Make them less dimmed for better visibility
+-- Catppuccin Mocha overlay1 color (see colors/catppuccin-mocha.md)
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
-    -- Lighter dim color for hidden/ignored files in explorer
-    vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#8b92ab' })
-    vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#8b92ab' })
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#7f849c' })
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#7f849c' })
   end,
 })
 
--- Set initial highlight
-vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#8b92ab' })
-vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#8b92ab' })
+-- Set initial highlight (Catppuccin Mocha overlay1)
+vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = '#7f849c' })
+vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = '#7f849c' })

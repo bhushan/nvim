@@ -234,15 +234,15 @@ Configuration is in `stylua.toml` (2 spaces, 120 column width).
 - **Update time**: 250ms (faster LSP diagnostics)
 - **Relative line numbers**: Enabled
 - **Auto-format on save**: Enabled with 500ms timeout
-- **Theme**: GitHub Dimmed (`github_dark_dimmed` via `projekt0n/github-nvim-theme`)
+- **Theme**: Catppuccin Mocha (`catppuccin` via `catppuccin/nvim`)
 
 ## Theme Configuration
 
-The colorscheme uses **GitHub Dimmed** from `projekt0n/github-nvim-theme`. Configuration is in `lua/plugins/ui/theme.lua`.
+The colorscheme uses **Catppuccin Mocha** from `catppuccin/nvim`. Configuration is in `lua/plugins/ui/theme.lua`.
 
-Lualine has a custom theme matching GitHub Dimmed colors in `lua/plugins/ui/lualine.lua`.
+Lualine has a custom theme matching Catppuccin Mocha colors in `lua/plugins/ui/lualine.lua`.
 
-See `../colors/github-dimmed.md` for the complete color palette used across all dotfiles.
+See `../colors/catppuccin-mocha.md` for the complete color palette used across all dotfiles.
 
 ## PHP/Laravel-Specific Features
 
