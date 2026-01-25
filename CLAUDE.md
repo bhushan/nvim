@@ -198,7 +198,7 @@ Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the new n
 - Folding via `vim.treesitter.foldexpr()`
 - `nvim-treesitter-textobjects` is deprecated and removed
 
-**Installed Parsers**: bash, c, css, diff, dockerfile, gitattributes, gitcommit, gitignore, git_rebase, html, java, javascript, jsdoc, json, lua, luadoc, markdown, markdown_inline, php, phpdoc, python, query, regex, scss, toml, typescript, vim, vimdoc, xml, yaml
+**Installed Parsers**: bash, c, css, diff, dockerfile, gitattributes, gitcommit, gitignore, git_rebase, graphql, html, java, javascript, jsdoc, json, lua, luadoc, markdown, markdown_inline, php, phpdoc, python, query, regex, scss, sql, toml, tsx, typescript, vim, vimdoc, vue, xml, yaml
 
 **Commands**:
 
@@ -247,10 +247,29 @@ See `../colors/catppuccin-mocha.md` for the complete color palette used across a
 ## PHP/Laravel-Specific Features
 
 - **Laravel Pint** - PHP formatter (format-on-save enabled)
-- **Intelephense** - Primary PHP LSP with extensive Laravel stubs
+- **Intelephense** - Primary PHP LSP with extensive Laravel stubs (includes redis, imagick, memcached)
 - **PHP Refactoring** (`<C-e>` in PHP files) - Extract method/variable, rename, change signature
 - **Blade syntax** - Laravel Blade template support
 - **Composer integration** - Auto-loads vendor directories
+- **Tailwind CSS** - Class completion in Blade/PHP files
+
+## JavaScript/TypeScript Features
+
+- **vtsls** - TypeScript/JavaScript LSP with full inlay hints
+- **Organize imports on save** - Automatically organizes imports when saving TS/JS files
+- **Tailwind CSS** - Class completion with cva/cx regex support
+- **CSS LSP** - CSS/SCSS validation and completion
+- **ESLint** - Auto-fix on save
+
+## Diagnostics & Code Quality
+
+- **trouble.nvim** - Better diagnostics panel with pretty UI
+  - `<leader>xx` - Toggle diagnostics panel
+  - `<leader>xX` - Buffer diagnostics only
+  - `<leader>xq` - Quickfix in Trouble
+- **todo-comments.nvim** - Highlights TODO/FIXME/HACK comments
+  - `]t` / `[t` - Jump to next/prev TODO
+  - `<leader>ft` - Find all TODOs in project
 
 ## Custom Plugins
 

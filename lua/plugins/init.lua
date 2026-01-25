@@ -233,4 +233,32 @@ return {
 
   --- PHP-specific tooling and enhancements
   { import = 'plugins.lang.php' },
+
+  --- Better diagnostics panel
+  --- Provides a pretty list for diagnostics, quickfix, and location lists
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = { 'Trouble' },
+    keys = {
+      { '<leader>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
+      { '<leader>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics' },
+      { '<leader>xq', '<cmd>Trouble qflist toggle<cr>', desc = 'Quickfix (Trouble)' },
+    },
+    opts = {},
+  },
+
+  --- TODO/FIXME comment highlighting and navigation
+  --- Highlights TODO, FIXME, HACK, etc. comments with distinct colors
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    event = { 'BufReadPost', 'BufNewFile' },
+    keys = {
+      { ']t', function() require('todo-comments').jump_next() end, desc = 'Next TODO' },
+      { '[t', function() require('todo-comments').jump_prev() end, desc = 'Previous TODO' },
+      { '<leader>ft', '<cmd>TodoTrouble<cr>', desc = 'Find TODOs' },
+    },
+    opts = {},
+  },
 }
