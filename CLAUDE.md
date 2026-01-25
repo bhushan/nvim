@@ -21,6 +21,7 @@ The init system follows a strict load order:
 3. `core/keymaps.lua` - Global keybindings
 4. `core/autocmds.lua` - Autocommands
 5. `core/lazy.lua` - Plugin manager bootstrap and initialization
+6. `core/colors.lua` - Catppuccin Mocha color palette (loaded by UI plugins)
 
 ### Plugin Organization
 
@@ -238,9 +239,21 @@ Configuration is in `stylua.toml` (2 spaces, 120 column width).
 
 ## Theme Configuration
 
-The colorscheme uses **Catppuccin Mocha** from `catppuccin/nvim`. Configuration is in `lua/plugins/ui/theme.lua`.
+The colorscheme uses **Catppuccin Mocha** from `catppuccin/nvim`. Configuration is in `lua/plugins/ui/theme.lua` with integrations enabled for: cmp, gitsigns, treesitter, notify, mason, which_key, snacks, and native_lsp.
 
-Lualine has a custom theme matching Catppuccin Mocha colors in `lua/plugins/ui/lualine.lua`.
+### Shared Color Palette
+
+All UI plugins use the centralized color palette defined in `lua/core/colors.lua`:
+
+- **Lualine** (`lua/plugins/ui/lualine.lua`) - Custom statusline theme
+- **Snacks** (`lua/plugins/ui/snacks.lua`) - Explorer and picker highlights
+
+This ensures consistent theming across all plugins. When adding new UI customizations, import colors from `core.colors`:
+
+```lua
+local colors = require 'core.colors'
+vim.api.nvim_set_hl(0, 'MyHighlight', { fg = colors.blue, bg = colors.base })
+```
 
 See `../colors/catppuccin-mocha.md` for the complete color palette used across all dotfiles.
 

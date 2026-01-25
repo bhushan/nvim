@@ -1,16 +1,6 @@
--- Catppuccin Mocha theme for lualine (see colors/catppuccin-mocha.md)
-local colors = {
-  base = '#1e1e2e',
-  surface0 = '#313244',
-  text = '#cdd6f4',
-  subtext0 = '#a6adc8',
-  blue = '#89b4fa',
-  green = '#a6e3a1',
-  mauve = '#cba6f7',
-  peach = '#fab387',
-  red = '#f38ba8',
-  yellow = '#f9e2af',
-}
+-- Catppuccin Mocha theme for lualine
+-- Uses shared color palette from core/colors.lua
+local colors = require 'core.colors'
 
 local custom_theme = {
   normal = {

@@ -32,6 +32,7 @@ return {
         notify = true,
         mason = true,
         which_key = true,
+        snacks = true,
         native_lsp = {
           enabled = true,
           underlines = {
