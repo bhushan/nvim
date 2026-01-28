@@ -73,68 +73,61 @@ require('snacks').setup {
   },
 }
 
--- Setup picker keybindings for performance
-local picker = require('snacks').picker
-
--- Additional powerful keybindings for new features
-local snacks = require 'snacks'
+-- Setup picker keybindings - use lazy loading to avoid eager requires
 
 -- LSP rename with Snacks integration
 vim.keymap.set('n', '<leader>rn', function()
-  snacks.rename.rename_file()
+  require('snacks').rename.rename_file()
 end, { desc = 'Rename File' })
 
 -- Enhanced picker sources
 vim.keymap.set('n', '<leader>fk', function()
-  picker.keymaps()
+  require('snacks').picker.keymaps()
 end, { desc = 'Find Keymaps' })
 
 -- LSP pickers
-
 vim.keymap.set('n', '<leader>ls', function()
-  picker.lsp_symbols()
+  require('snacks').picker.lsp_symbols()
 end, { desc = 'LSP Document Symbols' })
 
 vim.keymap.set('n', '<leader>lS', function()
-  picker.lsp_workspace_symbols()
+  require('snacks').picker.lsp_workspace_symbols()
 end, { desc = 'LSP Workspace Symbols' })
 
 -- Project management
 vim.keymap.set('n', '<leader>pp', function()
-  picker.projects()
+  require('snacks').picker.projects()
 end, { desc = 'Find Projects' })
 
 -- Fast file searching with smart defaults
 vim.keymap.set('n', '<C-p>', function()
-  picker.smart() -- Automatically chooses git_files or files
+  require('snacks').picker.smart() -- Automatically chooses git_files or files
 end, { desc = 'Smart File Search' })
 
 vim.keymap.set('n', '<C-p><C-p>', function()
-  picker.files { hidden = true }
+  require('snacks').picker.files { hidden = true }
 end, { desc = 'Search All Files' })
 
 vim.keymap.set('n', '<leader>tS', function()
-  picker.pick()
+  require('snacks').picker.pick()
 end, { desc = 'Show all pickers' })
 
 -- Optimized grep with word boundary
 vim.keymap.set('n', '<C-f>', function()
-  picker.grep()
+  require('snacks').picker.grep()
 end, { desc = 'Live Grep' })
 
 -- Terminal keybindings to match floaterm
-local terminal = require('snacks').terminal
 vim.keymap.set('n', '`', function()
-  terminal.toggle()
+  require('snacks').terminal.toggle()
 end, { desc = 'Toggle Terminal in normal mode', silent = true })
 vim.keymap.set('t', '`', function()
-  terminal.toggle()
+  require('snacks').terminal.toggle()
 end, { desc = 'Toggle Terminal in terminal mode', silent = true })
 
 -- Explorer keybinding to match neotree
-local explorer = require('snacks').explorer
 vim.keymap.set('n', '\\', function()
-  explorer.open()
+  require('snacks').explorer.open()
 end, { desc = 'Open Explorer', silent = true })
 
 -- Performance optimizations and explorer enhancements
@@ -239,19 +232,6 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
--- Git integration enhancements
-vim.api.nvim_create_autocmd({ 'BufReadPost', 'BufNewFile' }, {
-  callback = function()
-    -- Auto-enable git signs for git repositories
-    if vim.fn.isdirectory '.git' == 1 and package.loaded['snacks'] then
-      vim.defer_fn(function()
-        -- Trigger git status refresh
-        require('snacks').git.get_root()
-      end, 100)
-    end
-  end,
-})
-
 -- Performance: Lazy load heavy features
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LazyDone',
@@ -264,15 +244,18 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 -- Customize explorer highlight for hidden/ignored files
--- Make them less dimmed for better visibility
--- Uses shared color palette from core/colors.lua
-local colors = require 'core.colors'
-
+-- Defer color loading until first ColorScheme event
 local function set_snacks_highlights()
+  local colors = require 'core.colors'
   vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = colors.overlay1 })
   vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = colors.overlay1 })
 end
 
--- Set highlights on colorscheme change and initial load
-vim.api.nvim_create_autocmd('ColorScheme', { callback = set_snacks_highlights })
-set_snacks_highlights()
+-- Set highlights on colorscheme change only (VeryLazy will trigger colorscheme)
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = set_snacks_highlights,
+  once = false,
+})
+
+-- Defer initial highlight setup
+vim.schedule(set_snacks_highlights)

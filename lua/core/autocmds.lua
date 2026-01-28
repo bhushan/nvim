@@ -86,14 +86,6 @@ vim.api.nvim_create_autocmd('FileType', {
 --- Maintains balanced split layout across window dimension changes
 vim.api.nvim_command 'autocmd VimResized * wincmd ='
 
---- Enable Tree-sitter highlighting automatically for all file types
---- Provides superior syntax highlighting and code understanding
-vim.api.nvim_create_autocmd('FileType', {
-  callback = function()
-    pcall(vim.treesitter.start)
-  end,
-})
-
 --- Automatically insert PHP opening tag for new PHP files
 --- Adds '<?php' as the first line when creating a new PHP file
 --- Only triggers if the file is empty (new file)
