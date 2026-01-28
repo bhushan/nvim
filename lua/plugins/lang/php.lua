@@ -58,8 +58,9 @@ return {
     enabled = true,
     dependencies = {
       'MunifTanjim/nui.nvim',
+      'nvim-treesitter/nvim-treesitter',
     },
-    ft = 'php',
+    ft = { 'php' },
     keys = {
       {
         '<C-e>',
@@ -128,6 +129,13 @@ return {
       },
     },
     config = function()
+      local ok, ts = pcall(require, 'nvim-treesitter.parsers')
+
+      if not ok or not ts.has_parser 'php' then
+        vim.notify('phprefactoring.nvim disabled: Treesitter PHP parser not available', vim.log.levels.WARN)
+        return
+      end
+
       -- Initialize phprefactoring with enhanced UI configuration
       require('phprefactoring').setup {
         ui = {
