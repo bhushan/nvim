@@ -41,6 +41,7 @@ require('snacks').setup {
     enabled = true,
   },
   picker = {
+    ui_select = true, -- Enable vim.ui.select integration
     sources = {
       explorer = {
         hidden = true,

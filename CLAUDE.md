@@ -80,12 +80,17 @@ Snacks provides multiple UI utilities configured in `lua/plugins/ui/snacks.lua`:
 
 - **Dashboard** - Startup screen with ASCII art
 - **Picker** - Fuzzy finder (replaces telescope)
+- **vim.ui.select** - Custom select UI for plugins (enabled via `picker.ui_select = true`)
 - **Terminal** - Floating terminal
 - **Explorer** - File tree navigation
 - **Notifier** - Notification system
 - **Root detection** - Auto-change to project root on VimEnter
 
 Snacks has complex autocmd-based initialization to avoid performance issues.
+
+**Important Configuration**:
+- `picker.ui_select = true` must be set to enable vim.ui.select integration
+- This allows plugins like phprefactoring.nvim to use Snacks picker for selections
 
 ## Common Development Tasks
 
@@ -254,6 +259,9 @@ See `../colors/catppuccin-mocha.md` for the complete color palette used across a
 - **Laravel Pint** - PHP formatter (format-on-save enabled)
 - **Intelephense** - Primary PHP LSP with extensive Laravel stubs (includes redis, imagick, memcached)
 - **PHP Refactoring** (`<C-e>` in PHP files) - Extract method/variable, rename, change signature
+  - Uses phprefactoring.nvim with vim.ui.select integration via Snacks picker
+  - Keymap is properly scoped to PHP files using lazy.nvim's `keys` property
+  - Requires `picker.ui_select = true` in Snacks configuration
 - **Blade syntax** - Laravel Blade template support
 - **Composer integration** - Auto-loads vendor directories
 - **Tailwind CSS** - Class completion in Blade/PHP files

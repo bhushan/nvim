@@ -60,6 +60,73 @@ return {
       'MunifTanjim/nui.nvim',
     },
     ft = 'php',
+    keys = {
+      {
+        '<C-e>',
+        function()
+          -- Define comprehensive refactoring menu options
+          local menu_options = {
+            { label = 'Extract Variable', action = 'extract_variable' },
+            { label = 'Extract Method', action = 'extract_method' },
+            { label = 'Extract Class', action = 'extract_class' },
+            { label = 'Extract Interface', action = 'extract_interface' },
+            { label = 'Introduce Constant', action = 'introduce_constant' },
+            { label = 'Introduce Field', action = 'introduce_field' },
+            { label = 'Introduce Parameter', action = 'introduce_parameter' },
+            { label = 'Change Signature', action = 'change_signature' },
+            { label = 'Pull Members Up', action = 'pull_members_up' },
+            { label = 'Rename Variable', action = 'rename_variable' },
+            { label = 'Rename Method', action = 'rename_method' },
+            { label = 'Rename Class', action = 'rename_class' },
+          }
+
+          -- Use vim.ui.select with Snacks picker for filtering
+          vim.ui.select(menu_options, {
+            prompt = 'PHP Refactoring:',
+            format_item = function(item)
+              return item.label
+            end,
+          }, function(choice)
+            if not choice then
+              return
+            end
+
+            -- Execute the selected refactoring operation
+            local phprefactoring = require 'phprefactoring'
+            local action = choice.action
+
+            -- Map menu actions to phprefactoring methods
+            if action == 'extract_variable' then
+              phprefactoring.extract_variable()
+            elseif action == 'extract_method' then
+              phprefactoring.extract_method()
+            elseif action == 'extract_class' then
+              phprefactoring.extract_class()
+            elseif action == 'extract_interface' then
+              phprefactoring.extract_interface()
+            elseif action == 'introduce_constant' then
+              phprefactoring.introduce_constant()
+            elseif action == 'introduce_field' then
+              phprefactoring.introduce_field()
+            elseif action == 'introduce_parameter' then
+              phprefactoring.introduce_parameter()
+            elseif action == 'change_signature' then
+              phprefactoring.change_signature()
+            elseif action == 'pull_members_up' then
+              phprefactoring.pull_members_up()
+            elseif action == 'rename_variable' then
+              phprefactoring.rename_variable()
+            elseif action == 'rename_method' then
+              phprefactoring.rename_method()
+            elseif action == 'rename_class' then
+              phprefactoring.rename_class()
+            end
+          end)
+        end,
+        desc = 'Open PHP refactoring menu',
+        ft = 'php',
+      },
+    },
     config = function()
       -- Initialize phprefactoring with enhanced UI configuration
       require('phprefactoring').setup {
@@ -72,72 +139,6 @@ return {
           auto_format = true, -- Automatically format code after refactoring
         },
       }
-
-      -- Keymap: Ctrl+E to open refactoring menu
-      -- Only active in PHP files for context-appropriate functionality
-      vim.keymap.set('n', '<C-e>', function()
-        -- Define comprehensive refactoring menu options
-        local menu_options = {
-          { label = 'Extract Variable', action = 'extract_variable' },
-          { label = 'Extract Method', action = 'extract_method' },
-          { label = 'Extract Class', action = 'extract_class' },
-          { label = 'Extract Interface', action = 'extract_interface' },
-          { label = 'Introduce Constant', action = 'introduce_constant' },
-          { label = 'Introduce Field', action = 'introduce_field' },
-          { label = 'Introduce Parameter', action = 'introduce_parameter' },
-          { label = 'Change Signature', action = 'change_signature' },
-          { label = 'Pull Members Up', action = 'pull_members_up' },
-          { label = 'Rename Variable', action = 'rename_variable' },
-          { label = 'Rename Method', action = 'rename_method' },
-          { label = 'Rename Class', action = 'rename_class' },
-        }
-
-        -- Use vim.ui.select with telescope for filtering
-        vim.ui.select(menu_options, {
-          prompt = 'PHP Refactoring:',
-          format_item = function(item)
-            return item.label
-          end,
-        }, function(choice)
-          if not choice then
-            return
-          end
-
-          -- Execute the selected refactoring operation
-          local phprefactoring = require 'phprefactoring'
-          local action = choice.action
-
-          -- Map menu actions to phprefactoring methods
-          if action == 'extract_variable' then
-            phprefactoring.extract_variable()
-          elseif action == 'extract_method' then
-            phprefactoring.extract_method()
-          elseif action == 'extract_class' then
-            phprefactoring.extract_class()
-          elseif action == 'extract_interface' then
-            phprefactoring.extract_interface()
-          elseif action == 'introduce_constant' then
-            phprefactoring.introduce_constant()
-          elseif action == 'introduce_field' then
-            phprefactoring.introduce_field()
-          elseif action == 'introduce_parameter' then
-            phprefactoring.introduce_parameter()
-          elseif action == 'change_signature' then
-            phprefactoring.change_signature()
-          elseif action == 'pull_members_up' then
-            phprefactoring.pull_members_up()
-          elseif action == 'rename_variable' then
-            phprefactoring.rename_variable()
-          elseif action == 'rename_method' then
-            phprefactoring.rename_method()
-          elseif action == 'rename_class' then
-            phprefactoring.rename_class()
-          end
-        end)
-      end, {
-        desc = 'Open PHP refactoring menu',
-        buffer = true, -- Only apply to current buffer
-      })
     end,
   },
 }
