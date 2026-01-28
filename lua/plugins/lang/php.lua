@@ -51,9 +51,9 @@ return {
   --- - Change signature: Place cursor on method and choose "Change Signature"
   ---
   --- Dependencies: TreeSitter PHP parser (optional but recommended)
-  --- @see https://github.com/bhushan/phprefactoring.nvim
+  --- @see https://github.com/adibhanna/phprefactoring.nvim
   {
-    'bhushan/phprefactoring.nvim',
+    'adibhanna/phprefactoring.nvim',
     branch = 'main',
     enabled = true,
     dependencies = {
