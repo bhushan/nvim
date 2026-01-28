@@ -4,6 +4,18 @@ return {
   'nvim-treesitter/nvim-treesitter',
   build = ':TSUpdate',
   config = function()
+    require('nvim-treesitter').setup {
+      ensure_installed = {
+        'php',
+        'javascript',
+        'markdown',
+        'markdown_inline',
+        'json',
+        'css',
+      },
+      auto_install = true,
+    }
+
     -- Enable highlighting, indentation, and folding per filetype
     vim.api.nvim_create_autocmd('FileType', {
       callback = function(args)

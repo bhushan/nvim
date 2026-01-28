@@ -60,29 +60,35 @@ vim.api.nvim_create_autocmd('LspAttach', {
     --    See `:help CursorHold` for information about when this is executed
     --
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
+    -- OPTIMIZATION: Disable for large files (>1MB) to prevent slowdowns
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if client and client.server_capabilities.documentHighlightProvider then
-      local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
+      local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(event.buf))
+      local max_file_size = 1024 * 1024 -- 1MB
 
-      vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-        buffer = event.buf,
-        group = highlight_augroup,
-        callback = vim.lsp.buf.document_highlight,
-      })
+      if file_size < max_file_size then
+        local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 
-      vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-        buffer = event.buf,
-        group = highlight_augroup,
-        callback = vim.lsp.buf.clear_references,
-      })
+        vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+          buffer = event.buf,
+          group = highlight_augroup,
+          callback = vim.lsp.buf.document_highlight,
+        })
 
-      vim.api.nvim_create_autocmd('LspDetach', {
-        group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
-        callback = function(event2)
-          vim.lsp.buf.clear_references()
-          vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
-        end,
-      })
+        vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+          buffer = event.buf,
+          group = highlight_augroup,
+          callback = vim.lsp.buf.clear_references,
+        })
+
+        vim.api.nvim_create_autocmd('LspDetach', {
+          group = vim.api.nvim_create_augroup('lsp-detach', { clear = true }),
+          callback = function(event2)
+            vim.lsp.buf.clear_references()
+            vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
+          end,
+        })
+      end
     end
 
     -- The following autocommand is used to enable inlay hints in your
@@ -284,18 +290,39 @@ local servers = {
         },
         files = {
           maxSize = 5000000,
+          associations = { '*.php', '*.phtml' },
+          exclude = {
+            '**/.git/**',
+            '**/.svn/**',
+            '**/.hg/**',
+            '**/CVS/**',
+            '**/.DS_Store/**',
+            '**/node_modules/**',
+            '**/bower_components/**',
+            '**/vendor/**/tests/**',
+            '**/vendor/**/test/**',
+            '**/vendor/**/*Test.php',
+            '**/.history/**',
+            '**/storage/**',
+            '**/cache/**',
+          },
         },
         completion = {
           insertUseDeclaration = true,
           fullyQualifyGlobalConstantsAndFunctions = false,
           suggestObjectOperatorStaticMethods = true,
           maxItems = 100,
+          triggerParameterHints = true,
         },
         format = {
           enable = true,
         },
         environment = {
           includePaths = { 'vendor/' },
+          phpVersion = '8.4.0',
+        },
+        telemetry = {
+          enabled = false,
         },
       },
     },

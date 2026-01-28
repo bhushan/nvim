@@ -164,14 +164,28 @@ vim.api.nvim_create_autocmd('VimEnter', {
     end
 
     -- Auto-detect and change to project root (replaces vim-rooter)
+    -- PERFORMANCE: Cache root finding to avoid repeated directory traversal
+    local root_cache = {}
     local function find_root()
-      local patterns = { '.git', 'package.json', 'composer.json', 'Makefile', 'README.md', 'pyproject.toml', 'Cargo.toml' }
       local current_dir = vim.fn.expand '%:p:h'
 
+      -- PERFORMANCE: Check cache first
+      if root_cache[current_dir] then
+        return
+      end
+
+      local patterns = { '.git', 'composer.json', 'package.json', 'pyproject.toml', 'Cargo.toml' }
+
       local function find_pattern_upward(dir, patterns)
+        -- PERFORMANCE: Check cache for parent directories too
+        if root_cache[dir] then
+          return root_cache[dir]
+        end
+
         for _, pattern in ipairs(patterns) do
           local path = dir .. '/' .. pattern
           if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
+            root_cache[dir] = dir
             return dir
           end
         end
@@ -185,16 +199,25 @@ vim.api.nvim_create_autocmd('VimEnter', {
       local root = find_pattern_upward(current_dir, patterns)
       if root and root ~= vim.fn.getcwd() then
         vim.cmd('cd ' .. root)
+        -- PERFORMANCE: Mark all intermediate directories as cached
+        root_cache[current_dir] = root
       end
     end
 
-    -- Change to root when opening files
-    vim.api.nvim_create_autocmd({ 'BufEnter', 'BufNewFile' }, {
-      callback = find_root,
+    -- PERFORMANCE: Only run on first buffer enter, not every buffer switch
+    local root_found = false
+    vim.api.nvim_create_autocmd({ 'BufEnter' }, {
+      callback = function()
+        if not root_found then
+          find_root()
+          root_found = true
+        end
+      end,
     })
 
     -- Run once on startup
     find_root()
+    root_found = true
 
     -- Setup dashboard keybindings after startup
     if package.loaded['snacks'] and require('snacks').dashboard then

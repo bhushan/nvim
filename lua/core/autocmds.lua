@@ -155,3 +155,15 @@ api.nvim_create_autocmd('FileType', {
     vim.g.terraform_align = 1
   end,
 })
+
+--- Detach LSP from buffers marked with lsp_disabled
+--- Used by ftplugin files to skip LSP for minified files
+api.nvim_create_autocmd('LspAttach', {
+  callback = function(args)
+    if vim.b[args.buf].lsp_disabled then
+      vim.schedule(function()
+        vim.lsp.buf_detach_client(args.buf, args.data.client_id)
+      end)
+    end
+  end,
+})

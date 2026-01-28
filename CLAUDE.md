@@ -19,9 +19,10 @@ The init system follows a strict load order:
 1. `init.lua` - Entry point that loads core modules in sequence
 2. `core/options.lua` - Editor settings (must load first)
 3. `core/keymaps.lua` - Global keybindings
-4. `core/autocmds.lua` - Autocommands
+4. `core/autocmds.lua` - Autocommands (including LSP disable handler)
 5. `core/lazy.lua` - Plugin manager bootstrap and initialization
 6. `core/colors.lua` - Catppuccin Mocha color palette (loaded by UI plugins)
+7. `after/ftplugin/*.lua` - Per-filetype optimizations (auto-loaded by Neovim)
 
 ### Plugin Organization
 
@@ -197,12 +198,13 @@ Blade templates (Laravel) are detected via `ftdetect/blade.lua`, which sets file
 Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the native Neovim 0.11+ API.
 
 - Highlighting, indentation, and folding enabled per-filetype via autocmd
-- Parsers installed manually via `:TSInstall <lang>` (not on startup)
+- Core parsers auto-installed on startup: `php`, `javascript`, `markdown`, `markdown_inline`, `json`, `css`
+- Additional parsers auto-install on first use (`auto_install = true`)
 - `build = ':TSUpdate'` updates parsers when plugin updates
 
 **Commands**:
 
-- `:TSInstall <lang>` - Install a parser
+- `:TSInstall <lang>` - Manually install a parser
 - `:TSUpdate` - Update all parsers
 
 ## Performance Considerations
@@ -210,8 +212,14 @@ Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the nativ
 - Plugins use lazy loading with `event`, `ft`, `cmd`, or `keys` triggers
 - Heavy plugins load on `VeryLazy` or specific file types
 - Snacks features are initialized in VimEnter autocmd to avoid blocking startup
-- Tree-sitter parsers are NOT installed on startup (manual `:TSInstall` required)
+- Tree-sitter parsers are auto-installed on first use via `ensure_installed`
 - LSP servers only attach to relevant file types
+- **Per-filetype optimizations** (`after/ftplugin/*.lua`):
+  - PHP/JS/TS/JSON/CSS/Blade: regex syntax disabled, treesitter-only highlighting
+  - synmaxcol=300 to prevent slow line rendering
+  - Large files (>5K lines or >1MB): reduced undo, disabled folding/cursorline
+  - Huge files (>10K lines): treesitter stopped, line numbers disabled
+  - Minified files (*.min.js, *.min.css, *.bundle.js): LSP auto-detached
 
 ## Formatting Code
 
@@ -258,13 +266,17 @@ See `../colors/catppuccin-mocha.md` for the complete color palette used across a
 
 - **Laravel Pint** - PHP formatter (format-on-save enabled)
 - **Intelephense** - Primary PHP LSP with extensive Laravel stubs (includes redis, imagick, memcached)
+  - PHP 8.4 environment, auto-use declaration insertion
+  - Excludes node_modules, vendor tests, storage, cache directories
 - **PHP Refactoring** (`<C-e>` in PHP files) - Extract method/variable, rename, change signature
   - Uses phprefactoring.nvim with vim.ui.select integration via Snacks picker
-  - Keymap is properly scoped to PHP files using lazy.nvim's `keys` property
-  - Requires `picker.ui_select = true` in Snacks configuration
 - **Blade syntax** - Laravel Blade template support
 - **Composer integration** - Auto-loads vendor directories
 - **Tailwind CSS** - Class completion in Blade/PHP files
+- **Performance optimizations** (`after/ftplugin/php.lua`):
+  - Regex syntax disabled (treesitter only), synmaxcol=300
+  - Large files (>5K lines): reduced undo, disabled folding/cursorline/signcolumn
+  - Huge files (>10K lines): treesitter disabled, no line numbers
 
 ## JavaScript/TypeScript Features
 
@@ -273,6 +285,9 @@ See `../colors/catppuccin-mocha.md` for the complete color palette used across a
 - **Tailwind CSS** - Class completion with cva/cx regex support
 - **CSS LSP** - CSS/SCSS validation and completion
 - **ESLint** - Auto-fix on save
+- **Performance optimizations** (`after/ftplugin/javascript.lua`, `typescript.lua`):
+  - Same large/huge file handling as PHP
+  - Minified files (*.min.js, *.bundle.js) skip LSP entirely
 
 ## Diagnostics & Code Quality
 
