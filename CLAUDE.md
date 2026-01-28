@@ -189,31 +189,23 @@ Blade templates (Laravel) are detected via `ftdetect/blade.lua`, which sets file
 
 ## Tree-sitter Configuration
 
-Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the new nvim-treesitter API (requires Neovim 0.11+).
+Tree-sitter is configured in `lua/plugins/editor/treesitter.lua` using the native Neovim 0.11+ API.
 
-**Key Changes (2025 rewrite)**:
-
-- Plugin does NOT support lazy-loading (`lazy = false`)
-- Highlighting enabled via `vim.treesitter.start()` autocmd
-- Indentation via `vim.bo.indentexpr`
-- Folding via `vim.treesitter.foldexpr()`
-- `nvim-treesitter-textobjects` is deprecated and removed
-
-**Installed Parsers**: bash, c, css, diff, dockerfile, gitattributes, gitcommit, gitignore, git_rebase, graphql, html, java, javascript, jsdoc, json, lua, luadoc, markdown, markdown_inline, php, phpdoc, python, query, regex, scss, sql, toml, tsx, typescript, vim, vimdoc, vue, xml, yaml
+- Highlighting, indentation, and folding enabled per-filetype via autocmd
+- Parsers installed manually via `:TSInstall <lang>` (not on startup)
+- `build = ':TSUpdate'` updates parsers when plugin updates
 
 **Commands**:
 
 - `:TSInstall <lang>` - Install a parser
 - `:TSUpdate` - Update all parsers
-- `:TSUninstall <lang>` - Remove a parser
 
 ## Performance Considerations
 
 - Plugins use lazy loading with `event`, `ft`, `cmd`, or `keys` triggers
 - Heavy plugins load on `VeryLazy` or specific file types
 - Snacks features are initialized in VimEnter autocmd to avoid blocking startup
-- Tree-sitter loads eagerly (does not support lazy-loading in new API)
-- Tree-sitter parsers are installed asynchronously on startup (`:TSUpdate` to manually update)
+- Tree-sitter parsers are NOT installed on startup (manual `:TSInstall` required)
 - LSP servers only attach to relevant file types
 
 ## Formatting Code
