@@ -129,9 +129,10 @@ return {
       },
     },
     config = function()
-      local ok, ts = pcall(require, 'nvim-treesitter.parsers')
+      -- Check if PHP treesitter parser is available
+      local has_parser = pcall(vim.treesitter.get_parser, 0, 'php')
 
-      if not ok or not ts.has_parser 'php' then
+      if not has_parser then
         vim.notify('phprefactoring.nvim disabled: Treesitter PHP parser not available', vim.log.levels.WARN)
         return
       end
