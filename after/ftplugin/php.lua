@@ -12,7 +12,9 @@ bo.syntax = ''
 -- Large file detection
 local function is_large()
   local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(bufnr))
-  if ok and stats and stats.size > 1024 * 1024 then return true end
+  if ok and stats and stats.size > 1024 * 1024 then
+    return true
+  end
   return vim.api.nvim_buf_line_count(bufnr) > 5000
 end
 

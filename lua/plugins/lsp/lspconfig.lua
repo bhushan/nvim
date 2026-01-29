@@ -107,7 +107,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = { '*.ts', '*.tsx', '*.js', '*.jsx' },
   callback = function()
-    local clients = vim.lsp.get_clients({ bufnr = 0, name = 'vtsls' })
+    local clients = vim.lsp.get_clients { bufnr = 0, name = 'vtsls' }
     if #clients > 0 then
       local params = {
         command = '_typescript.organizeImports',

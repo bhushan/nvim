@@ -53,8 +53,7 @@ return {
   --- Dependencies: TreeSitter PHP parser (optional but recommended)
   --- @see https://github.com/adibhanna/phprefactoring.nvim
   {
-    'adibhanna/phprefactoring.nvim',
-    branch = 'main',
+    'bhushan/phprefactoring.nvim',
     enabled = true,
     dependencies = {
       'MunifTanjim/nui.nvim',

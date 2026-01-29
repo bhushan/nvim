@@ -1,2 +1,2 @@
 -- JSX optimizations
-dofile(vim.fn.stdpath('config') .. '/after/ftplugin/javascript.lua')
+dofile(vim.fn.stdpath 'config' .. '/after/ftplugin/javascript.lua')
