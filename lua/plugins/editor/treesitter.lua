@@ -1,20 +1,15 @@
--- Treesitter configuration (Neovim 0.11+)
-
 return {
   'nvim-treesitter/nvim-treesitter',
+  lazy = false,
   build = ':TSUpdate',
   config = function()
     require('nvim-treesitter').setup {
-      ensure_installed = {
-        'php',
-        'javascript',
-        'markdown',
-        'markdown_inline',
-        'json',
-        'css',
-      },
-      auto_install = true,
+      install_dir = vim.fn.stdpath 'data' .. '/site',
     }
+
+    -- Install parsers (non-blocking)
+    local parsers = { 'php', 'php_only', 'javascript', 'markdown', 'markdown_inline', 'json', 'css', 'lua', 'html' }
+    require('nvim-treesitter').install(parsers)
 
     -- Enable highlighting, indentation, and folding per filetype
     vim.api.nvim_create_autocmd('FileType', {
