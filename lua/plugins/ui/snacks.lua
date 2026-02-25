@@ -99,10 +99,10 @@ vim.keymap.set('n', '<leader>pp', function()
   require('snacks').picker.projects()
 end, { desc = 'Find Projects' })
 
--- Fast file searching with smart defaults
+-- Fast file searching scoped to current project
 vim.keymap.set('n', '<C-p>', function()
-  require('snacks').picker.smart() -- Automatically chooses git_files or files
-end, { desc = 'Smart File Search' })
+  require('snacks').picker.files()
+end, { desc = 'Find Files' })
 
 vim.keymap.set('n', '<C-p><C-p>', function()
   require('snacks').picker.files { hidden = true }
