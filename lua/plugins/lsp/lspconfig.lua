@@ -347,18 +347,13 @@ require('mason-tool-installer').setup {
   run_on_start = true,
 }
 
+-- servers table already has: vtsls, eslint, lua_ls, tailwindcss, cssls, intelephense
+-- Only add servers NOT in the servers table
 local ensure_installed = vim.tbl_keys(servers or {})
-
 vim.list_extend(ensure_installed, {
-  'lua_ls',
   'jsonls',
-  'vtsls',
-  'eslint',
-  'intelephense',
   'terraformls',
   'tflint',
-  'tailwindcss',
-  'cssls',
 })
 
 require('mason-lspconfig').setup {

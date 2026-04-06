@@ -33,6 +33,7 @@ return {
         mason = true,
         which_key = true,
         snacks = true,
+        noice = true,
         native_lsp = {
           enabled = true,
           underlines = {

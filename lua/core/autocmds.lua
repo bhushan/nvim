@@ -68,7 +68,7 @@ vim.api.nvim_create_autocmd('FileType', {
     'man',
     'notify',
     'qf',
-    'spectre_panel',
+    'grug-far',
     'startuptime',
     'tsplayground',
     'neotest-output',

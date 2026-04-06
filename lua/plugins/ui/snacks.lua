@@ -34,8 +34,7 @@ require('snacks').setup {
   },
 
   notifier = {
-    enabled = true,
-    timeout = 3000,
+    enabled = false, -- noice.nvim handles notifications
   },
   input = {
     enabled = true,
@@ -112,8 +111,8 @@ vim.keymap.set('n', '<leader>tS', function()
   require('snacks').picker.pick()
 end, { desc = 'Show all pickers' })
 
--- Optimized grep with word boundary
-vim.keymap.set('n', '<C-f>', function()
+-- Live grep (use leader key since C-f is now find-and-replace)
+vim.keymap.set('n', '<leader>fg', function()
   require('snacks').picker.grep()
 end, { desc = 'Live Grep' })
 
@@ -147,115 +146,35 @@ vim.api.nvim_create_autocmd('FileType', {
   end,
 })
 
--- Performance optimizations and enhanced autocmds
+-- Auto-detect and change to project root on startup
 vim.api.nvim_create_autocmd('VimEnter', {
   once = true,
   callback = function()
-    -- Enable word highlighting after startup for better performance
-    if package.loaded['snacks'] and require('snacks').words then
-      require('snacks').words.enable()
-    end
-
-    -- Auto-detect and change to project root (replaces vim-rooter)
-    -- PERFORMANCE: Cache root finding to avoid repeated directory traversal
-    local root_cache = {}
-    local function find_root()
-      local current_dir = vim.fn.expand '%:p:h'
-
-      -- PERFORMANCE: Check cache first
-      if root_cache[current_dir] then
-        return
-      end
-
-      local patterns = { '.git', 'composer.json', 'package.json', 'pyproject.toml', 'Cargo.toml' }
-
-      local function find_pattern_upward(dir, patterns)
-        -- PERFORMANCE: Check cache for parent directories too
-        if root_cache[dir] then
-          return root_cache[dir]
-        end
-
-        for _, pattern in ipairs(patterns) do
-          local path = dir .. '/' .. pattern
-          if vim.fn.filereadable(path) == 1 or vim.fn.isdirectory(path) == 1 then
-            root_cache[dir] = dir
-            return dir
+    local patterns = { '.git', 'composer.json', 'package.json', 'pyproject.toml', 'Cargo.toml' }
+    local dir = vim.fn.expand '%:p:h'
+    while dir ~= '/' do
+      for _, pattern in ipairs(patterns) do
+        if vim.uv.fs_stat(dir .. '/' .. pattern) then
+          if dir ~= vim.fn.getcwd() then
+            vim.cmd('cd ' .. dir)
           end
+          return
         end
-        local parent = vim.fn.fnamemodify(dir, ':h')
-        if parent == dir then
-          return nil
-        end
-        return find_pattern_upward(parent, patterns)
       end
-
-      local root = find_pattern_upward(current_dir, patterns)
-      if root and root ~= vim.fn.getcwd() then
-        vim.cmd('cd ' .. root)
-        -- PERFORMANCE: Mark all intermediate directories as cached
-        root_cache[current_dir] = root
-      end
-    end
-
-    -- PERFORMANCE: Only run on first buffer enter, not every buffer switch
-    local root_found = false
-    vim.api.nvim_create_autocmd({ 'BufEnter' }, {
-      callback = function()
-        if not root_found then
-          find_root()
-          root_found = true
-        end
-      end,
-    })
-
-    -- Run once on startup
-    find_root()
-    root_found = true
-
-    -- Setup dashboard keybindings after startup
-    if package.loaded['snacks'] and require('snacks').dashboard then
-      vim.keymap.set('n', '<leader>D', function()
-        require('snacks').dashboard()
-      end, { desc = 'Dashboard' })
+      dir = vim.fn.fnamemodify(dir, ':h')
     end
   end,
 })
 
--- Enhanced notification handling
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'VeryLazy',
-  callback = function()
-    -- Replace default vim.notify with Snacks notifier
-    if package.loaded['snacks'] and require('snacks').notifier then
-      vim.notify = require('snacks').notifier.notify
-    end
-  end,
-})
-
--- Performance: Lazy load heavy features
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'LazyDone',
-  callback = function()
-    -- Enable animations after all plugins are loaded
-    if package.loaded['snacks'] then
-      vim.g.snacks_animate = true
-    end
-  end,
-})
+vim.keymap.set('n', '<leader>D', function()
+  require('snacks').dashboard()
+end, { desc = 'Dashboard' })
 
 -- Customize explorer highlight for hidden/ignored files
--- Defer color loading until first ColorScheme event
-local function set_snacks_highlights()
-  local colors = require 'core.colors'
-  vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = colors.overlay1 })
-  vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = colors.overlay1 })
-end
-
--- Set highlights on colorscheme change only (VeryLazy will trigger colorscheme)
 vim.api.nvim_create_autocmd('ColorScheme', {
-  callback = set_snacks_highlights,
-  once = false,
+  callback = function()
+    local colors = require 'core.colors'
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = colors.overlay1 })
+    vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = colors.overlay1 })
+  end,
 })
-
--- Defer initial highlight setup
-vim.schedule(set_snacks_highlights)

@@ -228,6 +228,12 @@ return {
   --- Present markdown files as slides
   { import = 'plugins.editor.present' },
 
+  --- Floating cmdline and message UI
+  { import = 'plugins.ui.noice' },
+
+  --- Find and replace with floating UI
+  { import = 'plugins.ui.grug-far' },
+
   --- Colorscheme configuration
   { import = 'plugins.ui.theme' },
 
