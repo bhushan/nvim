@@ -62,6 +62,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- When you move your cursor, the highlights will be cleared (the second autocommand).
     -- OPTIMIZATION: Disable for large files (>1MB) to prevent slowdowns
     local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+    -- Attach nvim-navic for breadcrumbs
+    if client and client.server_capabilities.documentSymbolProvider then
+      local navic_ok, navic = pcall(require, 'nvim-navic')
+      if navic_ok then
+        navic.attach(client, event.buf)
+      end
+    end
+
     if client and client.server_capabilities.documentHighlightProvider then
       local file_size = vim.fn.getfsize(vim.api.nvim_buf_get_name(event.buf))
       local max_file_size = 1024 * 1024 -- 1MB

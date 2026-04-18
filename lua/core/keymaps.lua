@@ -87,3 +87,14 @@ vim.keymap.set('n', '<leader>tv', '<cmd>!terraform validate<CR>', { desc = 'Terr
 vim.keymap.set('n', '<leader>tp', '<cmd>!terraform plan<CR>', { desc = 'Terraform plan' })
 vim.keymap.set('n', '<leader>ta', '<cmd>!terraform apply<CR>', { desc = 'Terraform apply' })
 vim.keymap.set('n', '<leader>tA', '<cmd>!terraform apply -auto-approve<CR>', { desc = 'Terraform apply auto-approve' })
+
+--- Buffer navigation with Tab/Shift-Tab
+--- Quick switching between open buffers visible in bufferline
+vim.keymap.set('n', '<Tab>', '<cmd>bnext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<S-Tab>', '<cmd>bprevious<CR>', { desc = 'Previous buffer' })
+
+--- Buffer management
+vim.keymap.set('n', '<leader>bp', '<cmd>BufferLineTogglePin<CR>', { desc = '[B]uffer [p]in toggle' })
+vim.keymap.set('n', '<leader>bc', '<cmd>BufferLineCloseOthers<CR>', { desc = '[B]uffer [c]lose others' })
+vim.keymap.set('n', '<leader>bl', '<cmd>BufferLineCloseLeft<CR>', { desc = '[B]uffer close [l]eft' })
+vim.keymap.set('n', '<leader>br', '<cmd>BufferLineCloseRight<CR>', { desc = '[B]uffer close [r]ight' })

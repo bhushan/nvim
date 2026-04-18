@@ -1,30 +1,31 @@
--- Catppuccin Mocha theme for lualine
+-- Arctic Blue lualine — stream-optimized statusline
 -- Uses shared color palette from core/colors.lua
 local colors = require 'core.colors'
+local arctic = colors.arctic
 
 local custom_theme = {
   normal = {
-    a = { bg = colors.blue, fg = colors.base, gui = 'bold' },
+    a = { bg = arctic.ice, fg = colors.base, gui = 'bold' },
     b = { bg = colors.surface0, fg = colors.text },
     c = { bg = colors.base, fg = colors.subtext0 },
   },
   insert = {
-    a = { bg = colors.green, fg = colors.base, gui = 'bold' },
+    a = { bg = arctic.mint, fg = colors.base, gui = 'bold' },
     b = { bg = colors.surface0, fg = colors.text },
     c = { bg = colors.base, fg = colors.subtext0 },
   },
   visual = {
-    a = { bg = colors.mauve, fg = colors.base, gui = 'bold' },
+    a = { bg = arctic.purple, fg = colors.base, gui = 'bold' },
     b = { bg = colors.surface0, fg = colors.text },
     c = { bg = colors.base, fg = colors.subtext0 },
   },
   replace = {
-    a = { bg = colors.red, fg = colors.base, gui = 'bold' },
+    a = { bg = arctic.rose, fg = colors.base, gui = 'bold' },
     b = { bg = colors.surface0, fg = colors.text },
     c = { bg = colors.base, fg = colors.subtext0 },
   },
   command = {
-    a = { bg = colors.peach, fg = colors.base, gui = 'bold' },
+    a = { bg = arctic.amber, fg = colors.base, gui = 'bold' },
     b = { bg = colors.surface0, fg = colors.text },
     c = { bg = colors.base, fg = colors.subtext0 },
   },
@@ -48,10 +49,6 @@ require('lualine').setup {
     },
     lualine_b = {
       'branch',
-      function()
-        return tostring(#vim.lsp.get_clients())
-      end,
-
       {
         'diff',
         symbols = { added = '  ', modified = '  ', removed = '  ' },
@@ -65,10 +62,36 @@ require('lualine').setup {
       'filename',
     },
     lualine_x = {
+      -- Macro recording indicator (visible to stream viewers)
+      {
+        function()
+          local reg = vim.fn.reg_recording()
+          if reg ~= '' then
+            return '󰑋 REC @' .. reg
+          end
+          return ''
+        end,
+        color = { fg = arctic.rose, gui = 'bold' },
+      },
+      -- Active LSP server name
+      {
+        function()
+          local clients = vim.lsp.get_clients { bufnr = 0 }
+          if #clients == 0 then
+            return ''
+          end
+          local names = {}
+          for _, client in ipairs(clients) do
+            table.insert(names, client.name)
+          end
+          return '  ' .. table.concat(names, ', ')
+        end,
+        color = { fg = arctic.teal },
+      },
       {
         require('lazy.status').updates,
         cond = require('lazy.status').has_updates,
-        color = { fg = colors.peach },
+        color = { fg = arctic.amber },
       },
     },
     lualine_y = {

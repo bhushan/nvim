@@ -3,32 +3,35 @@ require('snacks').setup {
     enabled = true,
     sections = {
       { section = 'header' },
-      { section = 'keys', gap = 1 },
-      -- { icon = ' ', title = 'Projects', section = 'projects', indent = 2, limit = 8 },
+      -- { section = 'keys', gap = 1 },
+      -- { section = 'recent_files', limit = 5, indent = 2, padding = 1 },
       { section = 'startup' },
     },
     preset = {
       header = [[
-    ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗ 
-    ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝ 
+  ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗███████╗██████╗ ██╗███╗   ██╗ ██████╗
+  ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝██╔════╝██╔══██╗██║████╗  ██║██╔════╝
     █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗  █████╗  ██████╔╝██║██╔██╗ ██║██║  ███╗
     ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝  ██╔══╝  ██╔══██╗██║██║╚██╗██║██║   ██║
     ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗███████╗██║  ██║██║██║ ╚████║╚██████╔╝
-    ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-                                                                                            
-    ██╗███████╗    ██████╗ ███████╗ █████╗ ██╗   ██╗████████╗██╗███████╗██╗   ██╗██╗      
-    ██║██╔════╝    ██╔══██╗██╔════╝██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██║   ██║██║      
-    ██║███████╗    ██████╔╝█████╗  ███████║██║   ██║   ██║   ██║█████╗  ██║   ██║██║      
-    ██║╚════██║    ██╔══██╗██╔══╝  ██╔══██║██║   ██║   ██║   ██║██╔══╝  ██║   ██║██║      
-    ██║███████║    ██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ██║██║     ╚██████╔╝███████╗ 
-    ╚═╝╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚═╝      ╚═════╝ ╚══════╝ 
-                                                                                            
+    ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝
+
+    ██╗███████╗    ██████╗ ███████╗ █████╗ ██╗   ██╗████████╗██╗███████╗██╗   ██╗██╗
+    ██║██╔════╝    ██╔══██╗██╔════╝██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██║   ██║██║
+    ██║███████╗    ██████╔╝█████╗  ███████║██║   ██║   ██║   ██║█████╗  ██║   ██║██║
+    ██║╚════██║    ██╔══██╗██╔══╝  ██╔══██║██║   ██║   ██║   ██║██╔══╝  ██║   ██║██║
+        ██║███████║    ██████╔╝███████╗██║  ██║╚██████╔╝   ██║   ██║██║     ╚██████╔╝███████╗
+        ╚═╝╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═╝ ╚═════╝    ╚═╝   ╚═╝╚═╝      ╚═════╝ ╚══════╝
+
                                         ~ rb
       ]],
       keys = {
-        { icon = ' ', key = 'f', desc = 'Find File', action = ':lua Snacks.picker.files()' },
-        { icon = ' ', key = 'g', desc = 'Find Text', action = ':lua Snacks.picker.grep()' },
-        { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
+        -- { icon = ' ', key = 'f', desc = 'Find File', action = ':lua Snacks.picker.files()' },
+        -- { icon = ' ', key = 'r', desc = 'Recent Files', action = ':lua Snacks.picker.recent()' },
+        -- { icon = '󰺮 ', key = 'g', desc = 'Live Grep', action = ':lua Snacks.picker.grep()' },
+        -- { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+        -- { icon = ' ', key = 'p', desc = 'Projects', action = ':lua Snacks.picker.projects()' },
+        -- { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
       },
     },
   },
@@ -40,7 +43,7 @@ require('snacks').setup {
     enabled = true,
   },
   picker = {
-    ui_select = true, -- Enable vim.ui.select integration
+    ui_select = true,
     sources = {
       explorer = {
         hidden = true,
@@ -48,7 +51,7 @@ require('snacks').setup {
         layout = {
           layout = {
             width = 0.4,
-            position = 'right', -- Note: layout twice
+            position = 'right',
           },
         },
       },
@@ -69,6 +72,16 @@ require('snacks').setup {
   explorer = {
     enabled = true,
     replace_netrw = true,
+  },
+
+  zen = {
+    enabled = true,
+    toggles = {
+      dim = false,
+    },
+    win = {
+      backdrop = { transparent = false },
+    },
   },
 }
 
@@ -170,11 +183,27 @@ vim.keymap.set('n', '<leader>D', function()
   require('snacks').dashboard()
 end, { desc = 'Dashboard' })
 
+vim.keymap.set('n', '<leader>z', function()
+  require('snacks').zen()
+end, { desc = 'Zen Mode' })
+
 -- Customize explorer highlight for hidden/ignored files
 vim.api.nvim_create_autocmd('ColorScheme', {
   callback = function()
     local colors = require 'core.colors'
     vim.api.nvim_set_hl(0, 'SnacksPickerPathHidden', { fg = colors.overlay1 })
     vim.api.nvim_set_hl(0, 'SnacksPickerPathIgnored', { fg = colors.overlay1 })
+  end,
+})
+
+-- Arctic Blue dashboard highlights
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = function()
+    local arctic = require('core.colors').arctic
+    vim.api.nvim_set_hl(0, 'SnacksDashboardHeader', { fg = arctic.ice })
+    vim.api.nvim_set_hl(0, 'SnacksDashboardKey', { fg = arctic.amber, bold = true })
+    vim.api.nvim_set_hl(0, 'SnacksDashboardDesc', { fg = '#a9b1d6' })
+    vim.api.nvim_set_hl(0, 'SnacksDashboardIcon', { fg = arctic.teal })
+    vim.api.nvim_set_hl(0, 'SnacksDashboardFooter', { fg = arctic.comment })
   end,
 })

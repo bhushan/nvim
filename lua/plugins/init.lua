@@ -237,6 +237,15 @@ return {
   --- Colorscheme configuration
   { import = 'plugins.ui.theme' },
 
+  --- Animations and indent visualization
+  { import = 'plugins.ui.animate' },
+
+  --- Buffer tabs
+  { import = 'plugins.ui.bufferline' },
+
+  --- Winbar breadcrumbs
+  { import = 'plugins.ui.barbecue' },
+
   --- PHP-specific tooling and enhancements
   { import = 'plugins.lang.php' },
 

@@ -37,4 +37,18 @@ M.pink = '#f5c2e7'
 M.flamingo = '#f2cdcd'
 M.rosewater = '#f5e0dc'
 
+-- Arctic Blue accent palette (custom overrides for stream theme)
+M.arctic = {
+  ice = '#7dcfff',       -- keywords: local, return, function, if, for
+  purple = '#bb9af7',    -- functions, method calls
+  amber = '#e0af68',     -- strings
+  teal = '#73daca',      -- types, classes
+  mint = '#9ece6a',      -- built-in functions, require
+  rose = '#f7768e',      -- constants, numbers, booleans
+  comment = '#7a80a3',   -- comments (brighter than default overlay0)
+  cursorline = '#292e42', -- cursor line background
+  visual = '#33467c',    -- visual selection
+  gutter = '#3b4261',    -- line numbers (active)
+}
+
 return M

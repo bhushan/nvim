@@ -74,9 +74,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 --- Sign column configuration
---- Always show sign column with width of 2 to prevent layout shift
+--- Always show sign column with width of 1 to prevent layout shift
 --- Displays diagnostic signs, git changes, breakpoints, etc.
-vim.opt.signcolumn = 'yes:2'
+vim.opt.signcolumn = 'yes:1'
 
 --- Faster CursorHold and swap file write
 --- Reduces delay for autocommands and improves responsiveness
@@ -118,15 +118,18 @@ vim.opt.sidescrolloff = 8
 --- Prevents accidental data loss by asking before discarding changes
 vim.opt.confirm = true
 
+--- Limit completion popup height
+--- Prevents popup from overwhelming the screen on stream
+vim.opt.pumheight = 12
+
 --- Fold configuration
 --- Keep all folds open by default and disable automatic folding
 vim.opt.foldenable = false
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
 
---- Diagnostic sign configuration
---- Custom icons for error, warning, info, and hint diagnostics
---- Uses Nerd Font icons for visual clarity
+--- Diagnostic configuration with Arctic Blue colors
+--- Custom icons and virtual text for stream readability
 vim.diagnostic.config {
   signs = {
     text = {
@@ -136,4 +139,13 @@ vim.diagnostic.config {
       [vim.diagnostic.severity.HINT] = '󰌵',
     },
   },
+  virtual_text = {
+    spacing = 4,
+    prefix = '●',
+  },
+  float = {
+    border = 'rounded',
+    source = true,
+  },
+  severity_sort = true,
 }
