@@ -15,8 +15,7 @@ return {
           timing = animate.gen_timing.linear { duration = 80, unit = 'total' },
         },
         scroll = {
-          enable = true,
-          timing = animate.gen_timing.linear { duration = 100, unit = 'total' },
+          enable = false, -- disabled: conflicts with <C-d>/<C-u>zz keymaps
         },
         resize = {
           enable = true,

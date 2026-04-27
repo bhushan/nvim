@@ -70,9 +70,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
---- Close current buffer with Ctrl-w
---- Deletes buffer without closing window
-vim.keymap.set('n', '<C-w>', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
+--- Close current buffer with leader-w
+--- Deletes buffer without closing window (avoids overriding <C-w> window prefix)
+vim.keymap.set('n', '<leader>w', '<cmd>bdelete<CR>', { desc = 'Close current buffer' })
 
 --- Diagnostic keybindings
 --- View and navigate LSP diagnostics (errors, warnings, etc.)
