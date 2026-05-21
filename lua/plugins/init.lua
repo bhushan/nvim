@@ -168,20 +168,6 @@ return {
     end,
   },
 
-  --- Test runner integration
-  --- Run tests from within Neovim for multiple frameworks
-  --- Supports PHPUnit, Jest, pytest, RSpec, and more
-  {
-    'vim-test/vim-test',
-    config = function()
-      vim.keymap.set('n', '<C-t>', ':TestNearest<CR>', { desc = '[R]un [n]earest test' })
-      vim.keymap.set('n', '<C-S-t>', ':TestLast<CR>', { desc = '[R]un [l]ast test' })
-      vim.keymap.set('n', '<Leader>rf', ':TestFile<CR>', { desc = '[R]un test [f]ile' })
-      vim.keymap.set('n', '<Leader>rs', ':TestSuite<CR>', { desc = '[R]un test [s]uite' })
-      vim.keymap.set('n', '<Leader>rv', ':TestVisit<CR>', { desc = '[R]un [v]isit test' })
-    end,
-  },
-
   --- Fast and customizable statusline
   --- Displays mode, file info, git status, LSP diagnostics, location
   {

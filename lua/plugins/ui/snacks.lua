@@ -3,8 +3,6 @@ require('snacks').setup {
     enabled = true,
     sections = {
       { section = 'header' },
-      -- { section = 'keys', gap = 1 },
-      -- { section = 'recent_files', limit = 5, indent = 2, padding = 1 },
       { section = 'startup' },
     },
     preset = {
@@ -25,14 +23,6 @@ require('snacks').setup {
 
                                         ~ rb
       ]],
-      keys = {
-        -- { icon = ' ', key = 'f', desc = 'Find File', action = ':lua Snacks.picker.files()' },
-        -- { icon = ' ', key = 'r', desc = 'Recent Files', action = ':lua Snacks.picker.recent()' },
-        -- { icon = '󰺮 ', key = 'g', desc = 'Live Grep', action = ':lua Snacks.picker.grep()' },
-        -- { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
-        -- { icon = ' ', key = 'p', desc = 'Projects', action = ':lua Snacks.picker.projects()' },
-        -- { icon = ' ', key = 'q', desc = 'Quit', action = ':qa' },
-      },
     },
   },
 
