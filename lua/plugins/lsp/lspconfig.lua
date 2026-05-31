@@ -128,7 +128,12 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 })
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+-- Fetch capabilities from blink.cmp if available
+local has_blink, blink = pcall(require, 'blink.cmp')
+if has_blink then
+  capabilities = blink.get_lsp_capabilities(capabilities)
+end
 
 -- Set position encoding to utf-16 to avoid warning
 capabilities.general = capabilities.general or {}
@@ -224,6 +229,14 @@ local servers = {
       },
     },
     filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact', 'vue', 'blade', 'php' },
+  },
+
+  html = {
+    filetypes = { 'html', 'blade', 'javascriptreact', 'typescriptreact' },
+  },
+
+  emmet_language_server = {
+    filetypes = { 'html', 'css', 'scss', 'javascriptreact', 'typescriptreact', 'blade', 'php' },
   },
 
   cssls = {
@@ -351,6 +364,7 @@ require('mason-tool-installer').setup {
   ensure_installed = {
     'prettierd', -- Formatter for JS/TS/HTML/CSS/JSON/Markdown
     'js-debug-adapter', -- Debug adapter for JavaScript/TypeScript
+    'tflint', -- Terraform linter
   },
   auto_update = false,
   run_on_start = true,
@@ -362,7 +376,7 @@ local ensure_installed = vim.tbl_keys(servers or {})
 vim.list_extend(ensure_installed, {
   'jsonls',
   'terraformls',
-  'tflint',
+  'emmet_language_server',
 })
 
 require('mason-lspconfig').setup {

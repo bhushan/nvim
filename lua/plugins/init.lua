@@ -7,27 +7,38 @@ return {
   -- Simple plugins that don't need configuration files
 
   --- Surround text objects with quotes, brackets, tags
-  --- Provides mappings like ys, cs, ds for quick text wrapping
-  --- Examples: ysiw" (wrap word in quotes), cs"' (change " to ')
-  { 'tpope/vim-surround' },
+  --- Modern lua alternative to vim-surround
+  {
+    'echasnovski/mini.surround',
+    event = 'VeryLazy',
+    opts = {
+      mappings = {
+        add = 'ys',
+        delete = 'ds',
+        find = '',
+        find_left = '',
+        highlight = '',
+        replace = 'cs',
+        update_n_lines = '',
+      },
+    },
+  },
 
   --- Bracket mappings for common operations
-  --- Adds pairs of handy bracket mappings like ]b, [b for buffer navigation
-  --- [q/]q for quickfix, [a/]a for args, and many more
-  { 'tpope/vim-unimpaired' },
+  --- Modern lua alternative to vim-unimpaired
+  {
+    'echasnovski/mini.bracketed',
+    event = 'VeryLazy',
+    opts = {},
+  },
 
-  --- Automatically create parent directories when saving files
-  --- Prevents "directory does not exist" errors during file save
-  { 'jessarcher/vim-heritage' },
-
-  --- Context-aware paste with auto-indentation
-  --- Intelligently adjusts indentation when pasting code blocks
-  { 'sickill/vim-pasta' },
-
-  --- Fast and extensible commenting
-  --- Toggle comments with gcc (line) or gc (visual mode)
-  --- Language-aware comment styles via Tree-sitter
-  { 'numToStr/Comment.nvim', opts = {} },
+  --- Automatically close brackets, quotes, etc.
+  --- Lightweight alternative to nvim-autopairs
+  {
+    'echasnovski/mini.pairs',
+    event = 'VeryLazy',
+    opts = {},
+  },
 
   --- Seamless tmux and Neovim split navigation
   --- Use Ctrl+hjkl to navigate between vim splits and tmux panes
@@ -62,44 +73,6 @@ return {
         lsp_fallback = true,
       },
     },
-  },
-
-  --- Completion engine with snippet support
-  --- Provides intelligent autocomplete from LSP, buffer, path, and snippets
-  --- Integrates with LuaSnip for snippet expansion
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      --- Snippet engine with regex support
-      --- Loads snippets from snipmate format
-      --- Custom snippets directory: ~/.config/nvim/snippets
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          -- Build Step is needed for regex support in snippets.
-          -- This step is not supported in many windows environments.
-          -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-        config = function()
-          require('luasnip.loaders.from_snipmate').lazy_load()
-          require('luasnip.loaders.from_snipmate').lazy_load {
-            paths = { vim.fn.stdpath 'config' .. '/snippets' },
-          }
-        end,
-      },
-      'saadparwaiz1/cmp_luasnip', --- LuaSnip completion source
-      'hrsh7th/cmp-nvim-lsp', --- LSP completion source
-      'hrsh7th/cmp-path', --- File path completion
-      'hrsh7th/cmp-buffer', --- Buffer text completion
-    },
-    config = function()
-      require 'plugins/editor/cmp'
-    end,
   },
 
   --- Language Server Protocol configuration
@@ -208,14 +181,49 @@ return {
     },
   },
 
-  --- Auto-close and auto-pair brackets, quotes, tags
-  { import = 'plugins.editor.autopairs' },
+  --- Better text-objects for React/HTML/PHP
+  --- Enhances a/i text-objects with more context-aware targets
+  {
+    'echasnovski/mini.ai',
+    event = 'VeryLazy',
+    opts = {},
+  },
 
-  --- Present markdown files as slides
-  { import = 'plugins.editor.present' },
+  --- Fast Rust-based completion engine
+  {
+    'saghen/blink.cmp',
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = '*',
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<Tab>'] = { 'select_next', 'snippet_forward', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'snippet_backward', 'fallback' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono',
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      signature = { enabled = true },
+    },
+  },
 
-  --- Floating cmdline and message UI
-  { import = 'plugins.ui.noice' },
+  --- Fast file system navigation and editing
+  {
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    cmd = 'Oil',
+    keys = {
+      { '-', '<cmd>Oil<cr>', desc = 'Open parent directory' },
+    },
+    opts = {
+      default_file_explorer = false,
+      columns = { 'icon' },
+    },
+  },
 
   --- Find and replace with floating UI
   { import = 'plugins.ui.grug-far' },
@@ -223,14 +231,8 @@ return {
   --- Colorscheme configuration
   { import = 'plugins.ui.theme' },
 
-  --- Animations and indent visualization
-  { import = 'plugins.ui.animate' },
-
   --- Buffer tabs
   { import = 'plugins.ui.bufferline' },
-
-  --- Winbar breadcrumbs
-  { import = 'plugins.ui.barbecue' },
 
   --- PHP-specific tooling and enhancements
   { import = 'plugins.lang.php' },

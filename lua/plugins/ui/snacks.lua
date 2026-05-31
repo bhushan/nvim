@@ -27,9 +27,16 @@ require('snacks').setup {
   },
 
   notifier = {
-    enabled = false, -- noice.nvim handles notifications
+    enabled = true,
+    timeout = 3000,
   },
   input = {
+    enabled = true,
+  },
+  words = {
+    enabled = true,
+  },
+  winbar = {
     enabled = true,
   },
   picker = {
@@ -56,6 +63,20 @@ require('snacks').setup {
   },
 
   scroll = {
+    enabled = true,
+  },
+
+  indent = {
+    enabled = true,
+    indent = {
+      char = '│',
+    },
+    scope = {
+      char = '│',
+    },
+  },
+
+  lazygit = {
     enabled = true,
   },
 
@@ -176,6 +197,10 @@ end, { desc = 'Dashboard' })
 vim.keymap.set('n', '<leader>z', function()
   require('snacks').zen()
 end, { desc = 'Zen Mode' })
+
+vim.keymap.set('n', '<leader>gg', function()
+  require('snacks').lazygit()
+end, { desc = 'Lazygit' })
 
 -- Customize explorer highlight for hidden/ignored files
 vim.api.nvim_create_autocmd('ColorScheme', {

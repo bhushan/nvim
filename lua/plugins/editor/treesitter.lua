@@ -9,8 +9,19 @@ return {
       }
 
       -- Install parsers (non-blocking)
-      local parsers = { 'php', 'php_only', 'javascript', 'markdown', 'markdown_inline', 'json', 'css', 'lua', 'html' }
+      local parsers = { 'php', 'php_only', 'blade', 'javascript', 'typescript', 'tsx', 'markdown', 'markdown_inline', 'json', 'css', 'lua', 'html' }
       require('nvim-treesitter').install(parsers)
+
+      -- Blade parser configuration
+      local parser_config = require 'nvim-treesitter.parsers'
+      parser_config.blade = {
+        install_info = {
+          url = 'https://github.com/EmranMR/tree-sitter-blade',
+          files = { 'src/parser.c' },
+          branch = 'main',
+        },
+        filetype = 'blade',
+      }
 
       -- Enable highlighting, indentation, and folding per filetype
       vim.api.nvim_create_autocmd('FileType', {

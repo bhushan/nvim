@@ -139,7 +139,7 @@ return {
         }
       end,
       integrations = {
-        cmp = true,
+        blink_cmp = true,
         gitsigns = true,
         treesitter = true,
         notify = true,
@@ -147,10 +147,6 @@ return {
         which_key = true,
         snacks = true,
         noice = true,
-        indent_blankline = {
-          enabled = true,
-          scope_color = 'teal',
-        },
         barbecue = {
           dim_dirname = true,
           bold_basename = true,
