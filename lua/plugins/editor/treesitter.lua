@@ -9,7 +9,30 @@ return {
       }
 
       -- Install parsers (non-blocking)
-      local parsers = { 'php', 'php_only', 'blade', 'javascript', 'typescript', 'tsx', 'markdown', 'markdown_inline', 'json', 'css', 'lua', 'html' }
+      local parsers = {
+        'php',
+        'php_only',
+        'blade',
+        'javascript',
+        'typescript',
+        'tsx',
+        'go',
+        'gomod',
+        'gosum',
+        'gowork',
+        'python',
+        'markdown',
+        'markdown_inline',
+        'json',
+        'css',
+        'lua',
+        'html',
+        'yaml',
+        'toml',
+        'bash',
+        'dockerfile',
+        'sql',
+      }
       require('nvim-treesitter').install(parsers)
 
       -- Blade parser configuration

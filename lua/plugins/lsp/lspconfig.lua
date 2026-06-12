@@ -246,6 +246,60 @@ local servers = {
     },
   },
 
+  gopls = {
+    settings = {
+      gopls = {
+        gofumpt = true,
+        staticcheck = true,
+        completeUnimported = true,
+        usePlaceholders = true,
+        semanticTokens = true,
+        directoryFilters = { '-.git', '-node_modules' },
+        analyses = {
+          unusedparams = true,
+          unusedwrite = true,
+          nilness = true,
+          useany = true,
+        },
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
+      },
+    },
+  },
+
+  -- Python type checking, completion, and inlay hints
+  basedpyright = {
+    settings = {
+      basedpyright = {
+        -- Ruff owns import organizing and linting
+        disableOrganizeImports = true,
+        analysis = {
+          typeCheckingMode = 'standard',
+          autoImportCompletions = true,
+          inlayHints = {
+            variableTypes = true,
+            functionReturnTypes = true,
+            callArgumentNames = true,
+          },
+        },
+      },
+    },
+  },
+
+  -- Python linting, import sorting, and code actions (fast, replaces flake8/isort)
+  ruff = {
+    on_attach = function(client)
+      -- basedpyright provides richer hover docs
+      client.server_capabilities.hoverProvider = false
+    end,
+  },
+
   intelephense = {
     settings = {
       intelephense = {
@@ -365,6 +419,11 @@ require('mason-tool-installer').setup {
     'prettierd', -- Formatter for JS/TS/HTML/CSS/JSON/Markdown
     'js-debug-adapter', -- Debug adapter for JavaScript/TypeScript
     'tflint', -- Terraform linter
+    'goimports', -- Go formatter: organizes imports on save
+    'gofumpt', -- Go formatter: stricter gofmt
+    'gomodifytags', -- Go struct tag editing (used by gopher.nvim)
+    'impl', -- Go interface method stub generation (used by gopher.nvim)
+    'iferr', -- Go if err != nil snippet generation (used by gopher.nvim)
   },
   auto_update = false,
   run_on_start = true,

@@ -8,7 +8,7 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
 - **LSP Integration**: Full Language Server Protocol support with auto-completion, diagnostics, and code navigation
 - **Smart Fuzzy Finding**: Powerful file and text search with Snacks picker
 - **Git Integration**: Inline git blame, hunk operations, and git status in sign column
-- **Auto-formatting**: Format-on-save for PHP (Pint), JavaScript/TypeScript (Prettier), Python (Black), Lua (Stylua)
+- **Auto-formatting**: Format-on-save for PHP (Pint), JavaScript/TypeScript (Prettier), Go (goimports + gofumpt), Python (Ruff), Lua (Stylua)
 - **Test Runner**: Run tests directly from Neovim for PHPUnit, Jest, pytest, and more
 - **Presentations**: Create and present markdown-based slideshows directly in Neovim
 - **Tmux Integration**: Seamless navigation between Neovim splits and tmux panes
@@ -21,6 +21,8 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
 - A [Nerd Font](https://www.nerdfonts.com/) for icons (recommended)
 - Node.js (for LSP servers and formatters)
 - PHP >= 8.0 (for PHP development)
+- Go (for gopls and Go tooling, installed via Brewfile)
+- Python 3 (for Python development)
 
 ### Optional Dependencies
 
@@ -29,7 +31,8 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
 - `prettierd` - Faster JavaScript/TypeScript formatting
 - `stylua` - Lua formatting
 - `pint` - PHP formatting (Laravel)
-- `black` & `isort` - Python formatting
+- `ruff` - Python linting, import sorting, and formatting (auto-installed via Mason)
+- `goimports` & `gofumpt` - Go formatting (auto-installed via Mason)
 
 ## Installation
 
@@ -60,13 +63,14 @@ A modern, feature-rich Neovim configuration focused on PHP/Laravel development w
    ```vim
    :Mason
    ```
-   Press `i` to install servers. Recommended servers:
+   All configured servers install automatically on first launch via mason-lspconfig:
    - `lua_ls` - Lua
-   - `intelephense` or `phpactor` - PHP
-   - `ts_ls` - TypeScript/JavaScript
-   - `pyright` - Python
-   - `html` - HTML
-   - `cssls` - CSS
+   - `intelephense` - PHP
+   - `vtsls` + `eslint` - TypeScript/JavaScript
+   - `gopls` - Go (with staticcheck and inlay hints)
+   - `basedpyright` + `ruff` - Python (type checking, linting, import sorting)
+   - `html`, `cssls`, `tailwindcss`, `emmet_language_server` - Web
+   - `jsonls`, `terraformls` - Config files
 
 ## Structure
 
@@ -98,7 +102,8 @@ nvim/
 │       │   ├── vim-test.lua     # Test runner
 │       │   └── which-key.lua    # Keybinding hints
 │       └── lang/
-│           └── php.lua          # PHP-specific plugins
+│           ├── php.lua          # PHP-specific plugins
+│           └── go.lua           # Go-specific plugins (gopher.nvim)
 └── snippets/                     # Custom snippets directory
 ```
 
@@ -267,8 +272,9 @@ nvim/
 Format-on-save is enabled for:
 
 - **PHP**: Pint (Laravel Pint)
-- **JavaScript/TypeScript**: Prettier/Prettierd
-- **Python**: Black + isort
+- **JavaScript/TypeScript**: Prettier/Prettierd (plus ESLint fix and import organizing on save)
+- **Go**: goimports + gofumpt (organizes imports, strict gofmt)
+- **Python**: Ruff (import sorting + formatting)
 - **Lua**: Stylua
 - **Vue/HTML/CSS/JSON/YAML**: Prettier/Prettierd
 

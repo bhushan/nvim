@@ -46,7 +46,7 @@ return {
 
   --- Auto-formatting engine with multiple formatter support
   --- Format on save with fallback chain (e.g., prettierd → prettier)
-  --- Configured for PHP (Pint), Lua (Stylua), JS/TS (Prettier), Python (Black)
+  --- Configured for PHP (Pint), Lua (Stylua), JS/TS (Prettier), Go (goimports + gofumpt), Python (Ruff)
   {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -55,7 +55,8 @@ return {
       formatters_by_ft = {
         php = { 'pint' },
         lua = { 'stylua' },
-        python = { 'isort', 'black' },
+        go = { 'goimports', 'gofumpt' },
+        python = { 'ruff_organize_imports', 'ruff_format' },
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         typescript = { 'prettierd', 'prettier', stop_after_first = true },
         javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
@@ -236,6 +237,9 @@ return {
 
   --- PHP-specific tooling and enhancements
   { import = 'plugins.lang.php' },
+
+  --- Go-specific tooling and enhancements
+  { import = 'plugins.lang.go' },
 
   --- Better diagnostics panel
   --- Provides a pretty list for diagnostics, quickfix, and location lists
