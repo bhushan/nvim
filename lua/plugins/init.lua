@@ -114,6 +114,10 @@ return {
   --- Enables advanced features like text objects and refactoring
   { import = 'plugins.editor.treesitter' },
 
+  --- In-editor markdown previewer (rendered headings, tables, code, checkboxes)
+  --- Toggle rendered/raw with <leader>mp in markdown buffers
+  { import = 'plugins.editor.render-markdown' },
+
   --- Icon set for file types and UI elements
   --- Required by file explorers, statusline, and other UI plugins
   { 'nvim-tree/nvim-web-devicons' },

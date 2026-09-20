@@ -192,6 +192,12 @@ nvim/
 | `<leader>c` | Presentation | Pause presentation (toggle to edit)      |
 | `q`         | Presentation | Close presentation                       |
 
+### Markdown
+
+| Key          | Mode   | Action                                            |
+| ------------ | ------ | ------------------------------------------------- |
+| `<leader>mp` | Normal | Toggle markdown preview (rendered/raw, in-editor) |
+
 ### Terraform (if working with .tf files)
 
 | Key          | Mode   | Action                        |
@@ -230,6 +236,7 @@ nvim/
 - **[conform.nvim](https://github.com/stevearc/conform.nvim)** - Auto-formatting
 - **[nvim-autopairs](https://github.com/windwp/nvim-autopairs)** - Auto-close brackets
 - **[present.nvim](https://github.com/bhushan/present.nvim)** - Markdown-based presentations
+- **[render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)** - In-editor markdown preview (rendered inline, toggle with `<leader>mp`)
 
 ### Git Integration
 
