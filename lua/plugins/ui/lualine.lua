@@ -56,6 +56,10 @@ require('lualine').setup {
       {
         'diagnostics',
         symbols = { error = '  ', warn = '  ', info = '  ', hint = '  ' },
+        -- Hidden while diagnostics are off (<leader>td)
+        cond = function()
+          return vim.diagnostic.is_enabled()
+        end,
       },
     },
     lualine_c = {

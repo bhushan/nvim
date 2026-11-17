@@ -149,3 +149,7 @@ vim.diagnostic.config {
   },
   severity_sort = true,
 }
+
+--- Diagnostics hidden by default (distraction-free study mode).
+--- LSP still runs (completion, go-to-definition, hover); toggle with <leader>td.
+vim.diagnostic.enable(false)

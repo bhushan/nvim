@@ -14,6 +14,10 @@ return {
         mode = 'buffers',
         diagnostics = 'nvim_lsp',
         diagnostics_indicator = function(count, level)
+          -- Hidden while diagnostics are off (<leader>td)
+          if not vim.diagnostic.is_enabled() then
+            return ''
+          end
           local icon = level:match 'error' and ' ' or ' '
           return ' ' .. icon .. count
         end,
