@@ -35,6 +35,9 @@ return {
       }
       require('nvim-treesitter').install(parsers)
 
+      -- JSON Lines is one JSON value per line; the json parser handles it
+      vim.treesitter.language.register('json', 'jsonl')
+
       -- Blade parser configuration
       local parser_config = require 'nvim-treesitter.parsers'
       parser_config.blade = {

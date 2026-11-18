@@ -65,9 +65,16 @@ return {
         css = { 'prettierd', 'prettier', stop_after_first = true },
         scss = { 'prettierd', 'prettier', stop_after_first = true },
         html = { 'prettierd', 'prettier', stop_after_first = true },
-        json = { 'prettierd', 'prettier', stop_after_first = true },
+        json = { 'jq' }, -- always expands objects; prettier keeps short ones inline
+        jsonl = { 'jq_compact' }, -- prettier has no JSON Lines support
         yaml = { 'prettierd', 'prettier', stop_after_first = true },
         markdown = { 'prettierd', 'prettier', stop_after_first = true },
+      },
+      formatters = {
+        -- One compact JSON value per line, as JSON Lines requires
+        jq_compact = { command = 'jq', args = { '-c', '.' } },
+        -- 2-space indent, matching what prettier wrote before
+        jq = { args = { '--indent', '2', '.' } },
       },
       format_on_save = {
         timeout_ms = 2000,

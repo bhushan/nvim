@@ -72,6 +72,8 @@ return {
           ['@variable.parameter'] = { fg = colors.subtext1 },
           ['@property'] = { fg = colors.subtext1 },
           ['@field'] = { fg = colors.subtext1 },
+          -- JSON keys: subtext1 is nearly the text color, so keys read as unhighlighted
+          ['@property.json'] = { fg = arctic.ice },
 
           -- Syntax: constants and numbers
           ['@constant'] = { fg = arctic.rose },
